@@ -1,8 +1,8 @@
 import { SdfTrFontFace } from '@lightningjs/renderer';
-import { Canvas, type RenderOptions } from '@plex/react-lightning';
-import { Column, Row } from '@plex/react-lightning-components';
-import devtools from '@plex/react-lightning-plugin-devtools/plugin';
-import '@plex/react-lightning-plugin-flexbox/jsx';
+import { Canvas, type RenderOptions } from '@plexinc/react-lightning';
+import { Column, Row } from '@plexinc/react-lightning-components';
+import devtools from '@plexinc/react-lightning-plugin-devtools/plugin';
+import '@plexinc/react-lightning-plugin-flexbox/jsx';
 import type { LinkingOptions } from '@react-navigation/native';
 import {
   DarkTheme,

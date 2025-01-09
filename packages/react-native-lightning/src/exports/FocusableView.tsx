@@ -1,4 +1,4 @@
-import { focusable } from '@plex/react-lightning';
+import { focusable } from '@plexinc/react-lightning';
 import { View, type ViewProps } from './View';
 
 const FocusableView = focusable<ViewProps>(View);

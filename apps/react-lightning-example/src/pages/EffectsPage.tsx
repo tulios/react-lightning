@@ -1,8 +1,8 @@
 import type {
   EffectsMap,
   LightningViewElementStyle,
-} from '@plex/react-lightning';
-import { Column, Row } from '@plex/react-lightning-components';
+} from '@plexinc/react-lightning';
+import { Column, Row } from '@plexinc/react-lightning-components';
 import { useCallback, useMemo, useState } from 'react';
 import Button from '../components/Button';
 

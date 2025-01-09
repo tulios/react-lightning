@@ -1,7 +1,19 @@
 {
-  "name": "@plex/vite-plugin-msdf-fontgen",
-  "version": "1.0.4",
-  "description": "",
+  "name": "@plexinc/vite-plugin-msdf-fontgen",
+  "description": "Vite plugin for generating MSDF fonts for use in Lightningjs",
+  "version": "1.0.0",
+  "author": "Plex Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plexinc/react-lightning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plexinc/react-lightning/issues/new"
+  },
+  "keywords": [
+    "vite-plugin"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,11 +26,6 @@
     "prepare": "pnpm run build",
     "test:unit": "vitest run --passWithNoTests"
   },
-  "keywords": [
-    "vite-plugin"
-  ],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@lightningjs/msdf-generator": "1.1.0"
   },

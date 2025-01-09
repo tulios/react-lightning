@@ -1,6 +1,16 @@
 {
-  "name": "@plex/react-native-lightning-example",
-  "version": "0.4.45",
+  "name": "@plexinc/react-native-lightning-example",
+  "description": "Sample implementation of @plex/react-native-lightning in a React Native app",
+  "version": "0.1.0",
+  "author": "Plex Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plexinc/react-lightning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plexinc/react-lightning/issues/new"
+  },
   "packageManager": "pnpm@8.10.0",
   "type": "module",
   "private": true,
@@ -12,12 +22,12 @@
   },
   "dependencies": {
     "@lightningjs/renderer": "2.8.0",
-    "@plex/react-lightning": "workspace:*",
-    "@plex/react-lightning-components": "workspace:*",
-    "@plex/react-lightning-plugin-devtools": "workspace:*",
-    "@plex/react-lightning-plugin-flexbox": "workspace:*",
-    "@plex/react-lightning-plugin-reanimated": "workspace:*",
-    "@plex/react-native-lightning": "workspace:*",
+    "@plexinc/react-lightning": "workspace:*",
+    "@plexinc/react-lightning-components": "workspace:*",
+    "@plexinc/react-lightning-plugin-devtools": "workspace:*",
+    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
+    "@plexinc/react-lightning-plugin-reanimated": "workspace:*",
+    "@plexinc/react-native-lightning": "workspace:*",
     "@react-navigation/native": "7.0.13",
     "@react-navigation/stack": "7.0.18",
     "@shopify/flash-list": "1.7.2",
@@ -30,9 +40,9 @@
   "devDependencies": {
     "@babel/core": "7.26.0",
     "@babel/runtime": "7.26.0",
-    "@plex/vite-plugin-msdf-fontgen": "workspace:*",
-    "@plex/vite-plugin-react-native-lightning": "workspace:*",
-    "@plex/vite-plugin-react-reanimated-lightning": "workspace:*",
+    "@plexinc/vite-plugin-msdf-fontgen": "workspace:*",
+    "@plexinc/vite-plugin-react-native-lightning": "workspace:*",
+    "@plexinc/vite-plugin-react-reanimated-lightning": "workspace:*",
     "@react-native-community/cli": "15.1.2",
     "@repo/typescript-config": "workspace:*",
     "@types/react": "18.3.14",

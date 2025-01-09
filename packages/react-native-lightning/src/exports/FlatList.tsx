@@ -1,4 +1,4 @@
-import type { LightningViewElement } from '@plex/react-lightning';
+import type { LightningViewElement } from '@plexinc/react-lightning';
 import type { RefAttributes } from 'react';
 import React from 'react';
 import type {

@@ -1,4 +1,4 @@
-import fontGen from '@plex/vite-plugin-msdf-fontgen';
+import fontGen from '@plexinc/vite-plugin-msdf-fontgen';
 import react from '@vitejs/plugin-react';
 import type { InlineConfig } from 'vite';
 

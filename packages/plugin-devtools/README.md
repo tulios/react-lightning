@@ -13,7 +13,7 @@ This will create the files needed for the extension in the `dist` folder.
 
 Import the plugin:
 
-`import devtoolsPlugin from '@plex/react-lightning-plugin-devtools/plugin'`
+`import devtoolsPlugin from '@plexinc/react-lightning-plugin-devtools/plugin'`
 
 Include the options in the react-lightning render options:
 

@@ -1,4 +1,4 @@
-import type { LightningElement, Plugin } from '@plex/react-lightning';
+import type { LightningElement, Plugin } from '@plexinc/react-lightning';
 import { version as reactVersion } from 'react';
 import { createRoot } from 'react-dom/client';
 import { setNamespace } from 'webext-bridge/window';

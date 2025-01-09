@@ -1,7 +1,7 @@
 import {
   LightningRootContext,
   type LightningTextElementStyle,
-} from '@plex/react-lightning';
+} from '@plexinc/react-lightning';
 import { useCallback, useContext, useEffect, useState } from 'react';
 
 interface Props {

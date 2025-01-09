@@ -1,7 +1,16 @@
 {
-  "name": "@plex/react-lightning-plugin-css-transform",
-  "version": "0.3.10",
-  "description": "Transforms CSS properties to lightning properties. Requires flexbox",
+  "name": "@plexinc/react-lightning-plugin-css-transform",
+  "description": "Transforms CSS properties to lightning properties. Requires @plexinc/react-lightning-plugin-flexbox",
+  "version": "0.1.0",
+  "author": "Plex Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plexinc/react-lightning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plexinc/react-lightning/issues/new"
+  },
   "type": "module",
   "main": "dist/cjs/index.js",
   "types": "dist/types/index.d.ts",
@@ -32,11 +41,10 @@
     "clean": "del ./dist",
     "test:unit": "vitest run --passWithNoTests"
   },
-  "author": "Plex",
   "devDependencies": {
     "@lightningjs/renderer": "2.8.0",
-    "@plex/react-lightning": "workspace:*",
-    "@plex/react-lightning-plugin-flexbox": "workspace:*",
+    "@plexinc/react-lightning": "workspace:*",
+    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
     "@repo/rollup-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/react": "18.3.14",
@@ -46,8 +54,8 @@
   },
   "peerDependencies": {
     "@lightningjs/renderer": "^2.5.1",
-    "@plex/react-lightning": "workspace:*",
-    "@plex/react-lightning-plugin-flexbox": "workspace:*",
+    "@plexinc/react-lightning": "workspace:*",
+    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
     "react-native": "^0.76.1"
   },
   "volta": {

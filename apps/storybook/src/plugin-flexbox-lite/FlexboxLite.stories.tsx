@@ -1,5 +1,5 @@
-import { Row } from '@plex/react-lightning-components';
-import flexboxLitePlugin from '@plex/react-lightning-plugin-flexbox-lite';
+import { Row } from '@plexinc/react-lightning-components';
+import flexboxLitePlugin from '@plexinc/react-lightning-plugin-flexbox-lite';
 import type { Meta } from '@storybook/react';
 import { StorybookDecorator } from '../components/StorybookDecorator';
 import {
@@ -32,7 +32,7 @@ const ExampleBox = () => {
 };
 
 export default {
-  title: 'Plugins/@plex∕react-lightning-plugin-flexbox-lite/FlexBoxLite',
+  title: 'Plugins/@plexinc∕react-lightning-plugin-flexbox-lite/FlexBoxLite',
   decorators: [
     (Story) => (
       <StorybookDecorator

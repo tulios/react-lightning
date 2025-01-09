@@ -1,5 +1,8 @@
-import { type LightningImageElement, focusable } from '@plex/react-lightning';
-import { Column, Row } from '@plex/react-lightning-components';
+import {
+  type LightningImageElement,
+  focusable,
+} from '@plexinc/react-lightning';
+import { Column, Row } from '@plexinc/react-lightning-components';
 import type { ForwardedRef } from 'react';
 import { useMemo } from 'react';
 

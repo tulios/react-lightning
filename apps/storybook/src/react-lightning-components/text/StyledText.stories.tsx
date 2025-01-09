@@ -1,4 +1,4 @@
-import { StyledText } from '@plex/react-lightning-components';
+import { StyledText } from '@plexinc/react-lightning-components';
 import React from 'react';
 import Button from '../../components/Button';
 import { DefaultStoryWidth } from '../../helpers/constants';
@@ -25,7 +25,7 @@ const PhoneFriendSecondLine = {
 };
 
 export default {
-  title: '@plex∕react-lightning-components/Text/StyledText',
+  title: '@plexinc∕react-lightning-components/Text/StyledText',
   component: StyledText,
 };
 

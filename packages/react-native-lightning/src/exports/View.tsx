@@ -2,10 +2,10 @@ import type {
   FocusableProps,
   LightningViewElementProps,
   Rect,
-} from '@plex/react-lightning';
-import type { LightningElementEventProps } from '@plex/react-lightning';
-import type { LightningViewElement } from '@plex/react-lightning';
-import type { AllStyleProps } from '@plex/react-lightning-plugin-css-transform';
+} from '@plexinc/react-lightning';
+import type { LightningElementEventProps } from '@plexinc/react-lightning';
+import type { LightningViewElement } from '@plexinc/react-lightning';
+import type { AllStyleProps } from '@plexinc/react-lightning-plugin-css-transform';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { forwardRef, useCallback } from 'react';
 import type { ViewProps as RNViewProps } from 'react-native';

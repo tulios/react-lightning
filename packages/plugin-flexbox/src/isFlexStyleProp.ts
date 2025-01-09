@@ -1,4 +1,4 @@
-import type { LightningViewElementStyle } from '@plex/react-lightning';
+import type { LightningViewElementStyle } from '@plexinc/react-lightning';
 
 export const flexProps = {
   alignContent: true,

@@ -1,7 +1,7 @@
 import {
   type LightningElement,
   LightningViewElement,
-} from '@plex/react-lightning';
+} from '@plexinc/react-lightning';
 import { stringify } from 'flatted';
 import type { Fiber } from 'react-reconciler';
 import { sendMessage } from 'webext-bridge/window';

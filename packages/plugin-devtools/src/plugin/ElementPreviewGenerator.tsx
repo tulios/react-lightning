@@ -1,4 +1,4 @@
-import type { LightningElement } from '@plex/react-lightning';
+import type { LightningElement } from '@plexinc/react-lightning';
 import { type FC, useContext, useEffect, useRef } from 'react';
 import { sendMessage } from 'webext-bridge/window';
 import { LightningCanvasContext } from '../LightningCanvasContext';

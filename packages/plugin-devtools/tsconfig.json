@@ -9,8 +9,8 @@
     "types": [
       "node",
       "@types/chrome",
-      "@plex/react-lightning/jsx",
-      "@plex/react-lightning-plugin-flexbox/jsx"
+      "@plexinc/react-lightning/jsx",
+      "@plexinc/react-lightning-plugin-flexbox/jsx"
     ]
   },
   "include": ["src", "*.config.ts"],

@@ -4,7 +4,7 @@ import type {
   FlexLightningBaseElementStyle,
 } from './FlexStyles';
 
-declare module '@plex/react-lightning' {
+declare module '@plexinc/react-lightning' {
   interface LightningViewElementStyle
     extends FlexLightningBaseElementStyle,
       FlexItem,

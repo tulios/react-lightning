@@ -1,4 +1,4 @@
-import type { Rect } from '@plex/react-lightning';
+import type { Rect } from '@plexinc/react-lightning';
 
 export type FlexDirection = 'column-reverse' | 'column' | 'row-reverse' | 'row';
 export type FlexWrap = 'nowrap' | 'wrap-reverse' | 'wrap';

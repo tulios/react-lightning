@@ -1,7 +1,16 @@
 {
-  "name": "@plex/react-lightning",
-  "version": "0.7.19",
-  "description": "",
+  "name": "@plexinc/react-lightning",
+  "description": "React renderer for rendering React apps with Lightning.js",
+  "version": "0.1.0",
+  "author": "Plex Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plexinc/react-lightning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plexinc/react-lightning/issues/new"
+  },
   "type": "module",
   "main": "dist/cjs/index.js",
   "types": "dist/types/index.d.ts",
@@ -33,7 +42,6 @@
     "clean": "del ./dist",
     "test:unit": "vitest run --passWithNoTests"
   },
-  "author": "Plex",
   "dependencies": {
     "react-reconciler": "0.29.2"
   },

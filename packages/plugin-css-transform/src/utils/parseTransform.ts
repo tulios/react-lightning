@@ -1,4 +1,4 @@
-import type { Transform } from '@plex/react-lightning-plugin-flexbox';
+import type { Transform } from '@plexinc/react-lightning-plugin-flexbox';
 import { convertCSSTransformToLightning } from './convertCSSTransformToLightning';
 
 const transformPartRegex = /(\w+)\(([^)]+)\)/g;

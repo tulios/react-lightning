@@ -65,16 +65,16 @@ importers:
       '@lightningjs/renderer':
         specifier: 2.8.0
         version: 2.8.0
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../../packages/react-lightning
-      '@plex/react-lightning-components':
+      '@plexinc/react-lightning-components':
         specifier: workspace:*
         version: link:../../packages/react-lightning-components
-      '@plex/react-lightning-plugin-devtools':
+      '@plexinc/react-lightning-plugin-devtools':
         specifier: workspace:*
         version: link:../../packages/plugin-devtools
-      '@plex/react-lightning-plugin-flexbox':
+      '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../../packages/plugin-flexbox
       react:
@@ -90,7 +90,7 @@ importers:
         specifier: 2.2.5
         version: 2.2.5(react@18.3.1)
     devDependencies:
-      '@plex/vite-plugin-msdf-fontgen':
+      '@plexinc/vite-plugin-msdf-fontgen':
         specifier: workspace:*
         version: link:../../packages/vite-plugin-msdf-fontgen
       '@repo/typescript-config':
@@ -117,22 +117,22 @@ importers:
       '@lightningjs/renderer':
         specifier: 2.8.0
         version: 2.8.0
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../../packages/react-lightning
-      '@plex/react-lightning-components':
+      '@plexinc/react-lightning-components':
         specifier: workspace:*
         version: link:../../packages/react-lightning-components
-      '@plex/react-lightning-plugin-devtools':
+      '@plexinc/react-lightning-plugin-devtools':
         specifier: workspace:*
         version: link:../../packages/plugin-devtools
-      '@plex/react-lightning-plugin-flexbox':
+      '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../../packages/plugin-flexbox
-      '@plex/react-lightning-plugin-reanimated':
+      '@plexinc/react-lightning-plugin-reanimated':
         specifier: workspace:*
         version: link:../../packages/plugin-reanimated
-      '@plex/react-native-lightning':
+      '@plexinc/react-native-lightning':
         specifier: workspace:*
         version: link:../../packages/react-native-lightning
       '@react-navigation/native':
@@ -166,13 +166,13 @@ importers:
       '@babel/runtime':
         specifier: 7.26.0
         version: 7.26.0
-      '@plex/vite-plugin-msdf-fontgen':
+      '@plexinc/vite-plugin-msdf-fontgen':
         specifier: workspace:*
         version: link:../../packages/vite-plugin-msdf-fontgen
-      '@plex/vite-plugin-react-native-lightning':
+      '@plexinc/vite-plugin-react-native-lightning':
         specifier: workspace:*
         version: link:../../packages/vite-plugin-react-native-lightning
-      '@plex/vite-plugin-react-reanimated-lightning':
+      '@plexinc/vite-plugin-react-reanimated-lightning':
         specifier: workspace:*
         version: link:../../packages/vite-plugin-react-reanimated-lightning
       '@react-native-community/cli':
@@ -196,16 +196,16 @@ importers:
       '@lightningjs/renderer':
         specifier: 2.8.0
         version: 2.8.0
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../../packages/react-lightning
-      '@plex/react-lightning-components':
+      '@plexinc/react-lightning-components':
         specifier: workspace:*
         version: link:../../packages/react-lightning-components
-      '@plex/react-lightning-plugin-flexbox':
+      '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../../packages/plugin-flexbox
-      '@plex/react-lightning-plugin-flexbox-lite':
+      '@plexinc/react-lightning-plugin-flexbox-lite':
         specifier: workspace:*
         version: link:../../packages/plugin-flexbox-lite
       '@storybook/addon-essentials':
@@ -251,7 +251,7 @@ importers:
       '@lightningjs/renderer':
         specifier: 2.8.0
         version: 2.8.0
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../../packages/react-lightning
       react:
@@ -261,7 +261,7 @@ importers:
         specifier: 7.0.2
         version: 7.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
-      '@plex/vite-plugin-msdf-fontgen':
+      '@plexinc/vite-plugin-msdf-fontgen':
         specifier: workspace:*
         version: link:../../packages/vite-plugin-msdf-fontgen
       '@tsconfig/vite-react':
@@ -283,24 +283,15 @@ importers:
         specifier: 6.0.2
         version: 6.0.2(@types/node@22.10.1)(terser@5.36.0)(tsx@4.19.2)(yaml@2.6.1)
 
-  packages/__plugin-template__:
-    devDependencies:
-      '@repo/rollup-config':
-        specifier: workspace:*
-        version: link:../rollup-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-
   packages/plugin-css-transform:
     devDependencies:
       '@lightningjs/renderer':
         specifier: 2.8.0
         version: 2.8.0
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../react-lightning
-      '@plex/react-lightning-plugin-flexbox':
+      '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../plugin-flexbox
       '@repo/rollup-config':
@@ -333,10 +324,10 @@ importers:
       '@lightningjs/renderer':
         specifier: 2.8.0
         version: 2.8.0
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../react-lightning
-      '@plex/react-lightning-plugin-flexbox':
+      '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../plugin-flexbox
       '@repo/typescript-config':
@@ -394,7 +385,7 @@ importers:
         specifier: 3.2.0
         version: 3.2.0
     devDependencies:
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../react-lightning
       '@repo/rollup-config':
@@ -412,7 +403,7 @@ importers:
 
   packages/plugin-flexbox-lite:
     devDependencies:
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../react-lightning
       '@repo/rollup-config':
@@ -433,13 +424,13 @@ importers:
       '@lightningjs/renderer':
         specifier: 2.8.0
         version: 2.8.0
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../react-lightning
-      '@plex/react-lightning-plugin-css-transform':
+      '@plexinc/react-lightning-plugin-css-transform':
         specifier: workspace:*
         version: link:../plugin-css-transform
-      '@plex/react-lightning-plugin-flexbox':
+      '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../plugin-flexbox
       '@repo/rollup-config':
@@ -491,10 +482,10 @@ importers:
 
   packages/react-lightning-components:
     devDependencies:
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../react-lightning
-      '@plex/react-lightning-plugin-flexbox':
+      '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../plugin-flexbox
       '@repo/rollup-config':
@@ -512,10 +503,10 @@ importers:
 
   packages/react-native-lightning:
     dependencies:
-      '@plex/react-lightning-plugin-css-transform':
+      '@plexinc/react-lightning-plugin-css-transform':
         specifier: workspace:*
         version: link:../plugin-css-transform
-      '@plex/react-lightning-plugin-flexbox':
+      '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../plugin-flexbox
       '@react-native-community/cli':
@@ -525,7 +516,7 @@ importers:
       '@lightningjs/renderer':
         specifier: 2.8.0
         version: 2.8.0
-      '@plex/react-lightning':
+      '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../react-lightning
       '@repo/rollup-config':
@@ -597,7 +588,7 @@ importers:
 
   packages/vite-plugin-react-native-lightning:
     dependencies:
-      '@plex/react-native-lightning':
+      '@plexinc/react-native-lightning':
         specifier: workspace:*
         version: link:../react-native-lightning
       '@vitejs/plugin-react':
@@ -613,7 +604,7 @@ importers:
 
   packages/vite-plugin-react-reanimated-lightning:
     dependencies:
-      '@plex/react-lightning-plugin-reanimated':
+      '@plexinc/react-lightning-plugin-reanimated':
         specifier: workspace:*
         version: link:../plugin-reanimated
       react-native-reanimated:

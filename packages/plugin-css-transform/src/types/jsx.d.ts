@@ -2,7 +2,7 @@ import type {
   LightningImageElementProps,
   LightningTextElementProps,
   LightningViewElementProps,
-} from '@plex/react-lightning';
+} from '@plexinc/react-lightning';
 import type { AllStyleProps } from './ReactStyle';
 
 declare global {

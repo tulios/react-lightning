@@ -2,6 +2,7 @@
   "name": "react-lightning",
   "description": "React reconciler for rendering React apps with Lightning.js",
   "author": "Plex Inc.",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plexinc/react-lightning.git"
@@ -12,17 +13,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "turbo build --filter=!@repo/plugin-template --filter=!react-lightning-sample-app",
-    "build:types": "turbo build:types --filter=!@repo/plugin-template --filter=!react-lightning-sample-app",
-    "clean": "turbo clean --filter=!@repo/plugin-template --filter=!react-lightning-sample-app",
+    "build": "turbo build --filter=!react-lightning-sample-app",
+    "build:types": "turbo build:types --filter=!react-lightning-sample-app",
+    "clean": "turbo clean --filter=!react-lightning-sample-app",
     "ci:publish": "pnpm run build && pnpm exec changeset publish",
     "ci:version": "pnpm exec changeset version && pnpm install --no-frozen-lockfile",
-    "dev": "turbo dev --filter=!@repo/plugin-template --filter=!react-lightning-sample-app",
+    "dev": "turbo dev --filter=!react-lightning-sample-app",
     "lint": "biome check",
     "lint:format": "biome check --write",
     "nuke": "pnpm run clean && pnpx npkill -x -y -D && pnpm install",
     "test": "pnpm run test:unit",
-    "test:unit": "turbo test:unit --filter=!@repo/plugin-template --filter=!react-lightning-sample-app",
+    "test:unit": "turbo test:unit --filter=!react-lightning-sample-app",
     "unused": "tsx ./scripts/depcheck.ts",
     "prepare": "husky"
   },

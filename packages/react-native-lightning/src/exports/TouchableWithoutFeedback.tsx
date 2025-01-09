@@ -2,7 +2,7 @@ import {
   type LightningViewElement,
   useCombinedRef,
   useFocus,
-} from '@plex/react-lightning';
+} from '@plexinc/react-lightning';
 import React, { forwardRef } from 'react';
 import type { TouchableWithoutFeedbackProps } from 'react-native';
 import { Pressable } from './Pressable';

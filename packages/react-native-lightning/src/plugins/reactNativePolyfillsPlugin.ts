@@ -1,4 +1,4 @@
-import type { LightningViewElement, Plugin } from '@plex/react-lightning';
+import type { LightningViewElement, Plugin } from '@plexinc/react-lightning';
 import type { NativeMethods } from 'react-native';
 
 export const reactNativePolyfillsPlugin = (): Plugin => {

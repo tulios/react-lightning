@@ -1,4 +1,4 @@
-import type { LightningElement } from '@plex/react-lightning';
+import type { LightningElement } from '@plexinc/react-lightning';
 import type { CSSProperties, FC, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useTheme } from '../hooks/useTheme';

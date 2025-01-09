@@ -1,5 +1,5 @@
-import { FocusGroup } from '@plex/react-lightning';
-import { Column } from '@plex/react-lightning-components';
+import { FocusGroup } from '@plexinc/react-lightning';
+import { Column } from '@plexinc/react-lightning-components';
 import { FlashList } from '@shopify/flash-list';
 import { Text } from 'react-native';
 

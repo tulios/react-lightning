@@ -1,9 +1,9 @@
 {
   "name": "@repo/rollup-config",
-  "version": "0.3.7",
+  "version": "0.1.0",
   "private": true,
-  "license": "UNLICENSED",
-  "repository": "git@github.com:plexinc/react-lightning.git",
+  "author": "Plex Inc.",
+  "license": "MIT",
   "type": "module",
   "main": "index.js",
   "module": "index.js",

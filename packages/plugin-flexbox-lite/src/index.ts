@@ -1,4 +1,4 @@
-import type { LightningElement, Plugin } from '@plex/react-lightning';
+import type { LightningElement, Plugin } from '@plexinc/react-lightning';
 import type { SetOptional } from 'type-fest';
 
 function getChildrenSize(

@@ -1,4 +1,4 @@
-import { Column } from '@plex/react-lightning-components';
+import { Column } from '@plexinc/react-lightning-components';
 
 export const TexturePage = () => {
   return (

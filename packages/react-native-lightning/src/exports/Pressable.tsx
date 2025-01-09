@@ -1,6 +1,10 @@
-import type { KeyEvent, LightningElement, Rect } from '@plex/react-lightning';
-import { Keys, focusable } from '@plex/react-lightning';
-import type { LightningViewElement } from '@plex/react-lightning';
+import type {
+  KeyEvent,
+  LightningElement,
+  Rect,
+} from '@plexinc/react-lightning';
+import { Keys, focusable } from '@plexinc/react-lightning';
+import type { LightningViewElement } from '@plexinc/react-lightning';
 import type { DependencyList, RefAttributes } from 'react';
 import { useCallback, useState } from 'react';
 import type {

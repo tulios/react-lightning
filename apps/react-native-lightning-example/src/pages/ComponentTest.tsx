@@ -1,4 +1,4 @@
-import { Column, Row } from '@plex/react-lightning-components';
+import { Column, Row } from '@plexinc/react-lightning-components';
 import {
   ActivityIndicator,
   Button,

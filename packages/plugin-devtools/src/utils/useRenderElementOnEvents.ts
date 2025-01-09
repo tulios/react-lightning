@@ -1,7 +1,7 @@
 import type {
   LightningElement,
   LightningElementEvents,
-} from '@plex/react-lightning';
+} from '@plexinc/react-lightning';
 import { useEffect, useState } from 'react';
 
 export const useRenderElementOnEvents = (

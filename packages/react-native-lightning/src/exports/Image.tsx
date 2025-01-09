@@ -1,5 +1,5 @@
 import type { Dimensions } from '@lightningjs/renderer';
-import type { LightningImageElement } from '@plex/react-lightning';
+import type { LightningImageElement } from '@plexinc/react-lightning';
 import { forwardRef, useCallback } from 'react';
 import type {
   ImageLoadEventData,

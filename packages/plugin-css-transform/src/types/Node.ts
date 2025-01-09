@@ -1,5 +1,5 @@
 import type { INodeProps } from '@lightningjs/renderer';
-import type { LightningElement, RendererNode } from '@plex/react-lightning';
+import type { LightningElement, RendererNode } from '@plexinc/react-lightning';
 
 export type RendererNodeWithCore = RendererNode<LightningElement> & {
   coreNode: {

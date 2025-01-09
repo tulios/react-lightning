@@ -1,4 +1,4 @@
-import type { Plugin } from '@plex/react-lightning';
+import type { Plugin } from '@plexinc/react-lightning';
 import { StyleSheet } from 'react-native-web';
 
 type ReactNativeWebStyleSheet = StyleSheet & {

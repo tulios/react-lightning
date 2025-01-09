@@ -13,9 +13,9 @@ const preview: Preview = {
         order: [
           'Getting Started',
           ['Introduction', 'Quick Start'],
-          '@plex∕react-lightning',
-          '@plex∕react-native-lightning',
-          '@plex∕react-lightning-components',
+          '@plexinc∕react-lightning',
+          '@plexinc∕react-native-lightning',
+          '@plexinc∕react-lightning-components',
           'Plugins',
         ],
       },

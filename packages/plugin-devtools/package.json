@@ -1,7 +1,16 @@
 {
-  "name": "@plex/react-lightning-plugin-devtools",
-  "version": "0.1.12",
-  "description": "React-Lightning DevTools",
+  "name": "@plexinc/react-lightning-plugin-devtools",
+  "description": "React-Lightning DevTools for Chromium-based browsers",
+  "version": "0.1.0",
+  "author": "Plex Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plexinc/react-lightning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plexinc/react-lightning/issues/new"
+  },
   "type": "module",
   "scripts": {
     "build": "pnpm run clean && vite build --config vite.plugin.config.ts && vite build --config vite.ext.config.ts",
@@ -17,13 +26,12 @@
       "./plugin": "./dist/assets/plugin.js"
     }
   },
-  "author": "Plex",
   "devDependencies": {
     "@catppuccin/palette": "1.7.1",
     "@crxjs/vite-plugin": "2.0.0-beta.26",
     "@lightningjs/renderer": "2.8.0",
-    "@plex/react-lightning": "workspace:*",
-    "@plex/react-lightning-plugin-flexbox": "workspace:*",
+    "@plexinc/react-lightning": "workspace:*",
+    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/chrome": "0.0.287",
     "@types/node": "22.10.1",
@@ -42,7 +50,7 @@
     "webext-bridge": "6.0.1"
   },
   "peerDependencies": {
-    "@plex/react-lightning": "workspace:*",
+    "@plexinc/react-lightning": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "18.3.1",
     "react-reconciler": "^0.29.2",

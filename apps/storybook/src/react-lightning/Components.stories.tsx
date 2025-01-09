@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react';
 
 export default {
-  title: '@plex∕react-lightning/Lightning Components',
+  title: '@plexinc∕react-lightning/Lightning Components',
   component: () => <lng-view />,
   tags: ['!dev'],
 } as Meta;

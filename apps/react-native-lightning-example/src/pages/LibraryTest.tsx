@@ -1,6 +1,6 @@
-import type { KeyEvent, LightningElement } from '@plex/react-lightning';
-import { Keys, focusable } from '@plex/react-lightning';
-import { Column, Row } from '@plex/react-lightning-components';
+import type { KeyEvent, LightningElement } from '@plexinc/react-lightning';
+import { Keys, focusable } from '@plexinc/react-lightning';
+import { Column, Row } from '@plexinc/react-lightning-components';
 import { useCallback, useEffect, useState } from 'react';
 import { Image, Text } from 'react-native';
 

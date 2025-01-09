@@ -8,6 +8,6 @@ export default createRollupConfig({
     'react',
     'react-native',
     'react-native-reanimated-original',
-    '@plex/react-lightning-plugin-css-transform',
+    '@plexinc/react-lightning-plugin-css-transform',
   ],
 });

@@ -3,7 +3,7 @@ import type {
   LightningElementStyle,
   LightningViewElementStyle,
   Plugin,
-} from '@plex/react-lightning';
+} from '@plexinc/react-lightning';
 import type { Node } from 'yoga-layout';
 import applyReactPropsToYoga, {
   applyFlexPropToYoga,

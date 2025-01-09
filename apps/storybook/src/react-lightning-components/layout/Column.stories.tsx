@@ -1,4 +1,4 @@
-import { Column } from '@plex/react-lightning-components';
+import { Column } from '@plexinc/react-lightning-components';
 import type { Meta } from '@storybook/react';
 import {
   ColorPalette,
@@ -18,7 +18,7 @@ const ExampleBox = () => {
 };
 
 export default {
-  title: '@plex∕react-lightning-components/Layout/Column',
+  title: '@plexinc∕react-lightning-components/Layout/Column',
   component: Column,
   argTypes: {
     justifyContent: {

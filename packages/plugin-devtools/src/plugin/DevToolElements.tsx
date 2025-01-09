@@ -1,7 +1,7 @@
 import {
   type LightningElement,
   LightningViewElement,
-} from '@plex/react-lightning';
+} from '@plexinc/react-lightning';
 import { type FC, type ReactNode, useCallback, useState } from 'react';
 import { useExtensionMessaging } from '../communication/useExtensionMessaging';
 import { useRenderElementOnEvents } from '../utils/useRenderElementOnEvents';

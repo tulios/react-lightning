@@ -1,4 +1,4 @@
-import type { LightningTextElementStyle } from '@plex/react-lightning';
+import type { LightningTextElementStyle } from '@plexinc/react-lightning';
 
 type Props = {
   children?: string;

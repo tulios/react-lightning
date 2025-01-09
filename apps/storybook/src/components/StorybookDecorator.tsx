@@ -1,6 +1,6 @@
 import { SdfTrFontFace } from '@lightningjs/renderer';
-import { Canvas, type RenderOptions } from '@plex/react-lightning';
-import flexbox from '@plex/react-lightning-plugin-flexbox';
+import { Canvas, type RenderOptions } from '@plexinc/react-lightning';
+import flexbox from '@plexinc/react-lightning-plugin-flexbox';
 import { useMemo } from 'react';
 import { keyMap } from '../../keyMap';
 import { DefaultStoryHeight, DefaultStoryWidth } from '../helpers/constants';

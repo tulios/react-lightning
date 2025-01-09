@@ -1,4 +1,4 @@
-import type { LightningElement, Rect } from '@plex/react-lightning';
+import type { LightningElement, Rect } from '@plexinc/react-lightning';
 import type { SimpleElement } from '../types';
 
 export type SerializableProps = Pick<LightningElement, 'props' | 'rawProps'> & {

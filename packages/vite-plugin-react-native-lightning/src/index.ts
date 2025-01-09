@@ -24,7 +24,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootPath = resolve(__dirname, '..');
 const require = createRequire(rootPath);
 const reactNativeLightningPath = require.resolve(
-  '@plex/react-native-lightning',
+  '@plexinc/react-native-lightning',
 );
 
 type Options = {

@@ -1,5 +1,5 @@
-import type { LightningElement } from '@plex/react-lightning';
-import { useCombinedRef, useFocus } from '@plex/react-lightning';
+import type { LightningElement } from '@plexinc/react-lightning';
+import { useCombinedRef, useFocus } from '@plexinc/react-lightning';
 import React, { forwardRef } from 'react';
 import type { TouchableHighlightProps } from 'react-native';
 import { Pressable } from './Pressable';

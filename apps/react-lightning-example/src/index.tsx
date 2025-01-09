@@ -3,9 +3,9 @@ import {
   Canvas,
   type RenderOptions,
   createRoot as createRootLng,
-} from '@plex/react-lightning';
-import devtools from '@plex/react-lightning-plugin-devtools/plugin';
-import flexbox from '@plex/react-lightning-plugin-flexbox';
+} from '@plexinc/react-lightning';
+import devtools from '@plexinc/react-lightning-plugin-devtools/plugin';
+import flexbox from '@plexinc/react-lightning-plugin-flexbox';
 import { createRoot as createRootDom } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { keyMap } from './keyMap';

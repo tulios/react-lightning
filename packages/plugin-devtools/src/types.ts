@@ -1,4 +1,4 @@
-import type { LightningElement } from '@plex/react-lightning';
+import type { LightningElement } from '@plexinc/react-lightning';
 import type { Fiber } from 'react-reconciler';
 
 export type InspectableLightningElement = LightningElement & {

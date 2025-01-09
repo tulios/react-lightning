@@ -1,5 +1,5 @@
 import type { ITextNode } from '@lightningjs/renderer';
-import type { LightningTextElementProps } from '@plex/react-lightning';
+import type { LightningTextElementProps } from '@plexinc/react-lightning';
 import type { Meta } from '@storybook/react';
 import {
   DefaultStoryHeight,
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default {
-  title: '@plex∕react-lightning/Examples/Text/Text Wrapping',
+  title: '@plexinc∕react-lightning/Examples/Text/Text Wrapping',
   argTypes: {
     text: {
       type: { name: 'string', required: false },

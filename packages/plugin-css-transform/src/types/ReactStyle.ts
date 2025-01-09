@@ -2,7 +2,7 @@ import type {
   LightningImageElementStyle,
   LightningTextElementStyle,
   LightningViewElementStyle,
-} from '@plex/react-lightning';
+} from '@plexinc/react-lightning';
 import type { StandardProperties as CSSProperties } from 'csstype';
 import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 

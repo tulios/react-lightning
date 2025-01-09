@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootPath = resolve(__dirname, '..');
 const require = createRequire(rootPath);
 const reactNativeLightningReanimatedPath = require.resolve(
-  '@plex/react-lightning-plugin-reanimated',
+  '@plexinc/react-lightning-plugin-reanimated',
 );
 const reactReanimatedPath = require.resolve('react-native-reanimated');
 

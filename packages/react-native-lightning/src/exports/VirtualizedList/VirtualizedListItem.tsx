@@ -1,4 +1,4 @@
-import { FocusGroup, type Rect } from '@plex/react-lightning';
+import { FocusGroup, type Rect } from '@plexinc/react-lightning';
 import React from 'react';
 import type { ListRenderItem } from 'react-native';
 

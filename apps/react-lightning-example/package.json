@@ -1,6 +1,16 @@
 {
-  "name": "@plex/react-lightning-example",
-  "version": "0.5.37",
+  "name": "@plexinc/react-lightning-example",
+  "description": "Sample implementation of @plex/react-native-lightning in a React Native app",
+  "version": "0.1.0",
+  "author": "Plex Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plexinc/react-lightning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plexinc/react-lightning/issues/new"
+  },
   "packageManager": "pnpm@8.10.0",
   "type": "module",
   "private": true,
@@ -13,17 +23,17 @@
   },
   "dependencies": {
     "@lightningjs/renderer": "2.8.0",
-    "@plex/react-lightning": "workspace:*",
-    "@plex/react-lightning-components": "workspace:*",
-    "@plex/react-lightning-plugin-devtools": "workspace:*",
-    "@plex/react-lightning-plugin-flexbox": "workspace:*",
+    "@plexinc/react-lightning": "workspace:*",
+    "@plexinc/react-lightning-components": "workspace:*",
+    "@plexinc/react-lightning-plugin-devtools": "workspace:*",
+    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "7.0.2",
     "swr": "2.2.5"
   },
   "devDependencies": {
-    "@plex/vite-plugin-msdf-fontgen": "workspace:*",
+    "@plexinc/vite-plugin-msdf-fontgen": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/react": "18.3.14",
     "@types/react-dom": "18.3.1",

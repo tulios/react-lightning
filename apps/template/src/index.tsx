@@ -1,5 +1,9 @@
 import { SdfTrFontFace } from '@lightningjs/renderer';
-import { Canvas, type RenderOptions, createRoot } from '@plex/react-lightning';
+import {
+  Canvas,
+  type RenderOptions,
+  createRoot,
+} from '@plexinc/react-lightning';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { App } from './App';
 import { keyMap } from './keyMap';

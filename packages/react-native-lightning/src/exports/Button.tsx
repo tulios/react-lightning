@@ -1,5 +1,5 @@
-import { useFocus } from '@plex/react-lightning';
-import type { LightningViewElement } from '@plex/react-lightning';
+import { useFocus } from '@plexinc/react-lightning';
+import type { LightningViewElement } from '@plexinc/react-lightning';
 import type { RefAttributes } from 'react';
 import type { ButtonProps as RNButtonProps, ViewStyle } from 'react-native';
 import { Pressable } from './Pressable';

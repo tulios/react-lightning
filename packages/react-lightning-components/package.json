@@ -1,7 +1,16 @@
 {
-  "name": "@plex/react-lightning-components",
-  "version": "0.3.6",
-  "description": "",
+  "name": "@plexinc/react-lightning-components",
+  "description": "React components for react-lightning",
+  "version": "0.1.0",
+  "author": "Plex Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plexinc/react-lightning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plexinc/react-lightning/issues/new"
+  },
   "type": "module",
   "main": "dist/cjs/index.js",
   "types": "dist/types/index.d.ts",
@@ -29,18 +38,17 @@
     "clean": "del ./dist",
     "test:unit": "vitest run --passWithNoTests"
   },
-  "author": "Plex",
   "devDependencies": {
-    "@plex/react-lightning": "workspace:*",
-    "@plex/react-lightning-plugin-flexbox": "workspace:*",
+    "@plexinc/react-lightning": "workspace:*",
+    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
     "@repo/rollup-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/react": "18.3.14",
     "react": "18.3.1"
   },
   "peerDependencies": {
-    "@plex/react-lightning": "workspace:*",
-    "@plex/react-lightning-plugin-flexbox": "workspace:*",
+    "@plexinc/react-lightning": "workspace:*",
+    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
     "react": "^18.3.1"
   },
   "volta": {

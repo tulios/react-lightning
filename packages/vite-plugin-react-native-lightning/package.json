@@ -1,7 +1,21 @@
 {
-  "name": "@plex/vite-plugin-react-native-lightning",
-  "version": "0.0.5",
-  "description": "",
+  "name": "@plexinc/vite-plugin-react-native-lightning",
+  "description": "Vite plugin for adding react-native-lightning support",
+  "version": "0.1.0",
+  "author": "Plex Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plexinc/react-lightning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plexinc/react-lightning/issues/new"
+  },
+  "keywords": [
+    "vite-plugin",
+    "react-native",
+    "lightning-js"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,13 +28,6 @@
     "prepare": "pnpm run build",
     "test:unit": "vitest run --passWithNoTests"
   },
-  "keywords": [
-    "vite-plugin",
-    "react-native",
-    "lightning-js"
-  ],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@vitejs/plugin-react": "4.3.4"
   },
@@ -29,6 +36,6 @@
     "vite": "6.0.2"
   },
   "peerDependencies": {
-    "@plex/react-native-lightning": "workspace:*"
+    "@plexinc/react-native-lightning": "workspace:*"
   }
 }

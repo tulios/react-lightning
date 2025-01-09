@@ -2,8 +2,8 @@ import {
   type LightningViewElement,
   type LightningViewElementStyle,
   useFocus,
-} from '@plex/react-lightning';
-import { Column } from '@plex/react-lightning-components';
+} from '@plexinc/react-lightning';
+import { Column } from '@plexinc/react-lightning-components';
 import { getImageUrl } from '../api/getImageUrl';
 import type { Metadata } from '../api/types/Metadata';
 

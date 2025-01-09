@@ -2,8 +2,8 @@ import type {
   KeyEvent,
   LightningElement,
   LightningViewElementProps,
-} from '@plex/react-lightning';
-import { Keys, useFocus } from '@plex/react-lightning';
+} from '@plexinc/react-lightning';
+import { Keys, useFocus } from '@plexinc/react-lightning';
 import { useCallback } from 'react';
 
 const containerStyles = {

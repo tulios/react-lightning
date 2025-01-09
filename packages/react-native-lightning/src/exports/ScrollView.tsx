@@ -2,7 +2,7 @@ import {
   type LightningElement,
   type LightningViewElement,
   simpleDiff,
-} from '@plex/react-lightning';
+} from '@plexinc/react-lightning';
 import React from 'react';
 import type { RefAttributes } from 'react';
 import type { ScrollViewProps as RNScrollViewProps } from 'react-native';
