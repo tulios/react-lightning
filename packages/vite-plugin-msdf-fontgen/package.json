@@ -21,6 +21,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
     "prepare": "pnpm run build",

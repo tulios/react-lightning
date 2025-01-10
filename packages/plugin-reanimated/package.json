@@ -24,6 +24,8 @@
     "./config/vite": "./config/vite.config.mjs"
   },
   "publishConfig": {
+    "provenance": true,
+    "access": "public",
     "exports": {
       ".": {
         "import": "./dist/esm/index.mjs",

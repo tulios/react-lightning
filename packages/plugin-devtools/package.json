@@ -22,6 +22,8 @@
     "./plugin": "./src/plugin/index.tsx"
   },
   "publishConfig": {
+    "provenance": true,
+    "access": "public",
     "exports": {
       "./plugin": "./dist/assets/plugin.js"
     }

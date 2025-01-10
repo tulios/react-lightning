@@ -22,6 +22,8 @@
     ".": "./src/index.ts"
   },
   "publishConfig": {
+    "provenance": true,
+    "access": "public",
     "exports": {
       ".": {
         "import": "./dist/esm/index.mjs",

@@ -23,6 +23,8 @@
     "./jsx": "./src/types/jsx.d.ts"
   },
   "publishConfig": {
+    "provenance": true,
+    "access": "public",
     "exports": {
       ".": {
         "import": "./dist/esm/index.js",
