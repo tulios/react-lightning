@@ -2,6 +2,8 @@ name: Run tests
 
 on:
   pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
@@ -17,26 +19,20 @@ env:
 jobs:
   test:
     name: Run tests
-    runs-on: buildjet-2vcpu-ubuntu-2204
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        if: ${{ github.event_name != 'pull_request' }}
-
-      - uses: actions/checkout@v4
-        if: ${{ github.event_name == 'pull_request' }}
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
 
       - uses: pnpm/action-setup@v4
 
-      - uses: buildjet/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version-file: package.json
           cache: "pnpm"
 
-      - name: Set up environment
-        uses: ./.github/actions/setup
-        timeout-minutes: 5
+      - run: pnpm install --frozen-lockfile
 
       - name: Lint
         run: pnpm run lint

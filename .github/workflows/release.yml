@@ -7,14 +7,14 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-env:
-  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+# env:
+#   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+#   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
 jobs:
   release:
     name: Release
-    runs-on: buildjet-2vcpu-ubuntu-2204
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,14 +26,15 @@ jobs:
 
       - uses: pnpm/action-setup@v4
 
-      - uses: buildjet/setup-node@v4
+      - uses: actions/setup-node@v4
+        env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          node-version: "20"
+          node-version-file: package.json
           cache: "pnpm"
+          scope: '@plexinc'
 
-      - name: Set up environment
-        uses: ./.github/actions/setup
-        timeout-minutes: 5
+      - run: pnpm install --frozen-lockfile
 
       - name: Create release pull request or publish
         id: changesets
