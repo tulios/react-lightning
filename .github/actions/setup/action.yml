@@ -1,0 +1,17 @@
+# https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+
+name: Set up environment
+description: Runs setup actions and installs packages
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: pnpm/action-setup@v4
+
+    - uses: buildjet/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'pnpm'
+
+    - run: pnpm install --frozen-lockfile
+      shell: bash

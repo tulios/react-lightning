@@ -1,0 +1,48 @@
+name: Run tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: buildjet-2vcpu-ubuntu-2204
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ github.event_name != 'pull_request' }}
+
+      - uses: actions/checkout@v4
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: buildjet/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Set up environment
+        uses: ./.github/actions/setup
+        timeout-minutes: 5
+
+      - name: Lint
+        run: pnpm run lint
+
+      # - name: Check types
+      #   run: pnpm run tsc
+
+      - name: Run unit tests
+        run: pnpm run test

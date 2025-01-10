@@ -1,0 +1,70 @@
+name: Snapshot Release
+
+on:
+  issue_comment:
+    types:
+      - created
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+jobs:
+  snapshot:
+    name: Snapshot Release
+    runs-on: buildjet-2vcpu-ubuntu-2204
+    if: github.event.issue.pull_request && github.event.comment.body == '/snapshot'
+    steps:
+      - name: Add initial comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          body: |
+            Follow snapshot progress [here](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          reactions: eyes
+
+      - uses: actions/checkout@v4
+
+      # issue_comment requires us to checkout the branch
+      # https://github.com/actions/checkout/issues/331#issuecomment-1120113003
+      - name: Checkout pull request branch
+        run: hub pr checkout ${{ github.event.issue.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up environment
+        uses: ./.github/actions/setup
+        timeout-minutes: 5
+
+      - name: Check if changeset exists
+        run: |
+          pnpm exec changeset status --since main
+
+      - name: Add final comment (failure)
+        if: failure()
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          body: |
+            :x: A changeset is required to build a snapshot.
+          reactions: confused
+
+      - name: Publish snapshot release
+        run: |
+          pnpm exec changeset version --snapshot ${{ github.event.issue.number }} && pnpm install
+          pnpm run ci:publish --no-git-tag --snapshot
+
+      - name: Retrieve snapshot version
+        run: |
+          echo "SNAPSHOT_VERSION=$(npm view @plex/core-logging versions --json | grep 0.0.0-${{ github.event.issue.number }} | sort -r | head -n 1 | cut -d'"' -f 2)" >> $GITHUB_OUTPUT
+        id: snapshotVersion
+
+      - name: Add final comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          body: |
+            ${{steps.snapshotVersion.outputs.SNAPSHOT_VERSION}} has been published.
+          reactions: rocket
