@@ -32,6 +32,7 @@ jobs:
         with:
           node-version-file: package.json
           cache: "pnpm"
+          always-auth: 'true'
           scope: '@plexinc'
 
       - run: pnpm install --frozen-lockfile
