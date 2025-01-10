@@ -23,12 +23,12 @@
   },
   "dependencies": {
     "@lightningjs/renderer": "2.8.0",
-    "@plexinc/react-lightning": "*",
+    "@plexinc/react-lightning": "workspace:*",
     "react": "18.3.1",
     "react-router-dom": "7.0.2"
   },
   "devDependencies": {
-    "@plexinc/vite-plugin-msdf-fontgen": "*",
+    "@plexinc/vite-plugin-msdf-fontgen": "workspace:*",
     "@tsconfig/vite-react": "3.4.0",
     "@types/react": "18.3.14",
     "@vitejs/plugin-react": "4.3.4",
