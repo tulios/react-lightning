@@ -8,6 +8,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
+  pages: write      # to deploy to Pages
   id-token: write
 
 # env:
@@ -18,6 +19,8 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -55,3 +58,23 @@ jobs:
           # This means that checks won't run on the release PRs. We work around
           # this by using our own GH_TOKEN_REPO_ACCESS organization secret.
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN_REPO_ACCESS }}
+
+  deploy-pages:
+    needs: release
+    if: ${{ needs.release.outputs.published == 'true' }}
+    name: Deploy Docs to GitHub Pages
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+  
+    steps:
+      - name: Upload static files as artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/storybook/dist/
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
