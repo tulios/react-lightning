@@ -56,6 +56,11 @@ jobs:
           # this by using our own GH_TOKEN_REPO_ACCESS organization secret.
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN_REPO_ACCESS }}
 
+      - name: Upload storybook static files as artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/storybook/dist/
+
   deploy-pages:
     needs: release
     name: Deploy Docs to GitHub Pages
@@ -66,11 +71,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
   
     steps:
-      - name: Upload static files as artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: apps/storybook/dist/
-      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
