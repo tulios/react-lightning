@@ -12,7 +12,6 @@
 "@plexinc/react-lightning-plugin-flexbox": patch
 "@repo/rollup-config": patch
 "@plexinc/react-lightning-storybook": patch
-"react-lightning-sample-app": patch
 ---
 
 Updated packages
