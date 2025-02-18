@@ -48,7 +48,7 @@
     "react-reconciler": "0.29.2"
   },
   "devDependencies": {
-    "@lightningjs/renderer": "2.8.0",
+    "@lightningjs/renderer": "2.12.1",
     "@repo/rollup-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/react": "18.3.14",

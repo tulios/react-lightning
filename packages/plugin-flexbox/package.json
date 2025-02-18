@@ -44,7 +44,7 @@
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "yoga-layout": "3.2.0"
+    "yoga-layout": "3.2.1"
   },
   "devDependencies": {
     "@plexinc/react-lightning": "workspace:*",

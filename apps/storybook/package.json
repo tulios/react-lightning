@@ -20,7 +20,7 @@
     "dev": "storybook dev -p 6006 --no-open"
   },
   "dependencies": {
-    "@lightningjs/renderer": "2.8.0",
+    "@lightningjs/renderer": "2.12.1",
     "@plexinc/react-lightning": "workspace:*",
     "@plexinc/react-lightning-components": "workspace:*",
     "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/react": "18.3.14",
-    "vite": "6.0.2"
+    "vite": "6.1.0"
   },
   "volta": {
     "extends": "../../package.json"

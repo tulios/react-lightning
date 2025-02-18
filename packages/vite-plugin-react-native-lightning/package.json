@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "vite": "6.0.2"
+    "vite": "6.1.0"
   },
   "peerDependencies": {
     "@plexinc/react-native-lightning": "workspace:*"

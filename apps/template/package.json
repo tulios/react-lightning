@@ -22,10 +22,10 @@
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@lightningjs/renderer": "2.8.0",
+    "@lightningjs/renderer": "2.12.1",
     "@plexinc/react-lightning": "0.1.0",
     "react": "18.3.1",
-    "react-router-dom": "7.0.2"
+    "react-router-dom": "7.1.5"
   },
   "devDependencies": {
     "@plexinc/vite-plugin-msdf-fontgen": "1.0.0",
@@ -34,6 +34,6 @@
     "@vitejs/plugin-react": "4.3.4",
     "del-cli": "6.0.0",
     "react-dom": "18",
-    "vite": "6.0.2"
+    "vite": "6.1.0"
   }
 }
