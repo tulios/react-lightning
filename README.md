@@ -7,7 +7,7 @@ using React and React Native.
 You can scaffold a new project using degit:
 
 ```bash
-npx degit plexinc/react-lightning/apps/template my-lightning-app
+npx degit plexinc/react-lightning/templates/app-template my-lightning-app
 ```
 
-See the docs in [/apps/storybook](./apps/storybook) for usage and examples.
+See [the docs](https://plexinc.github.io/react-lightning/) for usage and examples.
