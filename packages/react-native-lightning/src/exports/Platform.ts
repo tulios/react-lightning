@@ -2,6 +2,7 @@ import type { PlatformOSType } from 'react-native';
 
 export const OS = 'web';
 export const isTV = true;
+export const isPad = false;
 export const isLightning = true;
 export const isTesting = true;
 export const Version = '0.1.0';

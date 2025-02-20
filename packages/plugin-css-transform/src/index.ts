@@ -9,7 +9,7 @@ export { flattenStyles } from './utils/flattenStyles';
 export { parseTransform } from './utils/parseTransform';
 export * from './types';
 
-export default function plugin(): Plugin {
+export function plugin(): Plugin {
   return {
     transformProps(_instance, props) {
       if (!('style' in props)) {

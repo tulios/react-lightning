@@ -9,7 +9,7 @@ import swc from 'rollup-plugin-swc3';
 export default ({
   useClient = false,
   preserveModules = false,
-  outputExports = 'named',
+  outputExports = 'auto',
   input = ['./src/index.ts'],
   external = [],
   options = {},
@@ -37,7 +37,6 @@ export default ({
         },
         format: 'cjs',
         exports: outputExports,
-        interop: 'esModule',
       },
     ],
     external,

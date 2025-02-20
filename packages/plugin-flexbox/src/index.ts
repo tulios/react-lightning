@@ -12,9 +12,7 @@ import { isFlexStyleProp } from './isFlexStyleProp';
 import type { YogaOptions } from './yoga';
 import Yoga, { createNode, init } from './yoga';
 
-export default function flexPlugin(
-  yogaOptions?: YogaOptions,
-): Plugin<LightningElement> {
+export function plugin(yogaOptions?: YogaOptions): Plugin<LightningElement> {
   let _isRenderQueued = false;
   let _rootElement: LightningElement | null = null;
   let _queueTimeout: number | null = null;

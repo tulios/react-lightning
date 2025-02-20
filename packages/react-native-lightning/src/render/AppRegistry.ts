@@ -3,8 +3,8 @@ import {
   type RenderOptions,
   createRoot,
 } from '@plexinc/react-lightning';
-import cssPlugin from '@plexinc/react-lightning-plugin-css-transform';
-import flexboxPlugin from '@plexinc/react-lightning-plugin-flexbox';
+import { plugin as cssPlugin } from '@plexinc/react-lightning-plugin-css-transform';
+import { plugin as flexboxPlugin } from '@plexinc/react-lightning-plugin-flexbox';
 import type { ComponentProvider } from 'react-native';
 import { cssClassNameTransformPlugin } from '../plugins/cssClassNameTransformPlugin';
 import { domPolyfillsPlugin } from '../plugins/domPolyfillsPlugin';

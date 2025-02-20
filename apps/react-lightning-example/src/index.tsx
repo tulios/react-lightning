@@ -5,7 +5,7 @@ import {
   createRoot as createRootLng,
 } from '@plexinc/react-lightning';
 import devtools from '@plexinc/react-lightning-plugin-devtools/plugin';
-import flexbox from '@plexinc/react-lightning-plugin-flexbox';
+import { plugin as flexPlugin } from '@plexinc/react-lightning-plugin-flexbox';
 import { createRoot as createRootDom } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { keyMap } from './keyMap';
@@ -78,7 +78,7 @@ const options: RenderOptions = {
     }),
   ],
   enableContextSpy: true,
-  plugins: [flexbox(), devtools()],
+  plugins: [flexPlugin(), devtools()],
   effects: {
     Noise: NoiseEffect,
     StaticAlpha: StaticAlphaEffect,
