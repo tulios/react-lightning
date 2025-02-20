@@ -37,6 +37,7 @@ export default ({
         },
         format: 'cjs',
         exports: outputExports,
+        interop: 'esModule',
       },
     ],
     external,
