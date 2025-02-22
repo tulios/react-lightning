@@ -380,14 +380,7 @@ export class LightningViewElement<
         this._stagedUpdates.style = {} as TStyleProps;
       }
 
-      if (Array.isArray(style)) {
-        Object.assign(
-          this._stagedUpdates.style,
-          ...style.flat(Number.POSITIVE_INFINITY),
-        );
-      } else {
-        Object.assign(this._stagedUpdates.style, style);
-      }
+      Object.assign(this._stagedUpdates.style, style);
     }
 
     this._scheduleUpdate();

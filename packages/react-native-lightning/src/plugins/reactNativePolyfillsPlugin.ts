@@ -1,8 +1,23 @@
-import type { LightningViewElement, Plugin } from '@plexinc/react-lightning';
+import { LightningViewElement, type Plugin } from '@plexinc/react-lightning';
+import { flattenStyles } from '@plexinc/react-lightning-plugin-css-transform';
 import type { NativeMethods } from 'react-native';
 
 export const reactNativePolyfillsPlugin = (): Plugin => {
   return {
+    async init() {
+      const originalSetProps = LightningViewElement.prototype.setProps;
+
+      // React native allows arrays to be used for styles, but react-lightning
+      // does not. This polyfill flattens the styles array into a single object
+      // before passing it to the original setProps method.
+      LightningViewElement.prototype.setProps = function (props) {
+        if (props.style && Array.isArray(props.style)) {
+          props.style = flattenStyles(props.style);
+        }
+
+        return originalSetProps.call(this, props);
+      };
+    },
     onCreateInstance(instance) {
       const loadPromise = new Promise<void>((resolve) => {
         instance.on('layout', () => {
