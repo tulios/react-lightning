@@ -16,9 +16,7 @@ export const AnimationPage = () => {
   return (
     <>
       <Column focusable style={{ gap: 20, zIndex: 10 }}>
-        <lng-text
-          style={{ fontFamily: 'Ubuntu', color: 0xffffffff, fontSize: 50 }}
-        >
+        <lng-text style={{ color: 0xffffffff, fontSize: 50 }}>
           Poster Count: {numPosters}
         </lng-text>
         <Column focusable style={{ width: 200, gap: 10 }}>

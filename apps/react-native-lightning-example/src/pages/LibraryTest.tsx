@@ -44,7 +44,6 @@ const Poster = focusable<Props, LightningElement>(
           style={{
             opacity: alpha,
             fontSize: 30,
-            fontFamily: 'Ubuntu',
             fontWeight: 'bold',
             textAlign: 'center',
           }}
@@ -55,7 +54,6 @@ const Poster = focusable<Props, LightningElement>(
           style={{
             opacity: alpha,
             fontSize: 20,
-            fontFamily: 'Ubuntu',
             fontWeight: 'normal',
             textAlign: 'center',
           }}
@@ -143,7 +141,6 @@ export const LibraryTest = () => {
         style={{
           zIndex: 99,
           fontSize: 50,
-          fontFamily: 'Ubuntu',
           // @ts-expect-error TODO
           y: 50,
         }}

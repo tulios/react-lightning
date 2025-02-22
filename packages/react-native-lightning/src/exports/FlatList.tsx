@@ -31,7 +31,7 @@ function getItemCountDefault<T>(data: T[] | null | undefined): number {
 }
 
 const renderAsText = ({ item }: { item: unknown }) => {
-  return <lng-text style={{ fontFamily: 'Ubuntu' }}>{String(item)}</lng-text>;
+  return <lng-text>{String(item)}</lng-text>;
 };
 
 class FlatList<T> extends React.Component<FlatListProps<T>> {

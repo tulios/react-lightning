@@ -15,7 +15,6 @@ type Part = {
 };
 
 const BASE_STYLE = {
-  fontFamily: 'Ubuntu',
   fontSize: 18,
   lineHeight: 24,
 };

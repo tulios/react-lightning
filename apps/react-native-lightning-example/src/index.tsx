@@ -121,7 +121,7 @@ AppRegistry.runApplication('plex', {
     driver: 'normal',
     fonts: (stage) => [
       new SdfTrFontFace('msdf', {
-        fontFamily: 'Ubuntu',
+        fontFamily: 'sans-serif',
         descriptors: {
           weight: 'bold',
         },
@@ -130,7 +130,7 @@ AppRegistry.runApplication('plex', {
         stage,
       }),
       new SdfTrFontFace('msdf', {
-        fontFamily: 'Ubuntu',
+        fontFamily: 'sans-serif',
         descriptors: {},
         atlasUrl: '/fonts/Ubuntu-Regular.msdf.png',
         atlasDataUrl: '/fonts/Ubuntu-Regular.msdf.json',

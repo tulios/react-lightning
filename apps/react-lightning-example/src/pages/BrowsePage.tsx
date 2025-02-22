@@ -15,15 +15,11 @@ export const BrowsePage = () => {
   }, []);
 
   if (isLoading) {
-    return <lng-text style={{ fontFamily: 'Ubuntu' }}>Loading...</lng-text>;
+    return <lng-text>Loading...</lng-text>;
   }
 
   if (!data || error) {
-    return (
-      <lng-text style={{ fontFamily: 'Ubuntu' }}>
-        There was an error loading the data
-      </lng-text>
-    );
+    return <lng-text>There was an error loading the data</lng-text>;
   }
 
   return (

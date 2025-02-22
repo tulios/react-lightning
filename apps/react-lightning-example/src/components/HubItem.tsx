@@ -29,7 +29,6 @@ export const HubItem = ({ metadata, style }: Props) => {
 
       <lng-text
         style={{
-          fontFamily: 'Ubuntu',
           fontSize: 25,
           lineHeight: 30,
           maxWidth: 250,

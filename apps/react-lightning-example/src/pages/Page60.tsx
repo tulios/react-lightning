@@ -19,7 +19,6 @@ export const Question = ({ text, w }: { text: string; w?: number }) => {
     >
       <lng-text
         style={{
-          fontFamily: 'Ubuntu',
           fontSize: 48,
           maxLines: 3,
           textAlign: 'center' as const,

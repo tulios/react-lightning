@@ -22,7 +22,6 @@ export const PosterPage = () => {
         <Button>Beep</Button>
         <lng-text
           style={{
-            fontFamily: 'Ubuntu',
             fontSize: 40,
             lineHeight: 50,
             marginLeft: 20,

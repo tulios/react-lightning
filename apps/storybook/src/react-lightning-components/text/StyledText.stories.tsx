@@ -1,7 +1,6 @@
 import { StyledText } from '@plexinc/react-lightning-components';
 import React from 'react';
 import Button from '../../components/Button';
-import { DefaultStoryWidth } from '../../helpers/constants';
 
 const LANGUAGE = {
   EN: 'en',

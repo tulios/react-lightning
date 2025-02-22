@@ -45,7 +45,6 @@ const FPSMonitor = ({ style }: Props) => {
       style={{
         color,
         display: 'flex',
-        fontFamily: 'Ubuntu',
         fontSize: 20,
         mountX: 1,
         position: 'absolute',

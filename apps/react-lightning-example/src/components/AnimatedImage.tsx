@@ -41,9 +41,7 @@ const AnimatedImage = () => {
         style={{ width: 200, height: 300, borderRadius: 8 }}
       />
 
-      <lng-text style={{ fontFamily: 'Ubuntu', y: 300 }}>
-        Hello Darkness My Old Frnd
-      </lng-text>
+      <lng-text style={{ y: 300 }}>Hello Darkness My Old Frnd</lng-text>
     </lng-view>
   );
 };

@@ -15,7 +15,7 @@ export const HubRow = (props: Props) => {
   if (isLoading) {
     return (
       <lng-view style={style}>
-        <lng-text style={{ fontFamily: 'Ubuntu' }}>Loading...</lng-text>
+        <lng-text>Loading...</lng-text>
       </lng-view>
     );
   }
@@ -23,9 +23,7 @@ export const HubRow = (props: Props) => {
   if (!data || error) {
     return (
       <lng-view style={style}>
-        <lng-text style={{ fontFamily: 'Ubuntu' }}>
-          There was an error loading the hub
-        </lng-text>
+        <lng-text>There was an error loading the hub</lng-text>
       </lng-view>
     );
   }
@@ -34,7 +32,6 @@ export const HubRow = (props: Props) => {
     <Column {...rest} style={style} focusable>
       <lng-text
         style={{
-          fontFamily: 'Ubuntu',
           fontSize: 40,
           lineHeight: 50,
           marginBottom: 20,

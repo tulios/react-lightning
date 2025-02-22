@@ -17,7 +17,6 @@ const containerStyles = {
 };
 
 const textStyle = {
-  fontFamily: 'Ubuntu',
   fontSize: 32,
   lineHeight: containerStyles.height,
   textAlign: 'center' as const,

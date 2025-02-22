@@ -5,7 +5,7 @@ type Props = {
   style?: LightningTextElementStyle;
 };
 
-const defaultStyle = { fontFamily: 'Ubuntu', fontSize: 24 };
+const defaultStyle = { fontSize: 24 };
 
 export const Text = ({ children, style }: Props) => (
   <lng-text style={{ ...defaultStyle, ...style }}>{children}</lng-text>

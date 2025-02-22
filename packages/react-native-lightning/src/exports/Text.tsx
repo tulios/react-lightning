@@ -15,7 +15,6 @@ export type TextProps = AddMissingProps<ViewProps, RNTextProps> & {
 
 const defaultTextStyle: Partial<LightningTextElementStyle> = {
   // contain: 'width',
-  fontFamily: 'Ubuntu',
   fontWeight: 'normal',
 };
 
