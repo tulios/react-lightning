@@ -1051,12 +1051,6 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/plugin-transform-nullish-coalescing-operator@7.26.5':
-    resolution: {integrity: sha512-OHqczNm4NTQlW1ghrVY43FPoiRzbmzNVbcgVnMKZN/RQYezHUSdjACjaX50CD3B7UIAjv39+MlsrVDb3v741FA==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-
   '@babel/plugin-transform-nullish-coalescing-operator@7.26.6':
     resolution: {integrity: sha512-CKW8Vu+uUZneQCPtXmSBUC6NCAUdya26hWCElAWh5mVSlSRsmiCPUUDKb3Z0szng1hiAJa098Hkhg9o4SE35Qw==}
     engines: {node: '>=6.9.0'}
@@ -1179,12 +1173,6 @@ packages:
 
   '@babel/plugin-transform-sticky-regex@7.25.9':
     resolution: {integrity: sha512-WqBUSgeVwucYDP9U/xNRQam7xV8W5Zf+6Eo7T2SRVUFlhRiMNFdFz58u0KZmCVVqs2i7SHgpRnAhzRNmKfi2uA==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-
-  '@babel/plugin-transform-template-literals@7.25.9':
-    resolution: {integrity: sha512-o97AE4syN71M/lxrCtQByzphAdlYluKPDBzDVzMmfCobUjjhAryZV0AIpRPrxN0eAkxXO6ZLEScmt+PNhj2OTw==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -7012,11 +7000,6 @@ snapshots:
       '@babel/core': 7.26.9
       '@babel/helper-plugin-utils': 7.26.5
 
-  '@babel/plugin-transform-nullish-coalescing-operator@7.26.5(@babel/core@7.26.9)':
-    dependencies:
-      '@babel/core': 7.26.9
-      '@babel/helper-plugin-utils': 7.26.5
-
   '@babel/plugin-transform-nullish-coalescing-operator@7.26.6(@babel/core@7.26.9)':
     dependencies:
       '@babel/core': 7.26.9
@@ -7161,11 +7144,6 @@ snapshots:
       - supports-color
 
   '@babel/plugin-transform-sticky-regex@7.25.9(@babel/core@7.26.9)':
-    dependencies:
-      '@babel/core': 7.26.9
-      '@babel/helper-plugin-utils': 7.26.5
-
-  '@babel/plugin-transform-template-literals@7.25.9(@babel/core@7.26.9)':
     dependencies:
       '@babel/core': 7.26.9
       '@babel/helper-plugin-utils': 7.26.5
@@ -11936,10 +11914,10 @@ snapshots:
       '@babel/plugin-transform-arrow-functions': 7.25.9(@babel/core@7.26.9)
       '@babel/plugin-transform-class-properties': 7.25.9(@babel/core@7.26.9)
       '@babel/plugin-transform-classes': 7.25.9(@babel/core@7.26.9)
-      '@babel/plugin-transform-nullish-coalescing-operator': 7.26.5(@babel/core@7.26.9)
+      '@babel/plugin-transform-nullish-coalescing-operator': 7.26.6(@babel/core@7.26.9)
       '@babel/plugin-transform-optional-chaining': 7.25.9(@babel/core@7.26.9)
       '@babel/plugin-transform-shorthand-properties': 7.25.9(@babel/core@7.26.9)
-      '@babel/plugin-transform-template-literals': 7.25.9(@babel/core@7.26.9)
+      '@babel/plugin-transform-template-literals': 7.26.8(@babel/core@7.26.9)
       '@babel/plugin-transform-unicode-regex': 7.25.9(@babel/core@7.26.9)
       '@babel/preset-typescript': 7.26.0(@babel/core@7.26.9)
       convert-source-map: 2.0.0

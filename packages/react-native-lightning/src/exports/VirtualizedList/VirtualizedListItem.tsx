@@ -1,6 +1,7 @@
-import { FocusGroup, type Rect } from '@plexinc/react-lightning';
+import type { Rect } from '@plexinc/react-lightning';
 import React from 'react';
-import type { ListRenderItem } from 'react-native';
+import type { LayoutChangeEvent, ListRenderItem } from 'react-native';
+import { FocusGroup } from '../FocusGroup';
 
 type VirtualizedListItemProps<T> = {
   item: T;
@@ -13,8 +14,8 @@ type VirtualizedListItemProps<T> = {
 export default class VirtualizedListItem<T> extends React.Component<
   VirtualizedListItemProps<T>
 > {
-  _layoutUpdated = (layout: Rect) => {
-    this.props.onLayoutUpdated?.(this.props.index, layout);
+  _layoutUpdated = (event: LayoutChangeEvent) => {
+    this.props.onLayoutUpdated?.(this.props.index, event.nativeEvent.layout);
   };
 
   render() {

@@ -18,14 +18,17 @@ import { FocusPathContext } from './FocusPathProvider';
 import type { Traps } from './Traps';
 import { useFocus } from './useFocus';
 
-export interface FocusGroupProps extends LightningViewElementProps {
+export interface FocusGroupProps
+  extends Omit<LightningViewElementProps, 'style'> {
   autoFocus?: boolean;
   disable?: boolean;
   trapFocusUp?: boolean;
   trapFocusRight?: boolean;
   trapFocusDown?: boolean;
   trapFocusLeft?: boolean;
-  focusedStyle?: LightningViewElementProps['style'];
+  style?:
+    | LightningViewElementProps['style']
+    | ((focused: boolean) => LightningViewElementProps['style']);
   onChildFocused?: (child: LightningElement) => void;
 }
 
@@ -43,7 +46,6 @@ export const FocusGroup = forwardRef<LightningElement, FocusGroupProps>(
       trapFocusDown,
       trapFocusLeft,
       style,
-      focusedStyle,
       onKeyDown,
       onChildFocused,
       ...otherProps
@@ -265,8 +267,8 @@ export const FocusGroup = forwardRef<LightningElement, FocusGroupProps>(
     );
 
     const finalStyle = useMemo(
-      () => ({ ...style, ...(focused ? focusedStyle : undefined) }),
-      [style, focused, focusedStyle],
+      () => (typeof style === 'function' ? style(focused) : style),
+      [style, focused],
     );
 
     const handleFocusKeyDown = useCallback(

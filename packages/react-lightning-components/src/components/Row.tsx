@@ -47,8 +47,9 @@ export const Row = forwardRef<LightningViewElement, Props>(
           trapFocusRight={trapFocusRight}
           trapFocusDown={trapFocusDown}
           trapFocusLeft={trapFocusLeft}
-          style={finalStyle}
-          focusedStyle={focusedStyle}
+          style={(focused) =>
+            focused ? finalStyle : { ...finalStyle, ...focusedStyle }
+          }
         />
       );
     }
