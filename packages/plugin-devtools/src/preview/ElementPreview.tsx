@@ -1,7 +1,6 @@
 import { type FC, useCallback, useMemo, useState } from 'react';
 import { useExtensionMessaging } from '../communication/useExtensionMessaging';
 import { PanelWithToolbar } from '../components/PanelWithToolbar';
-import { useTheme } from '../hooks/useTheme';
 import { Fps } from './Fps';
 
 export const ElementPreview: FC = () => {

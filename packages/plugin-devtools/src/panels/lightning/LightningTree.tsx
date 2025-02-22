@@ -1,8 +1,7 @@
-import { useCallback, useContext, useRef } from 'react';
-import { type NodeApi, Tree, TreeApi } from 'react-arborist';
+import { useCallback, useContext } from 'react';
+import { type NodeApi, Tree } from 'react-arborist';
 import useResizeObserver from 'use-resize-observer';
 import { sendMessage } from 'webext-bridge/devtools';
-import { useExtensionMessaging } from '../../communication/useExtensionMessaging';
 import { SelectedPreviewContext } from '../../preview/SelectedPreviewProvider';
 import useRefStoreContext from '../../store/useRefStoreContext';
 import type { ElementTreeNode } from '../../tree/BidirectionalDataTree';

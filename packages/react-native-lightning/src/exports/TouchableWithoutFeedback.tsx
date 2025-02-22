@@ -3,7 +3,7 @@ import {
   useCombinedRef,
   useFocus,
 } from '@plexinc/react-lightning';
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import type { TouchableWithoutFeedbackProps } from 'react-native';
 import { Pressable } from './Pressable';
 
