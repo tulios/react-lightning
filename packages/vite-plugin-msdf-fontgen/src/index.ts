@@ -35,7 +35,9 @@ interface Options {
    */
   types?: ('msdf' | 'ssdf')[];
   /**
-   * Font extensions to include. Defaults to ttf, otf, woff, and woff2
+   * Font extensions to include. If multiple font files with the same name but
+   * with different extensions are found, it will use the first one it finds
+   * based on the order of this array. Defaults to ttf, otf, woff, and woff2
    */
   extensions?: string[];
   /**
@@ -86,7 +88,7 @@ export default function msdfFontGen({
       }
 
       const fontFolders = getFolders(inputDir, outDir, extensions);
-
+      console.log(fontFolders);
       for (const { input, output, files } of fontFolders) {
         console.log(`Generating fonts in folder ${input}...`);
 
@@ -146,28 +148,53 @@ async function generateFont(
 }
 
 function getFolders(inputDir: string[], outDir: string, extensions: string[]) {
+  const extensionGlob =
+    extensions.length > 1 ? `{${extensions.join(',')}}` : extensions[0];
   return Object.values(
     inputDir.reduce<
-      Record<string, { input: string; output: string; files: string[] }>
+      Record<
+        string,
+        {
+          input: string;
+          output: string;
+          fontNames: Set<string>;
+          files: string[];
+        }
+      >
     >((acc, input) => {
-      const fontGlob = `${input}/**/*.{${extensions.join(',')}}`;
-      const files = globSync(fontGlob);
+      const files = globSync(`${input}/**/*.${extensionGlob}`);
 
-      for (const file of files) {
+      // Sort files by extension so it follows the order of the extensions option
+      for (const file of files.sort(sortByExtension(extensions))) {
         const baseFolder = path.dirname(file);
 
         if (!acc[baseFolder]) {
           acc[baseFolder] = {
             input: baseFolder,
             output: path.join(outDir, path.relative(input, baseFolder)),
+            fontNames: new Set(),
             files: [],
           };
         }
 
-        acc[baseFolder].files.push(path.relative(baseFolder, file));
+        const fontName = path.basename(file, path.extname(file));
+
+        // Don't add the same font twice
+        if (!acc[baseFolder].fontNames.has(fontName)) {
+          acc[baseFolder].files.push(path.relative(baseFolder, file));
+          acc[baseFolder].fontNames.add(fontName);
+        }
       }
 
       return acc;
     }, {}),
   );
+}
+
+function sortByExtension(extensions: string[]) {
+  return (a: string, b: string) => {
+    const extA = a.split('.').pop() as string;
+    const extB = b.split('.').pop() as string;
+    return extensions.indexOf(extA) - extensions.indexOf(extB);
+  };
 }
