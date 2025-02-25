@@ -31,7 +31,8 @@
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@lightningjs/msdf-generator": "1.1.1"
+    "@lightningjs/msdf-generator": "1.1.1",
+    "glob": "11.0.1"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",

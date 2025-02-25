@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { genFont, setGeneratePaths } from '@lightningjs/msdf-generator';
 import { adjustFont } from '@lightningjs/msdf-generator/adjustFont';
+import { globSync } from 'glob';
 import type { PluginOption } from 'vite';
 
 interface OverrideOption {
@@ -18,11 +19,15 @@ interface Override {
 
 interface Options {
   /**
-   * Path to the input directory containing the font files
+   * Path to the input directory containing the font files. Fonts found in
+   * subdirectories will keep their folder structure in the output directory.
    */
-  inputDir: string;
+  inputDir: string | string[];
   /**
-   * Path to the output directory
+   * Path to the output directory. All fonts awill be placed into this directory,
+   * even if multiple directories are specified as inputs. Subdirectories will
+   * be retained from the input. If you want to output to multiple directories,
+   * you can use a second plugin instance with a different output directory.
    */
   outDir: string;
   /**
@@ -30,7 +35,7 @@ interface Options {
    */
   types?: ('msdf' | 'ssdf')[];
   /**
-   * Font extensions to include. Defaults to .ttf, .otf, .woff, and .woff2
+   * Font extensions to include. Defaults to ttf, otf, woff, and woff2
    */
   extensions?: string[];
   /**
@@ -40,7 +45,7 @@ interface Options {
   /**
    * Charset to include in the generated font. If there is a charset.txt file in
    * the input directory, that will be used instead. Defaults to
-   * ' !\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”'
+   * '!\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”'
    */
   charset?: string;
 
@@ -57,8 +62,8 @@ export default function msdfFontGen({
   outDir,
   force,
   types = ['msdf'],
-  extensions = ['.ttf', '.otf', '.woff', '.woff2'],
-  charset = ' !\\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”',
+  extensions = ['ttf', 'otf', 'woff', 'woff2'],
+  charset = '!\\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”',
   overrides,
 }: Options): PluginOption {
   return {
@@ -74,38 +79,39 @@ export default function msdfFontGen({
         return;
       }
 
-      setGeneratePaths(inputDir, outDir);
+      console.log('Looking for fonts...');
 
-      const files = fs.readdirSync(inputDir);
-      const fontFiles = files.filter((file) =>
-        extensions.some((ext) => file.endsWith(ext)),
-      );
-
-      if (fontFiles.length === 0) {
-        console.log('No font files found');
-        return;
+      if (!Array.isArray(inputDir)) {
+        inputDir = [inputDir];
       }
 
-      const charsetPath = `${inputDir}/charset.txt`;
-      if (!fs.existsSync(charsetPath) && charset) {
-        fs.writeFileSync(charsetPath, charset);
-        cleanup.push(charsetPath);
-      }
+      const fontFolders = getFolders(inputDir, outDir, extensions);
 
-      const overridePath = `${inputDir}/overrides.txt`;
-      if (!fs.existsSync(overridePath) && overrides) {
-        fs.writeFileSync(overridePath, JSON.stringify(overrides, null, 2));
-        cleanup.push(overridePath);
-      }
+      for (const { input, output, files } of fontFolders) {
+        console.log(`Generating fonts in folder ${input}...`);
 
-      await Promise.all(
-        fontFiles.map(async (file) => {
+        setGeneratePaths(input, output);
+
+        const charsetPath = `${input}/charset.txt`;
+        if (!fs.existsSync(charsetPath) && charset) {
+          fs.writeFileSync(charsetPath, charset);
+          cleanup.push(charsetPath);
+        }
+
+        const overridePath = `${input}/overrides.txt`;
+        if (!fs.existsSync(overridePath) && overrides) {
+          fs.writeFileSync(overridePath, JSON.stringify(overrides, null, 2));
+          cleanup.push(overridePath);
+        }
+
+        for (const file of files) {
           for (const type of new Set(types)) {
-            await generateFont(outDir, file, type, force);
+            await generateFont(output, file, type, force);
           }
-        }),
-      );
+        }
+      }
 
+      console.log('Cleaning up...');
       for (const file of cleanup) {
         fs.unlinkSync(file);
       }
@@ -137,4 +143,31 @@ async function generateFont(
   if (font) {
     await adjustFont(font);
   }
+}
+
+function getFolders(inputDir: string[], outDir: string, extensions: string[]) {
+  return Object.values(
+    inputDir.reduce<
+      Record<string, { input: string; output: string; files: string[] }>
+    >((acc, input) => {
+      const fontGlob = `${input}/**/*.{${extensions.join(',')}}`;
+      const files = globSync(fontGlob);
+
+      for (const file of files) {
+        const baseFolder = path.dirname(file);
+
+        if (!acc[baseFolder]) {
+          acc[baseFolder] = {
+            input: baseFolder,
+            output: path.join(outDir, path.relative(input, baseFolder)),
+            files: [],
+          };
+        }
+
+        acc[baseFolder].files.push(path.relative(baseFolder, file));
+      }
+
+      return acc;
+    }, {}),
+  );
 }
