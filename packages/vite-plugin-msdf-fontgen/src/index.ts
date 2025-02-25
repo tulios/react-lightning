@@ -45,9 +45,9 @@ interface Options {
    */
   force?: boolean;
   /**
-   * Charset to include in the generated font. If there is a charset.txt file in
+   * Charset to include in the generated font. If there is a charset.config.json file in
    * the input directory, that will be used instead. Defaults to
-   * '!\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”'
+   * ' !\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”'
    */
   charset?: string;
 
@@ -65,7 +65,7 @@ export default function msdfFontGen({
   force,
   types = ['msdf'],
   extensions = ['ttf', 'otf', 'woff', 'woff2'],
-  charset = '!\\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”',
+  charset = ' !\\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”',
   overrides,
 }: Options): PluginOption {
   return {
@@ -88,15 +88,15 @@ export default function msdfFontGen({
       }
 
       const fontFolders = getFolders(inputDir, outDir, extensions);
-      console.log(fontFolders);
+
       for (const { input, output, files } of fontFolders) {
         console.log(`Generating fonts in folder ${input}...`);
 
         setGeneratePaths(input, output);
 
-        const charsetPath = `${input}/charset.txt`;
+        const charsetPath = `${input}/charset.config.json`;
         if (!fs.existsSync(charsetPath) && charset) {
-          fs.writeFileSync(charsetPath, charset);
+          fs.writeFileSync(charsetPath, JSON.stringify({ charset }), 'utf8');
           cleanup.push(charsetPath);
         }
 
