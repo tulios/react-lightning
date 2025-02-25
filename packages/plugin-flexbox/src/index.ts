@@ -240,23 +240,25 @@ export function plugin(yogaOptions?: YogaOptions): Plugin<LightningElement> {
             // be the computed width
             let computedWidth = flexInstance.yogaNode.getComputedWidth();
 
-            if (
-              Number.isNaN(computedWidth) &&
-              maxWidth.unit === Yoga.instance.UNIT_PERCENT
-            ) {
-              // Try to get the parent width and calculating manually
-              const parentWidth = flexInstance.yogaNode
-                .getParent()
-                ?.getComputedWidth();
+            if (computedWidth > 0) {
+              if (
+                Number.isNaN(computedWidth) &&
+                maxWidth.unit === Yoga.instance.UNIT_PERCENT
+              ) {
+                // Try to get the parent width and calculating manually
+                const parentWidth = flexInstance.yogaNode
+                  .getParent()
+                  ?.getComputedWidth();
 
-              if (parentWidth) {
-                computedWidth = parentWidth * (maxWidth.value / 100);
+                if (parentWidth) {
+                  computedWidth = parentWidth * (maxWidth.value / 100);
+                }
               }
-            }
 
-            if (event.dimensions.width > computedWidth) {
-              node.contain = 'width';
-              node.width = computedWidth;
+              if (event.dimensions.width > computedWidth) {
+                node.contain = 'width';
+                node.width = computedWidth;
+              }
             }
           }
 
