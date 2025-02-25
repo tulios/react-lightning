@@ -57,6 +57,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN_REPO_ACCESS }}
 
       - name: Upload storybook static files as artifact
+        if: steps.changesets.outputs.publish == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: apps/storybook/dist/
