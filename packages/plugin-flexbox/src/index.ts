@@ -250,6 +250,8 @@ export function plugin(yogaOptions?: YogaOptions): Plugin<LightningElement> {
                 computedWidth = isPercentage
                   ? parentWidth * (maxWidth.value / 100)
                   : parentWidth;
+              } else if (maxWidth.unit === Yoga.instance.UNIT_POINT) {
+                computedWidth = maxWidth.value;
               }
             }
 
