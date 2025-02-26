@@ -1,6 +1,7 @@
 import type {
   LightningElement,
   LightningElementStyle,
+  LightningTextElement,
   LightningViewElementStyle,
   Plugin,
 } from '@plexinc/react-lightning';
@@ -239,26 +240,26 @@ export function plugin(yogaOptions?: YogaOptions): Plugin<LightningElement> {
             // If there is a max width specified, the width on the yogaNode will
             // be the computed width
             let computedWidth = flexInstance.yogaNode.getComputedWidth();
+            const isPercentage = maxWidth.unit === Yoga.instance.UNIT_PERCENT;
 
-            if (computedWidth > 0) {
-              if (
-                Number.isNaN(computedWidth) &&
-                maxWidth.unit === Yoga.instance.UNIT_PERCENT
-              ) {
-                // Try to get the parent width and calculating manually
-                const parentWidth = flexInstance.yogaNode
-                  .getParent()
-                  ?.getComputedWidth();
+            if (Number.isNaN(computedWidth) || isPercentage) {
+              const parentWidth = flexInstance.yogaNode
+                .getParent()
+                ?.getComputedWidth();
 
-                if (parentWidth) {
-                  computedWidth = parentWidth * (maxWidth.value / 100);
-                }
+              if (parentWidth) {
+                computedWidth = isPercentage
+                  ? parentWidth * (maxWidth.value / 100)
+                  : parentWidth;
               }
+            }
 
-              if (event.dimensions.width > computedWidth) {
-                node.contain = 'width';
-                node.width = computedWidth;
-              }
+            if (
+              !Number.isNaN(computedWidth) &&
+              computedWidth > 0 &&
+              event.dimensions.width > computedWidth
+            ) {
+              node.width = computedWidth;
             }
           }
 
@@ -280,6 +281,12 @@ export function plugin(yogaOptions?: YogaOptions): Plugin<LightningElement> {
 
       if (!yogaNode) {
         return props;
+      }
+
+      // purposely using a falsy check on maxWidth here, since we don't want the
+      // contain mode set to `width` if it's set to 0 or an empty string
+      if (props.style?.maxWidth && instance.node && instance.isTextElement) {
+        (instance as LightningTextElement).node.contain = 'width';
       }
 
       for (const key in remainingStyles) {
