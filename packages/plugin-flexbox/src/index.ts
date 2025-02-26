@@ -1,7 +1,6 @@
 import type {
   LightningElement,
   LightningElementStyle,
-  LightningTextElement,
   LightningViewElementStyle,
   Plugin,
 } from '@plexinc/react-lightning';
@@ -259,6 +258,7 @@ export function plugin(yogaOptions?: YogaOptions): Plugin<LightningElement> {
               computedWidth > 0 &&
               event.dimensions.width > computedWidth
             ) {
+              node.contain = 'width';
               node.width = computedWidth;
             }
           }
@@ -281,12 +281,6 @@ export function plugin(yogaOptions?: YogaOptions): Plugin<LightningElement> {
 
       if (!yogaNode) {
         return props;
-      }
-
-      // purposely using a falsy check on maxWidth here, since we don't want the
-      // contain mode set to `width` if it's set to 0 or an empty string
-      if (props.style?.maxWidth && instance.node && instance.isTextElement) {
-        (instance as LightningTextElement).node.contain = 'width';
       }
 
       for (const key in remainingStyles) {
