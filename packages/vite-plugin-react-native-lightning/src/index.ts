@@ -1,6 +1,4 @@
 import { createRequire } from 'node:module';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
 import type { PluginOption } from 'vite';
 
@@ -20,39 +18,40 @@ const extensions = [
   '.json',
 ];
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const rootPath = resolve(__dirname, '..');
-const require = createRequire(rootPath);
-const reactNativeLightningPath = require.resolve(
-  '@plexinc/react-native-lightning',
-);
-
 type Options = {
+  cwd?: string;
   reactOptions?: Parameters<typeof react>[0];
 };
 
-const vitePlugin = (options?: Options): PluginOption => [
-  react(options?.reactOptions),
-  {
-    name: 'vite-react-native-lightning',
-    enforce: 'pre',
-    config: () => ({
-      define: {
-        global: 'window',
-      },
-      optimizeDeps: {
-        esbuildOptions: {
-          resolveExtensions: extensions,
+const vitePlugin = (options?: Options): PluginOption => {
+  const require = createRequire(options?.cwd ?? process.cwd());
+  const reactNativeLightningPath = require.resolve(
+    '@plexinc/react-native-lightning',
+  );
+
+  return [
+    react(options?.reactOptions),
+    {
+      name: 'vite-react-native-lightning',
+      enforce: 'pre',
+      config: () => ({
+        define: {
+          global: 'window',
         },
-      },
-      resolve: {
-        extensions,
-        alias: {
-          'react-native': reactNativeLightningPath,
+        optimizeDeps: {
+          esbuildOptions: {
+            resolveExtensions: extensions,
+          },
         },
-      },
-    }),
-  },
-];
+        resolve: {
+          extensions,
+          alias: {
+            'react-native': reactNativeLightningPath,
+          },
+        },
+      }),
+    },
+  ];
+};
 
 export default vitePlugin;

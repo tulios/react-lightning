@@ -24,12 +24,15 @@ interface Options {
    */
   inputDir: string | string[];
   /**
-   * Path to the output directory. All fonts awill be placed into this directory,
+   * Path to the output directory. All fonts will be placed into this directory,
    * even if multiple directories are specified as inputs. Subdirectories will
-   * be retained from the input. If you want to output to multiple directories,
-   * you can use a second plugin instance with a different output directory.
+   * be retained from the input.
    */
   outDir: string;
+  /**
+   * If true, copies the original font files to the output directory. Defaults to false
+   */
+  copyOriginalToOutDir?: boolean;
   /**
    * Type of font to generate. Defaults to ['msdf']
    */
@@ -45,11 +48,16 @@ interface Options {
    */
   force?: boolean;
   /**
-   * Charset to include in the generated font. If there is a charset.config.json file in
-   * the input directory, that will be used instead. Defaults to
+   * Charset to include in the generated font. If there is a charset.config.json
+   * file in the input directory, or if the charsetFile option is set, they will
+   * be used instead. Defaults to
    * ' !\\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”'
    */
   charset?: string;
+  /**
+   * Path to a charset file. If this is set, it will be used instead of the charset option.
+   */
+  charsetFile?: string;
 
   /**
    * Overrides for font generation. This allows you to specify custom font sizes
@@ -59,15 +67,9 @@ interface Options {
   overrides?: Override;
 }
 
-export default function msdfFontGen({
-  inputDir,
-  outDir,
-  force,
-  types = ['msdf'],
-  extensions = ['ttf', 'otf', 'woff', 'woff2'],
-  charset = ' !\\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”',
-  overrides,
-}: Options): PluginOption {
+export default function msdfFontGen(
+  options: Options | Options[],
+): PluginOption {
   return {
     name: 'msdf-fontgen',
 
@@ -75,40 +77,67 @@ export default function msdfFontGen({
       console.log('Building fonts...');
 
       const cleanup: string[] = [];
+      const optionsArray = Array.isArray(options) ? options : [options];
 
-      if (types.length === 0) {
-        console.log('No font types specified');
-        return;
-      }
+      for (const option of optionsArray) {
+        const {
+          inputDir,
+          outDir,
+          force,
+          types = ['msdf'],
+          extensions = ['ttf', 'otf', 'woff', 'woff2'],
+          charset = ' !\\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~’“”',
+          charsetFile,
+          overrides,
+          copyOriginalToOutDir,
+        } = option;
 
-      console.log('Looking for fonts...');
-
-      if (!Array.isArray(inputDir)) {
-        inputDir = [inputDir];
-      }
-
-      const fontFolders = getFolders(inputDir, outDir, extensions);
-
-      for (const { input, output, files } of fontFolders) {
-        console.log(`Generating fonts in folder ${input}...`);
-
-        setGeneratePaths(input, output);
-
-        const charsetPath = `${input}/charset.config.json`;
-        if (!fs.existsSync(charsetPath) && charset) {
-          fs.writeFileSync(charsetPath, JSON.stringify({ charset }), 'utf8');
-          cleanup.push(charsetPath);
+        if (types.length === 0) {
+          console.log('No font types specified');
+          return;
         }
 
-        const overridePath = `${input}/overrides.txt`;
-        if (!fs.existsSync(overridePath) && overrides) {
-          fs.writeFileSync(overridePath, JSON.stringify(overrides, null, 2));
-          cleanup.push(overridePath);
-        }
+        console.log('Looking for fonts...');
 
-        for (const file of files) {
-          for (const type of new Set(types)) {
-            await generateFont(output, file, type, force);
+        const inputDirs = Array.isArray(inputDir) ? inputDir : [inputDir];
+
+        const fontFolders = getFolders(inputDirs, outDir, extensions);
+
+        for (const { input, output, files } of fontFolders) {
+          console.log(`Generating fonts in folder ${input}...`);
+
+          setGeneratePaths(input, output, charsetFile);
+
+          if (!charsetFile || !fs.existsSync(charsetFile)) {
+            const charsetPath = `${input}/charset.config.json`;
+
+            if (!fs.existsSync(charsetPath) && charset) {
+              fs.writeFileSync(
+                charsetPath,
+                JSON.stringify({ charset }),
+                'utf8',
+              );
+              cleanup.push(charsetPath);
+            }
+          }
+
+          const overridePath = `${input}/overrides.txt`;
+          if (!fs.existsSync(overridePath) && overrides) {
+            fs.writeFileSync(overridePath, JSON.stringify(overrides, null, 2));
+            cleanup.push(overridePath);
+          }
+
+          for (const file of files) {
+            for (const type of new Set(types)) {
+              await generateFont(output, file, type, force);
+
+              if (copyOriginalToOutDir) {
+                fs.copyFileSync(
+                  path.join(input, file),
+                  path.join(output, file),
+                );
+              }
+            }
           }
         }
       }
