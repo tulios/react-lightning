@@ -1,5 +1,4 @@
 {
-  "editor.defaultFormatter": "biomejs.biome",
   "editor.codeActionsOnSave": {
     "quickfix.biome": "explicit",
     "source.organizeImports.biome": "explicit",
@@ -24,6 +23,9 @@
     "editor.defaultFormatter": "biomejs.biome"
   },
   "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
     "editor.defaultFormatter": "biomejs.biome"
   }
 }
