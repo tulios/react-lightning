@@ -15,26 +15,37 @@
     "vite-plugin"
   ],
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
   "source": "src/index.ts",
   "files": [
     "dist"
   ],
+  "exports": {
+    "import": "./dist/esm/index.mjs",
+    "require": "./dist/cjs/index.js",
+    "default": "./dist/cjs/index.js",
+    "types": "./dist/types/index.d.ts"
+  },
   "publishConfig": {
     "provenance": true,
     "access": "public"
   },
   "scripts": {
-    "build": "tsc",
+    "dev": "rollup -wc",
+    "build": "pnpm run build:types && pnpm run build:bundle",
+    "build:bundle": "rollup -c --failAfterWarnings",
+    "build:types": "tsc --outDir dist/lib --declarationDir dist/types --declaration true --emitDeclarationOnly true",
     "prepare": "pnpm run build",
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "@lightningjs/msdf-generator": "1.1.1",
+    "crc-32": "^1.2.2",
     "glob": "11.0.1"
   },
   "devDependencies": {
+    "@repo/rollup-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "vite": "6.1.0"
   }

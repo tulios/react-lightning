@@ -10,8 +10,12 @@ const config = {
     tsconfigPaths(),
     react(),
     fontGen({
-      inputDir: 'public/fonts',
-      outDir: 'public/fonts',
+      inputs: [
+        {
+          src: 'assets/fonts',
+          dest: 'public/fonts',
+        },
+      ],
     }),
   ],
   server: {

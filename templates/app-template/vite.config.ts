@@ -6,8 +6,12 @@ const config: InlineConfig = {
   plugins: [
     react(),
     fontGen({
-      inputDir: 'public/fonts',
-      outDir: 'public/fonts',
+      inputs: [
+        {
+          src: 'public/fonts',
+          dest: 'public/fonts',
+        },
+      ],
     }),
   ],
 };

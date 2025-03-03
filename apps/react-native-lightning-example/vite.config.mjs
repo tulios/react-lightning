@@ -8,8 +8,12 @@ const config = defineConfig({
     reactNativeLightningPlugin(),
     reactReanimatedLightningPlugin(),
     fontGen({
-      inputDir: 'public/fonts',
-      outDir: 'public/fonts',
+      inputs: [
+        {
+          src: 'public/fonts',
+          dest: 'public/fonts',
+        },
+      ],
     }),
   ],
   server: {
