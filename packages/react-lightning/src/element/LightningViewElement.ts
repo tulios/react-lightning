@@ -37,7 +37,7 @@ type LightningElementProp = keyof UnionToIntersection<LightningElement>;
 
 // These props exist on the lightning element, and needs to be set when the
 // corresponding prop is set so that the element can update.
-const ELEMENT_PROPS: LightningElementProp[] = ['text', 'src', 'shader'];
+const ELEMENT_PROPS: LightningElementProp[] = ['text', 'src'];
 
 function getEffectName(type: string | number, id: number) {
   return `${type}_${id}`;
