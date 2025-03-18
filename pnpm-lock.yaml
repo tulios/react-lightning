@@ -71,9 +71,6 @@ importers:
       '@plexinc/react-lightning-components':
         specifier: workspace:*
         version: link:../../packages/react-lightning-components
-      '@plexinc/react-lightning-plugin-devtools':
-        specifier: workspace:*
-        version: link:../../packages/plugin-devtools
       '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../../packages/plugin-flexbox
@@ -123,9 +120,6 @@ importers:
       '@plexinc/react-lightning-components':
         specifier: workspace:*
         version: link:../../packages/react-lightning-components
-      '@plexinc/react-lightning-plugin-devtools':
-        specifier: workspace:*
-        version: link:../../packages/plugin-devtools
       '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../../packages/plugin-flexbox
