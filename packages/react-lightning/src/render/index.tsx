@@ -23,6 +23,16 @@ import { traceWrap } from '../utils/traceWrap';
 import type { Plugin } from './Plugin';
 import { createHostConfig } from './createHostConfig';
 
+// https://github.com/lightning-js/devtools/blob/main/src/types/globals.d.ts
+declare global {
+  interface Window {
+    __LIGHTNINGJS_DEVTOOLS__?: {
+      renderer: RendererMain;
+      features?: string[];
+    };
+  }
+}
+
 export type RenderOptions = Omit<
   RendererMainSettings,
   'renderEngine' | 'fontEngines' | 'inspector'
@@ -111,6 +121,13 @@ export async function createRoot(
     },
     target,
   );
+
+  if (__DEV__) {
+    window.__LIGHTNINGJS_DEVTOOLS__ = {
+      renderer,
+      features: ['react-lightning'],
+    };
+  }
 
   for (const font of fonts(renderer.stage)) {
     renderer.stage.fontManager.addFontFace(font);

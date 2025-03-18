@@ -244,7 +244,12 @@ export class LightningViewElement<
     );
 
     this.node = this._createNode(lngProps);
-    this.node.container = this;
+
+    if (__DEV__) {
+      this.node.__reactNode = this;
+      this.node.__reactFiber = fiber;
+    }
+
     this.node.on('loaded', this._onTextureLoaded);
     this.node.on('failed', this._onTextureFailed);
     this.on('layout', this._onLayout);

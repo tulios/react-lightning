@@ -24,7 +24,6 @@
     "@lightningjs/renderer": "2.12.1",
     "@plexinc/react-lightning": "workspace:*",
     "@plexinc/react-lightning-components": "workspace:*",
-    "@plexinc/react-lightning-plugin-devtools": "workspace:*",
     "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
     "@plexinc/react-lightning-plugin-reanimated": "workspace:*",
     "@plexinc/react-native-lightning": "workspace:*",

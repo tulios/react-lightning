@@ -87,8 +87,6 @@ export function createHostConfig(
         const root =
           container.root as unknown as RendererNode<LightningElement>;
 
-        root.container = child;
-
         child.node = root;
 
         for (const c of child.children) {

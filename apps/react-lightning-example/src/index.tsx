@@ -4,7 +4,6 @@ import {
   type RenderOptions,
   createRoot as createRootLng,
 } from '@plexinc/react-lightning';
-import devtools from '@plexinc/react-lightning-plugin-devtools/plugin';
 import { plugin as flexPlugin } from '@plexinc/react-lightning-plugin-flexbox';
 import { createRoot as createRootDom } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
@@ -78,7 +77,7 @@ const options: RenderOptions = {
     }),
   ],
   enableContextSpy: true,
-  plugins: [flexPlugin(), devtools()],
+  plugins: [flexPlugin()],
   effects: {
     Noise: NoiseEffect,
     StaticAlpha: StaticAlphaEffect,

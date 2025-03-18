@@ -2,6 +2,7 @@ import createRollupConfig from '@repo/rollup-config';
 
 export default createRollupConfig({
   useClient: true,
+  createDevBuilds: true,
   external: [
     '@lightningjs/renderer',
     '@lightningjs/renderer/webgl',

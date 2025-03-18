@@ -1,7 +1,6 @@
 import { SdfTrFontFace } from '@lightningjs/renderer';
 import { Canvas, type RenderOptions } from '@plexinc/react-lightning';
 import { Column, Row } from '@plexinc/react-lightning-components';
-import devtools from '@plexinc/react-lightning-plugin-devtools/plugin';
 import '@plexinc/react-lightning-plugin-flexbox/jsx';
 import type { LinkingOptions } from '@react-navigation/native';
 import {
@@ -137,6 +136,5 @@ AppRegistry.runApplication('plex', {
         stage,
       }),
     ],
-    plugins: [devtools()],
   } as RenderOptions,
 });
