@@ -14,6 +14,17 @@ const config: InlineConfig = {
       ],
     }),
   ],
+  optimizeDeps: {
+    esbuildOptions: {
+      target: 'esnext',
+    },
+  },
+  build: {
+    target: 'esnext',
+  },
+  define: {
+    __DEV__: JSON.stringify(process.env.NODE_ENV === 'development'),
+  },
 };
 
 export default config;

@@ -54,7 +54,6 @@ export { ${namedExportsString} };`;
 const generateEntryFile = {
   name: 'generate-entry-file',
   async generateBundle(options, bundle) {
-    console.log(bundle);
     const ext = options.format === 'cjs' ? 'js' : 'mjs';
     const exports = Object.values(bundle)
       .filter((b) => b.isEntry)

@@ -23,13 +23,14 @@
   },
   "dependencies": {
     "@lightningjs/renderer": "2.12.1",
-    "@plexinc/react-lightning": "0.1.0",
+    "@plexinc/react-lightning": "0.1.6",
     "react": "18.3.1",
-    "react-router-dom": "7.1.5"
+    "react-router-dom": "7.3.0"
   },
   "devDependencies": {
-    "@plexinc/vite-plugin-msdf-fontgen": "1.0.0",
+    "@plexinc/vite-plugin-msdf-fontgen": "1.2.0",
     "@tsconfig/vite-react": "3.4.0",
+    "@types/node": "22.13.4",
     "@types/react": "18.3.14",
     "@vitejs/plugin-react": "4.3.4",
     "del-cli": "6.0.0",
