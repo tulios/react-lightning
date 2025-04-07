@@ -8,6 +8,7 @@ export interface Focusable {
 }
 
 export interface FocusableProps {
+  onFocusCapture?: (element: LightningElement) => void;
   onFocus?: (element: LightningElement) => void;
   onBlur?: (element: LightningElement) => void;
 }

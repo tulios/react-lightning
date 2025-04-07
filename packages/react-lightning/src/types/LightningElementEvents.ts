@@ -13,6 +13,7 @@ export interface LightningElementEvents {
   destroy: () => void;
   childAdded: (child: LightningElement, index: number) => void;
   childRemoved: (child: LightningElement, index: number) => void;
+  childFocused: (child: LightningElement) => void;
   beforeRender: () => void;
   layout: (dimensions: Rect) => void;
   textureLoaded: NodeLoadedEventHandler;

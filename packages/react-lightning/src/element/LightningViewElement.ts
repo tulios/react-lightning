@@ -214,6 +214,8 @@ export class LightningViewElement<
 
   public on = this._emitter.on.bind(this._emitter);
   public off = this._emitter.off.bind(this._emitter);
+  public addEventListener = this._emitter.on.bind(this._emitter);
+  public removeEventListener = this._emitter.off.bind(this._emitter);
   public emit = this._emitter.emit.bind(this._emitter);
 
   public constructor(
@@ -310,6 +312,7 @@ export class LightningViewElement<
 
   public focus(): void {
     if (!this._focused) {
+      this.props.onFocusCapture?.(this);
       this._focused = true;
       this._emitter.emit('focusChanged', true);
       this.props.onFocus?.(this);
