@@ -1,3 +1,6 @@
+import fontGen from '@plexinc/vite-plugin-msdf-fontgen';
+import reactNativeLightningPlugin from '@plexinc/vite-plugin-react-native-lightning';
+import reactReanimatedLightningPlugin from '@plexinc/vite-plugin-react-reanimated-lightning';
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
@@ -15,6 +18,20 @@ const config: StorybookConfig = {
     config.define = {
       __DEV__: JSON.stringify(process.env.NODE_ENV === 'development'),
     };
+
+    config.plugins = [
+      reactNativeLightningPlugin(),
+      reactReanimatedLightningPlugin(),
+      fontGen({
+        inputs: [
+          {
+            src: 'public/fonts',
+            dest: 'public/fonts',
+          },
+        ],
+      }),
+      ...(config.plugins ?? []),
+    ];
 
     return config;
   },
