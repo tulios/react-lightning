@@ -1,7 +1,6 @@
 import createRollupConfig from '@repo/rollup-config';
 
 export default createRollupConfig({
-  useClient: true,
   outputExports: 'named',
   external: [
     'react/jsx-runtime',

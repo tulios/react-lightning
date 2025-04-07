@@ -122,7 +122,7 @@ export async function createRoot(
     target,
   );
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     window.__LIGHTNINGJS_DEVTOOLS__ = {
       renderer,
       features: ['react-lightning'],

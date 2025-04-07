@@ -1,5 +1,3 @@
 import createRollupConfig from '@repo/rollup-config';
 
-export default createRollupConfig({
-  useClient: true,
-});
+export default createRollupConfig();

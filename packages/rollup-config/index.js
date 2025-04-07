@@ -1,50 +1,19 @@
-/** @import { RollupOptions, Plugin } from 'rollup' */
+import path from 'node:path';
+/** @import { OutputOptions, RollupOptions, Plugin } from 'rollup' */
 import commonjs from '@rollup/plugin-commonjs';
 import image from '@rollup/plugin-image';
 import json from '@rollup/plugin-json';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
-import banner from 'rollup-plugin-banner2';
 import swc from 'rollup-plugin-swc3';
 
-const cjsEntry = `if (process.env.NODE_ENV === 'production') {
+const cjsEntryCode = `'use strict';
+if (process.env.NODE_ENV === 'production') {
   module.exports = require('./index.production.min.js');
 } else {
   module.exports = require('./index.development.js');
 }`;
-
-/**
- * @param {string[]} exports
- */
-function esm(exports) {
-  // Move star exports to its own line
-  const starExports = [];
-  const namedExports = [];
-
-  for (const e of exports) {
-    if (e.startsWith('*')) {
-      starExports.push(e);
-    } else {
-      namedExports.push(e);
-    }
-  }
-
-  const namedExportsString = namedExports.join(', ');
-  const starExportsString = starExports
-    .map((e) => `export * from '${e.replace('*', '')}';`)
-    .join('\n');
-
-  return `let moduleToExport;
-if (process.env.NODE_ENV === 'production') {
-  moduleToExport = await import('./index.production.min.mjs');
-} else {
-  moduleToExport = await import('./index.development.mjs');
-}
-const { ${namedExportsString} } = moduleToExport;
-${starExportsString}
-export { ${namedExportsString} };`;
-}
 
 /**
  * Generates an entry file that will load the production or development build
@@ -53,60 +22,51 @@ export { ${namedExportsString} };`;
  */
 const generateEntryFile = {
   name: 'generate-entry-file',
-  async generateBundle(options, bundle) {
-    const ext = options.format === 'cjs' ? 'js' : 'mjs';
-    const exports = Object.values(bundle)
-      .filter((b) => b.isEntry)
-      .flatMap((entry) => entry.exports);
-    const entryCode = options.format === 'cjs' ? cjsEntry : esm(exports);
-    const code = `'use strict';\n\n${entryCode}\n`;
+  async generateBundle(options) {
+    if (options.format !== 'cjs') {
+      return;
+    }
 
     this.emitFile({
       type: 'asset',
-      fileName: `index.${ext}`,
-      source: code,
+      fileName: 'index.js',
+      source: cjsEntryCode,
     });
   },
 };
 
 export default ({
-  useClient = false,
-  createDevBuilds = false,
-  preserveModules = false,
   outputExports = 'auto',
   input = ['./src/index.ts'],
+  outputDir = './dist/',
   external = [],
   options = {},
-  output,
   plugins = [],
 } = {}) => {
+  /**
+   *
+   * @param {string} format 'esm' | 'cjs'
+   * @param {string} env 'production' | 'development'
+   * @returns {OutputOptions}
+   */
+  const createOutput = (format, fileNameSuffix) => ({
+    dir:
+      typeof outputDir === 'function'
+        ? outputDir(format)
+        : path.join(outputDir, format),
+    entryFileNames: `[name]${fileNameSuffix ? `.${fileNameSuffix}` : ''}.${format === 'esm' ? 'mjs' : 'js'}`,
+    assetFileNames: ({ names }) =>
+      names.map((name) => name.replace(/^src\//, '') ?? ''),
+    format,
+    exports: outputExports,
+  });
+
   /**
    * @type {RollupOptions}
    */
   const commonOptions = {
     ...options,
     input,
-    output: output ?? [
-      {
-        dir: './dist/esm',
-        entryFileNames: '[name].mjs',
-        preserveModules,
-        preserveModulesRoot: './src',
-        assetFileNames({ name }) {
-          return name?.replace(/^src\//, '') ?? '';
-        },
-        format: 'esm',
-        exports: outputExports,
-      },
-      {
-        dir: './dist/cjs',
-        assetFileNames({ name }) {
-          return name?.replace(/^src\//, '') ?? '';
-        },
-        format: 'cjs',
-        exports: outputExports,
-      },
-    ],
     external,
     plugins: [
       ...plugins,
@@ -117,43 +77,22 @@ export default ({
       swc({
         include: /\.[mc]?[jt]sx?$/, // default
       }),
-      useClient ? banner(() => `'use client';\n`) : undefined,
     ],
   };
-  const replacePluginOptions = {
-    values: {
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      __DEV__: JSON.stringify(process.env.NODE_ENV === 'development'),
-    },
-    preventAssignment: true,
-  };
-
-  if (!createDevBuilds) {
-    commonOptions.plugins.push(replace(replacePluginOptions), terser());
-
-    return commonOptions;
-  }
 
   const prodOptions = {
     ...commonOptions,
     output: [
-      {
-        ...commonOptions.output[0],
-        entryFileNames: '[name].production.min.mjs',
-      },
-      {
-        ...commonOptions.output[1],
-        entryFileNames: '[name].production.min.js',
-      },
+      createOutput('esm', 'production.min'),
+      createOutput('cjs', 'production.min'),
     ],
     plugins: [
       ...commonOptions.plugins,
       replace({
-        ...replacePluginOptions,
         values: {
-          ...replacePluginOptions.values,
-          __DEV__: JSON.stringify(false),
+          'process.env.NODE_ENV': JSON.stringify('production'),
         },
+        preventAssignment: true,
       }),
       terser(),
       generateEntryFile,
@@ -162,26 +101,7 @@ export default ({
 
   const devOptions = {
     ...commonOptions,
-    output: [
-      {
-        ...commonOptions.output[0],
-        entryFileNames: '[name].development.mjs',
-      },
-      {
-        ...commonOptions.output[1],
-        entryFileNames: '[name].development.js',
-      },
-    ],
-    plugins: [
-      ...commonOptions.plugins,
-      replace({
-        ...replacePluginOptions,
-        values: {
-          ...replacePluginOptions.values,
-          __DEV__: JSON.stringify(true),
-        },
-      }),
-    ],
+    output: [createOutput('esm', ''), createOutput('cjs', 'development')],
   };
 
   return [prodOptions, devOptions];

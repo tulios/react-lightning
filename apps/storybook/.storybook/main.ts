@@ -15,9 +15,11 @@ const config: StorybookConfig = {
     options: {},
   },
   viteFinal(config) {
-    config.define = {
-      __DEV__: JSON.stringify(process.env.NODE_ENV === 'development'),
-    };
+    // config.define = {
+    //   'process.env': JSON.stringify({
+    //     NODE_ENV: process.env.NODE_ENV,
+    //   }),
+    // };
 
     config.plugins = [
       reactNativeLightningPlugin(),

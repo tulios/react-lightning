@@ -247,7 +247,7 @@ export class LightningViewElement<
 
     this.node = this._createNode(lngProps);
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       this.node.__reactNode = this;
       this.node.__reactFiber = fiber;
     }

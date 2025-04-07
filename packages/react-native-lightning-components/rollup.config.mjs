@@ -8,24 +8,8 @@ const configs = exportFiles.map((file) => {
   const outputDir = dirname(file.replace('src/exports', ''));
 
   return createRollupConfig({
-    useClient: true,
     input: file,
-    output: [
-      {
-        dir: `./dist/esm${outputDir}`,
-        entryFileNames: '[name].mjs',
-        assetFileNames: ({ name }) => name?.replace(/^src\//, '') ?? '',
-        format: 'esm',
-        exports: 'auto',
-      },
-      {
-        dir: `./dist/cjs${outputDir}`,
-        entryFileNames: '[name].js',
-        assetFileNames: ({ name }) => name?.replace(/^src\//, '') ?? '',
-        format: 'cjs',
-        exports: 'auto',
-      },
-    ],
+    outputDir: (format) => `./dist/${format}${outputDir}`,
     external: [
       '@plexinc/react-lightning',
       '@plexinc/react-native-lightning',
@@ -38,4 +22,4 @@ const configs = exportFiles.map((file) => {
   });
 });
 
-export default configs;
+export default configs.flat();

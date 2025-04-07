@@ -2,7 +2,11 @@
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist",
-    "types": ["vite/client", "@plexinc/react-lightning-plugin-flexbox/jsx"]
+    "types": [
+      "node",
+      "vite/client",
+      "@plexinc/react-lightning-plugin-flexbox/jsx"
+    ]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

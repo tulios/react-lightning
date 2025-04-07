@@ -23,6 +23,9 @@ importers:
       '@swc/core':
         specifier: 1.10.17
         version: 1.10.17
+      '@types/node':
+        specifier: 22.13.4
+        version: 22.13.4
       del-cli:
         specifier: 6.0.0
         version: 6.0.0
@@ -507,9 +510,6 @@ importers:
       '@swc/core':
         specifier: 1.10.17
         version: 1.10.17
-      rollup-plugin-banner2:
-        specifier: 1.3.1
-        version: 1.3.1
       rollup-plugin-swc3:
         specifier: 0.12.1
         version: 0.12.1(@swc/core@1.10.17)(rollup@4.34.8)
@@ -4495,9 +4495,6 @@ packages:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
     hasBin: true
 
-  magic-string@0.25.9:
-    resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
-
   magic-string@0.27.0:
     resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
     engines: {node: '>=12'}
@@ -5344,10 +5341,6 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
-  rollup-plugin-banner2@1.3.1:
-    resolution: {integrity: sha512-BUxYj2FbSCxgfyvln6f1AWG1n+b1ZUXXb/LkKpClB12CTIjwDFexWw35V/STz7xT+BLat475I204aRzpxRQwKg==}
-    engines: {node: '>=12.13'}
-
   rollup-plugin-swc3@0.12.1:
     resolution: {integrity: sha512-iNV1T432XvyejZ19/41C2gLbXxEOiiJynPPAFF0WzwwFT5FHx7SstAp0yjJRLyrbZjfIhoWJVl3hX3c3Stv/GQ==}
     engines: {node: '>=16'}
@@ -5527,10 +5520,6 @@ packages:
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
-
-  sourcemap-codec@1.4.8:
-    resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
-    deprecated: Please use @jridgewell/sourcemap-codec instead
 
   spawndamnit@3.0.1:
     resolution: {integrity: sha512-MmnduQUuHCoFckZoWnXsTg7JaiLBJrKFj9UI2MbRPGaJeVpsLcVBu6P/IGZovziM/YBsellCmsprgNA+w0CzVg==}
@@ -10803,10 +10792,6 @@ snapshots:
 
   lz-string@1.5.0: {}
 
-  magic-string@0.25.9:
-    dependencies:
-      sourcemap-codec: 1.4.8
-
   magic-string@0.27.0:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -11804,10 +11789,6 @@ snapshots:
     dependencies:
       glob: 7.2.3
 
-  rollup-plugin-banner2@1.3.1:
-    dependencies:
-      magic-string: 0.25.9
-
   rollup-plugin-swc3@0.12.1(@swc/core@1.10.17)(rollup@4.34.8):
     dependencies:
       '@dual-bundle/import-meta-resolve': 4.1.0
@@ -12026,8 +12007,6 @@ snapshots:
   source-map@0.5.7: {}
 
   source-map@0.6.1: {}
-
-  sourcemap-codec@1.4.8: {}
 
   spawndamnit@3.0.1:
     dependencies:
