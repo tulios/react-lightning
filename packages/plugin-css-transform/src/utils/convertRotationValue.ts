@@ -1,15 +1,15 @@
 export function convertRotationValue(value: string) {
   if (value.endsWith('deg')) {
-    return Number.parseInt(value);
-  }
-  if (value.endsWith('rad')) {
-    return (Number.parseInt(value) * 180) / Math.PI;
+    return (Number.parseFloat(value) * Math.PI) / 180;
   }
   if (value.endsWith('grad')) {
-    return (Number.parseInt(value) * 180) / 200;
+    return (Number.parseFloat(value) * Math.PI) / 200;
+  }
+  if (value.endsWith('rad')) {
+    return Number.parseFloat(value);
   }
   if (value.endsWith('turn')) {
-    return Number.parseInt(value) * 360;
+    return Number.parseFloat(value) * Math.PI * 2;
   }
-  return Number.parseInt(value);
+  return Number.parseFloat(value);
 }
