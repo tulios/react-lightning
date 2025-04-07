@@ -1,16 +1,22 @@
 import { SdfTrFontFace } from '@lightningjs/renderer';
 import { Canvas, type RenderOptions } from '@plexinc/react-lightning';
 import { plugin as flexPlugin } from '@plexinc/react-lightning-plugin-flexbox';
+import { getPlugins } from '@plexinc/react-native-lightning';
 import { useMemo } from 'react';
 import { keyMap } from '../../keyMap';
 import { DefaultStoryHeight, DefaultStoryWidth } from '../helpers/constants';
 
 type Props = {
   story: () => JSX.Element;
+  tags: string[];
   canvasOptions?: Partial<RenderOptions>;
 };
 
-export function StorybookDecorator({ story: Story, canvasOptions }: Props) {
+export function StorybookDecorator({
+  story: Story,
+  tags = [],
+  canvasOptions,
+}: Props) {
   const options: RenderOptions = useMemo(
     () => ({
       fpsUpdateInterval: 1000,
@@ -27,10 +33,10 @@ export function StorybookDecorator({ story: Story, canvasOptions }: Props) {
           stage,
         }),
       ],
-      plugins: [flexPlugin()],
+      plugins: tags.includes('reactNative') ? getPlugins() : [flexPlugin()],
       ...canvasOptions,
     }),
-    [canvasOptions],
+    [tags, canvasOptions],
   );
 
   return (

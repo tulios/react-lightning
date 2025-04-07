@@ -2,10 +2,9 @@
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist",
     "declaration": false,
     "declarationMap": false,
-    "types": ["node", "@plexinc/react-lightning-plugin-css-transform/jsx"]
+    "types": ["@plexinc/react-lightning-plugin-flexbox/jsx"]
   },
   "include": ["src", "../../types/*.d.ts"],
   "exclude": ["node_modules", "dist"]

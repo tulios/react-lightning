@@ -1,10 +1,17 @@
-import Row from '@plexinc/react-lightning-components/layout/Row';
+import { Row } from '@plexinc/react-lightning-components';
 import FlashList from '@plexinc/react-native-lightning-components/lists/FlashList';
+import type { Meta } from '@storybook/react';
 import { useCallback, useRef } from 'react';
 import { View } from 'react-native';
-import ScrollItem from '../components/ScrollItem';
+import ScrollItem from '../../components/ScrollItem';
 
-export const FlashListTest = () => {
+export default {
+  title: '@plexinc∕react-native-lightning-components/Lists/FlashList',
+  component: FlashList,
+  tags: ['reactNative'],
+} as Meta<typeof FlashList>;
+
+export const FlashListExample = () => {
   const buttons = new Array(50).fill(null).map((_, i) => `Flash Button ${i}`);
   const verticalRef = useRef<FlashList<string>>(null);
   const horizontalRef = useRef<FlashList<string>>(null);
@@ -21,8 +28,8 @@ export const FlashListTest = () => {
     <Row key="ListContainer">
       <View
         style={{
-          width: 300,
-          height: 800,
+          width: 150,
+          height: 500,
         }}
       >
         <FlashList
@@ -32,20 +39,21 @@ export const FlashListTest = () => {
             <ScrollItem
               color="rgb(79, 175, 175)"
               index={index}
+              width={100}
+              height={50}
               onFocused={handleVerticalFocus}
             >
               {item}
             </ScrollItem>
           )}
-          estimatedItemSize={75}
-          drawDistance={75}
-          snapToAlignment="center"
+          estimatedItemSize={50}
+          drawDistance={50}
         />
       </View>
 
       <View
         style={{
-          width: 600,
+          width: 350,
           height: 200,
         }}
       >
@@ -58,14 +66,15 @@ export const FlashListTest = () => {
               horizontal
               color="rgb(175, 175, 79)"
               index={index}
+              width={100}
+              height={50}
               onFocused={handleHorizontalFocus}
             >
               {item}
             </ScrollItem>
           )}
-          estimatedItemSize={75}
-          drawDistance={75}
-          snapToAlignment="center"
+          estimatedItemSize={50}
+          drawDistance={50}
         />
       </View>
     </Row>

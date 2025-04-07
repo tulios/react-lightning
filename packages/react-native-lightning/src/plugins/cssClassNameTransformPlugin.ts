@@ -1,9 +1,14 @@
 import type { Plugin } from '@plexinc/react-lightning';
 import { StyleSheet } from 'react-native-web';
+// Necessary for the declaration merging to work below, since we don't import
+// the `react-native-web` typings.
+import '../types/react-native-web.d.ts';
 
-type ReactNativeWebStyleSheet = StyleSheet & {
-  getSheet(): { id: string; textContent: string };
-};
+declare module 'react-native-web' {
+  namespace StyleSheet {
+    export function getSheet(): { id: string; textContent: string };
+  }
+}
 
 function camelize(text: string) {
   return text.trim().replace(/-(.)/g, (_, letter) => letter.toUpperCase());
@@ -38,9 +43,7 @@ export const cssClassNameTransformPlugin = (): Plugin => {
         return props;
       }
 
-      const newCssText = (
-        StyleSheet as unknown as ReactNativeWebStyleSheet
-      ).getSheet().textContent;
+      const newCssText = StyleSheet.getSheet().textContent;
 
       if (newCssText !== currentCssText) {
         sheet.replaceSync(newCssText);

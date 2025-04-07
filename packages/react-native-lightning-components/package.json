@@ -1,0 +1,82 @@
+{
+  "name": "@plexinc/react-native-lightning-components",
+  "description": "React components for react-native-lightning",
+  "version": "0.1.0",
+  "author": "Plex Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plexinc/react-lightning.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plexinc/react-lightning/issues/new"
+  },
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "types": "dist/types/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./lists/CellContainer": "./src/exports/lists/CellContainer.tsx",
+    "./lists/FlashList": "./src/exports/lists/FlashList.tsx"
+  },
+  "publishConfig": {
+    "provenance": true,
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./dist/esm/index.mjs",
+        "require": "./dist/cjs/index.js",
+        "default": "./dist/cjs/index.js",
+        "types": "./dist/types/index.d.ts"
+      },
+      "./lists/CellContainer": {
+        "import": "./dist/esm/lists/CellContainer.mjs",
+        "require": "./dist/cjs/lists/CellContainer.js",
+        "default": "./dist/cjs/lists/CellContainer.js",
+        "types": "./dist/types/lists/CellContainer.d.ts"
+      },
+      "./lists/FlashList": {
+        "import": "./dist/esm/lists/FlashList.mjs",
+        "require": "./dist/cjs/lists/FlashList.js",
+        "default": "./dist/cjs/lists/FlashList.js",
+        "types": "./dist/types/lists/FlashList.d.ts"
+      }
+    }
+  },
+  "scripts": {
+    "build": "pnpm run build:types && pnpm run build:bundle",
+    "build:bundle": "rollup -c --failAfterWarnings",
+    "build:types": "tsc --outDir dist/lib --declarationDir dist/types --declaration true --emitDeclarationOnly true",
+    "clean": "del ./dist",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "devDependencies": {
+    "@plexinc/react-lightning": "workspace:*",
+    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
+    "@repo/rollup-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "18.3.14",
+    "react": "18.3.1",
+    "react-native": "0.77.1"
+  },
+  "peerDependencies": {
+    "@plexinc/react-lightning": "workspace:*",
+    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
+    "@plexinc/react-native-lightning": "workspace:*",
+    "@shopify/flash-list": "1.7.3",
+    "react": "^18.3.1",
+    "react-native": "0.77.1"
+  },
+  "peerDependenciesMeta": {
+    "@shopify/flash-list": {
+      "optional": true
+    }
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}

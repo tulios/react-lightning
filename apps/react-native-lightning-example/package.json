@@ -27,6 +27,7 @@
     "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
     "@plexinc/react-lightning-plugin-reanimated": "workspace:*",
     "@plexinc/react-native-lightning": "workspace:*",
+    "@plexinc/react-native-lightning-components": "workspace:*",
     "@react-navigation/native": "7.0.14",
     "@react-navigation/stack": "7.1.1",
     "@shopify/flash-list": "1.7.3",
@@ -38,7 +39,6 @@
   },
   "devDependencies": {
     "@babel/core": "7.26.9",
-    "@babel/runtime": "7.26.9",
     "@plexinc/vite-plugin-msdf-fontgen": "workspace:*",
     "@plexinc/vite-plugin-react-native-lightning": "workspace:*",
     "@plexinc/vite-plugin-react-reanimated-lightning": "workspace:*",

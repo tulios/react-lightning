@@ -1,60 +1,34 @@
+import type { LightningElement } from '@plexinc/react-lightning';
 import { Column, Row } from '@plexinc/react-lightning-components';
+import { ScrollView } from '@plexinc/react-native-lightning';
+import { type RefObject, useCallback, useRef } from 'react';
 import {
   ActivityIndicator,
   Button,
-  FlatList,
   Image,
-  ScrollView,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  VirtualizedList,
 } from 'react-native';
 
-type DataItem = { key: string };
-
-const flatlistData: DataItem[] = [
-  { key: 'a' },
-  { key: 'b' },
-  { key: 'c' },
-  { key: 'd' },
-  { key: 'e' },
-  { key: 'f' },
-  { key: 'g' },
-  { key: 'h' },
-  { key: 'i' },
-  { key: 'j' },
-  { key: 'k' },
-  { key: 'l' },
-  { key: 'm' },
-  { key: 'n' },
-  { key: 'o' },
-  { key: 'p' },
-  { key: 'q' },
-  { key: 'r' },
-  { key: 's' },
-  { key: 't' },
-  { key: 'u' },
-  { key: 'v' },
-  { key: 'w' },
-  { key: 'x' },
-  { key: 'y' },
-  { key: 'z' },
-];
-
-// biome-ignore lint/style/noNonNullAssertion: We can assume data is not empty
-const getItem = (data: DataItem[], index: number) => data[index]!;
-const renderItem = ({ item }: { item: DataItem }) => (
-  <Button title={`Test ${item.key}`} color="#123456" />
-);
-
 const ComponentTest = () => {
+  const ref = useRef<ScrollView>();
+
+  const handleChildFocused = useCallback((child: LightningElement) => {
+    ref.current?.scrollToElement(child);
+  }, []);
+
   return (
     <Row focusable style={{ gap: 30 }}>
       <Column focusable style={{ width: 700 }}>
         <Text>ScrollView</Text>
-        <ScrollView style={{ width: 700, height: 400 }}>
+        <ScrollView
+          ref={ref as RefObject<ScrollView>}
+          onChildFocused={handleChildFocused}
+          snapToAlignment="center"
+          style={{ width: 700, height: 400 }}
+        >
           <Button title="This is the top" color="blue" />
           <Text
             style={{
@@ -128,38 +102,6 @@ const ComponentTest = () => {
           />
           <Button title="This is the bottom" color="blue" />
         </ScrollView>
-      </Column>
-      <Column focusable>
-        <Text>VirtualizedList</Text>
-        <View style={{ backgroundColor: 'red', width: 240, top: 50 }}>
-          <VirtualizedList
-            data={flatlistData}
-            style={{ width: 200, height: 400, left: 20 }}
-            initialScrollIndex={5}
-            initialNumToRender={10}
-            getItem={getItem}
-            getItemCount={() => flatlistData.length}
-            getItemLayout={(_data, index) => ({
-              length: 40,
-              offset: 40 * index,
-              index,
-            })}
-            renderItem={renderItem}
-          />
-        </View>
-      </Column>
-      <Column focusable>
-        <Text>FlatList</Text>
-        <FlatList
-          data={flatlistData}
-          style={{ width: 200, height: 400 }}
-          getItemLayout={(_data, index) => ({
-            length: 40,
-            offset: 40 * index,
-            index,
-          })}
-          renderItem={renderItem}
-        />
       </Column>
     </Row>
   );

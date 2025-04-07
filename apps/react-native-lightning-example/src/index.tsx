@@ -17,6 +17,7 @@ import { ComponentTest } from './pages/ComponentTest';
 import { FlashListTest } from './pages/FlashListTest';
 import { LayoutTest } from './pages/LayoutTest';
 import { LibraryTest } from './pages/LibraryTest';
+import { VirtualizedListTest } from './pages/VirtualizedListTest';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ const screens = {
   Library: 'library',
   Components: 'components',
   NestedLayouts: 'nestedLayouts',
+  VirtualizedList: 'virtualizedList',
   FlashList: 'flashList',
 };
 
@@ -74,6 +76,11 @@ const MainApp = () => {
           onPress={() => nav.navigate('Components')}
         />
         <Button
+          title="VirtualizedList"
+          color={'rgba(55, 55, 22, 1)'}
+          onPress={() => nav.navigate('VirtualizedList')}
+        />
+        <Button
           title="FlashList"
           color={'rgba(55, 55, 22, 1)'}
           onPress={() => nav.navigate('FlashList')}
@@ -95,6 +102,10 @@ const MainApp = () => {
           <Stack.Screen name="Library" component={LibraryTest} />
           <Stack.Screen name="Components" component={ComponentTest} />
           <Stack.Screen name="FlashList" component={FlashListTest} />
+          <Stack.Screen
+            name="VirtualizedList"
+            component={VirtualizedListTest}
+          />
         </Stack.Navigator>
       </Column>
     </Row>
