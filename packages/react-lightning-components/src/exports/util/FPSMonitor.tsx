@@ -4,17 +4,25 @@ import {
 } from '@plexinc/react-lightning';
 import { useCallback, useContext, useEffect, useState } from 'react';
 
-interface Props {
+export interface FPSMonitorProps {
+  prefix?: string;
   style?: LightningTextElementStyle;
+  highColor?: number;
+  mediumColor?: number;
+  lowColor?: number;
+  mediumCutoff?: number;
+  lowCutoff?: number;
 }
 
-const HIGH_COLOR = 0x00ff00ff;
-const MEDIUM_COLOR = 0xffff00ff;
-const MEDIUM_CUTOFF = 30;
-const LOW_COLOR = 0xff0000ff;
-const LOW_CUTOFF = 15;
-
-const FPSMonitor = ({ style }: Props) => {
+const FPSMonitor = ({
+  style,
+  prefix = 'FPS:',
+  highColor = 0x00ff00ff,
+  mediumColor = 0xffff00ff,
+  mediumCutoff = 30,
+  lowColor = 0xff0000ff,
+  lowCutoff = 15,
+}: FPSMonitorProps) => {
   const lngContext = useContext(LightningRootContext);
   const [fps, setFps] = useState(0);
   const [color, setColor] = useState(0);
@@ -23,15 +31,15 @@ const FPSMonitor = ({ style }: Props) => {
     (_: unknown, { fps: value }: { fps: number }) => {
       setFps(value);
 
-      if (value > MEDIUM_CUTOFF) {
-        setColor(HIGH_COLOR);
-      } else if (value > LOW_CUTOFF) {
-        setColor(MEDIUM_COLOR);
+      if (value > mediumCutoff) {
+        setColor(highColor);
+      } else if (value > lowCutoff) {
+        setColor(mediumColor);
       } else {
-        setColor(LOW_COLOR);
+        setColor(lowColor);
       }
     },
-    [],
+    [highColor, mediumColor, mediumCutoff, lowColor, lowCutoff],
   );
 
   useEffect(() => {
@@ -46,17 +54,16 @@ const FPSMonitor = ({ style }: Props) => {
         color,
         display: 'flex',
         fontSize: 20,
-        mountX: 1,
         position: 'absolute',
-        x: 1900,
-        y: 20,
         zIndex: 9999,
         ...style,
       }}
     >
-      FPS: {fps}
+      {prefix} {fps}
     </lng-text>
   );
 };
 
-export { FPSMonitor };
+FPSMonitor.displayName = 'FPSMonitor';
+
+export default FPSMonitor;

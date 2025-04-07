@@ -19,7 +19,11 @@
     "dist"
   ],
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./layout/Row": "./src/exports/layout/Row.tsx",
+    "./layout/Column": "./src/exports/layout/Column.tsx",
+    "./text/StyledText": "./src/exports/text/StyledText.tsx",
+    "./util/FPSMonitor": "./src/exports/util/FPSMonitor.tsx"
   },
   "publishConfig": {
     "provenance": true,
@@ -30,6 +34,30 @@
         "require": "./dist/cjs/index.js",
         "default": "./dist/cjs/index.js",
         "types": "./dist/types/index.d.ts"
+      },
+      "./layout/Row": {
+        "import": "./dist/esm/layout/Row.mjs",
+        "require": "./dist/cjs/layout/Row.js",
+        "default": "./dist/cjs/layout/Row.js",
+        "types": "./dist/types/layout/Row.d.ts"
+      },
+      "./layout/Column": {
+        "import": "./dist/esm/layout/Column.mjs",
+        "require": "./dist/cjs/layout/Column.js",
+        "default": "./dist/cjs/layout/Column.js",
+        "types": "./dist/types/layout/Column.d.ts"
+      },
+      "./text/StyledText": {
+        "import": "./dist/esm/text/StyledText.mjs",
+        "require": "./dist/cjs/text/StyledText.js",
+        "default": "./dist/cjs/text/StyledText.js",
+        "types": "./dist/types/text/StyledText.d.ts"
+      },
+      "./util/FPSMonitor": {
+        "import": "./dist/esm/util/FPSMonitor.mjs",
+        "require": "./dist/cjs/util/FPSMonitor.js",
+        "default": "./dist/cjs/util/FPSMonitor.js",
+        "types": "./dist/types/util/FPSMonitor.d.ts"
       }
     }
   },

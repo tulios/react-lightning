@@ -21,7 +21,7 @@ const BASE_STYLE = {
 
 let wordWrapErrorShown = false;
 
-type StyledTextProps = LightningViewElementProps & {
+export type StyledTextProps = LightningViewElementProps & {
   /**
    * Input text with placeholders and custom tags.
    */
@@ -227,4 +227,4 @@ const StyledText: React.FC<StyledTextProps> = ({
 
 StyledText.displayName = 'StyledText';
 
-export { StyledText };
+export default StyledText;

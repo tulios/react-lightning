@@ -6,7 +6,7 @@ import {
 } from '@plexinc/react-lightning';
 import { forwardRef } from 'react';
 
-interface Props extends LightningViewElementProps {
+export interface RowProps extends LightningViewElementProps {
   focusable?: boolean;
   focusedStyle?: LightningViewElementStyle;
   autoFocus?: boolean;
@@ -16,7 +16,7 @@ interface Props extends LightningViewElementProps {
   trapFocusLeft?: boolean;
 }
 
-export const Column = forwardRef<LightningViewElement, Props>(
+const Row = forwardRef<LightningViewElement, RowProps>(
   (
     {
       style,
@@ -34,7 +34,7 @@ export const Column = forwardRef<LightningViewElement, Props>(
     const finalStyle: LightningViewElementStyle = {
       ...style,
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'row',
     };
 
     if (focusable) {
@@ -58,4 +58,6 @@ export const Column = forwardRef<LightningViewElement, Props>(
   },
 );
 
-Column.displayName = 'Column';
+Row.displayName = 'Row';
+
+export default Row;

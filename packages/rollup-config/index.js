@@ -77,6 +77,7 @@ export default ({
   input = ['./src/index.ts'],
   external = [],
   options = {},
+  output,
   plugins = [],
 } = {}) => {
   /**
@@ -85,7 +86,7 @@ export default ({
   const commonOptions = {
     ...options,
     input,
-    output: [
+    output: output ?? [
       {
         dir: './dist/esm',
         entryFileNames: '[name].mjs',
