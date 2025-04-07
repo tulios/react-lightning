@@ -5,7 +5,7 @@ import type {
   Rect,
 } from '@plexinc/react-lightning';
 import { forwardRef, useCallback, useMemo } from 'react';
-import type { TextProps as RNTextProps } from 'react-native';
+import type { Text as RNText, TextProps as RNTextProps } from 'react-native';
 import { createLayoutEvent } from '../utils/createLayoutEvent';
 import type { ViewProps } from './View';
 
@@ -17,6 +17,8 @@ const defaultTextStyle: Partial<LightningTextElementStyle> = {
   // contain: 'width',
   fontWeight: 'normal',
 };
+
+export type Text = RNText & LightningTextElement;
 
 export const Text = forwardRef<LightningTextElement, TextProps>(
   (

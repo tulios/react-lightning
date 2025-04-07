@@ -5,21 +5,25 @@ import type {
   ImageLoadEventData,
   ImageSourcePropType,
   ImageURISource,
+  Image as RNImage,
   ImageProps as RNImageProps,
 } from 'react-native';
 import { createLayoutEvent } from '../utils/createLayoutEvent';
 import { createNativeSyntheticEvent } from '../utils/createNativeSyntheticEvent';
 import type { ViewProps } from './View';
 
-export interface ImageProps extends RNImageProps, Omit<ViewProps, 'style'> {
-  onImageLoaded?: (dimensions: { width: number; height: number }) => void;
-}
+export type ImageProps = RNImageProps &
+  Omit<ViewProps, 'style'> & {
+    onImageLoaded?: (dimensions: { width: number; height: number }) => void;
+  };
 
 function isImageURISource(
   source: ImageSourcePropType,
 ): source is ImageURISource {
   return !Array.isArray(source);
 }
+
+export type Image = RNImage & LightningImageElement;
 
 export const Image = forwardRef<LightningImageElement, ImageProps>(
   (

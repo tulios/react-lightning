@@ -1,5 +1,6 @@
 import type {
   FocusableProps,
+  LightningElement,
   LightningViewElementProps,
   Rect,
 } from '@plexinc/react-lightning';
@@ -8,7 +9,7 @@ import type { LightningViewElement } from '@plexinc/react-lightning';
 import type { AllStyleProps } from '@plexinc/react-lightning-plugin-css-transform';
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { forwardRef, useCallback } from 'react';
-import type { ViewProps as RNViewProps } from 'react-native';
+import type { View as RNView, ViewProps as RNViewProps } from 'react-native';
 import { createLayoutEvent } from '../utils/createLayoutEvent';
 
 type CombinedProps = RNViewProps &
@@ -31,6 +32,8 @@ export const defaultViewStyle = {
   position: 'relative' as const,
   zIndex: 0,
 };
+
+export type View = RNView & LightningElement;
 
 export const View: ForwardRefExoticComponent<ViewProps> = forwardRef<
   LightningViewElement,
