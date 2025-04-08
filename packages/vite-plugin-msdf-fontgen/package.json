@@ -15,16 +15,13 @@
     "vite-plugin"
   ],
   "type": "module",
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
-  "source": "src/index.ts",
   "files": [
     "dist"
   ],
   "exports": {
+    "default": "./dist/esm/index.mjs",
     "import": "./dist/esm/index.mjs",
     "require": "./dist/cjs/index.js",
-    "default": "./dist/cjs/index.js",
     "types": "./dist/types/index.d.ts"
   },
   "publishConfig": {
@@ -33,9 +30,10 @@
   },
   "scripts": {
     "dev": "rollup -wc",
-    "build": "pnpm run build:types && pnpm run build:bundle",
+    "build": "pnpm run clean && pnpm run build:types && pnpm run build:bundle",
     "build:bundle": "rollup -c --failAfterWarnings",
     "build:types": "tsc --outDir dist/lib --declarationDir dist/types --declaration true --emitDeclarationOnly true",
+    "clean": "del ./dist",
     "prepare": "pnpm run build",
     "test:unit": "vitest run --passWithNoTests"
   },

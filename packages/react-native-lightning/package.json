@@ -12,9 +12,6 @@
     "url": "https://github.com/plexinc/react-lightning/issues/new"
   },
   "type": "commonjs",
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
-  "source": "src/index.ts",
   "files": [
     "config",
     "dist",
@@ -28,9 +25,9 @@
     "access": "public",
     "exports": {
       ".": {
+        "default": "./dist/esm/index.mjs",
         "import": "./dist/esm/index.mjs",
         "require": "./dist/cjs/index.js",
-        "default": "./dist/cjs/index.js",
         "types": "./dist/types/index.d.ts"
       }
     }

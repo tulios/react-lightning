@@ -12,32 +12,26 @@
     "url": "https://github.com/plexinc/react-lightning/issues/new"
   },
   "type": "module",
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
-  "source": "src/index.ts",
   "files": [
-    "config",
     "dist"
   ],
   "exports": {
-    ".": "./src/index.ts",
-    "./config/vite": "./config/vite.config.mjs"
+    ".": "./src/index.ts"
   },
   "publishConfig": {
     "provenance": true,
     "access": "public",
     "exports": {
       ".": {
+        "default": "./dist/esm/index.mjs",
         "import": "./dist/esm/index.mjs",
         "require": "./dist/cjs/index.js",
-        "default": "./dist/cjs/index.js",
         "types": "./dist/types/index.d.ts"
-      },
-      "./config/vite": "./config/vite.config.mjs"
+      }
     }
   },
   "scripts": {
-    "build": "pnpm run build:types && pnpm run build:bundle",
+    "build": "pnpm run clean && pnpm run build:types && pnpm run build:bundle",
     "build:bundle": "rollup -c --failAfterWarnings",
     "build:types": "tsc --outDir dist/lib --declarationDir dist/types --declaration true --emitDeclarationOnly true",
     "clean": "del ./dist",

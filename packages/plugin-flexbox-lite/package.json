@@ -12,10 +12,6 @@
     "url": "https://github.com/plexinc/react-lightning/issues/new"
   },
   "type": "module",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "source": "src/index.ts",
   "files": [
     "dist"
   ],
@@ -28,16 +24,16 @@
     "access": "public",
     "exports": {
       ".": {
+        "default": "./dist/esm/index.mjs",
         "import": "./dist/esm/index.mjs",
         "require": "./dist/cjs/index.js",
-        "default": "./dist/cjs/index.js",
         "types": "./dist/types/index.d.ts"
       },
       "./jsx": "./dist/types/types/jsx.d.ts"
     }
   },
   "scripts": {
-    "build": "pnpm run build:types && pnpm run build:bundle",
+    "build": "pnpm run clean && pnpm run build:types && pnpm run build:bundle",
     "build:bundle": "rollup -c --failAfterWarnings",
     "build:types": "tsc --outDir dist/lib --declarationDir dist/types --declaration true --emitDeclarationOnly true && pnpm run build:copy-dts",
     "build:copy-dts": "copyfiles -f src/types/jsx.d.ts dist/types/types",

@@ -47,6 +47,8 @@ export default ({
   outputExports = 'auto',
   input = ['./src/index.ts'],
   outputDir = './dist/',
+  preserveModules = false,
+  preserveModulesRoot = 'src',
   external = [],
   options = {},
   plugins = [],
@@ -62,6 +64,8 @@ export default ({
       typeof outputDir === 'function'
         ? outputDir(format)
         : path.join(outputDir, format),
+    preserveModules,
+    preserveModulesRoot,
     entryFileNames: `[name]${fileNameSuffix ? `.${fileNameSuffix}` : ''}.${format === 'esm' ? 'mjs' : 'js'}`,
     assetFileNames: ({ names }) =>
       names.map((name) => name.replace(/^src\//, '') ?? ''),

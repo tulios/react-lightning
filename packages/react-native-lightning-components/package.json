@@ -12,14 +12,11 @@
     "url": "https://github.com/plexinc/react-lightning/issues/new"
   },
   "type": "module",
-  "main": "dist/cjs/index.js",
-  "types": "dist/types/index.d.ts",
-  "source": "src/index.ts",
   "files": [
     "dist"
   ],
   "exports": {
-    ".": "./src/index.ts",
+    ".": "./src/exports/index.ts",
     "./lists/CellContainer": "./src/exports/lists/CellContainer.tsx",
     "./lists/FlashList": "./src/exports/lists/FlashList.tsx"
   },
@@ -28,27 +25,27 @@
     "access": "public",
     "exports": {
       ".": {
+        "default": "./dist/esm/index.mjs",
         "import": "./dist/esm/index.mjs",
         "require": "./dist/cjs/index.js",
-        "default": "./dist/cjs/index.js",
         "types": "./dist/types/index.d.ts"
       },
       "./lists/CellContainer": {
+        "default": "./dist/esm/lists/CellContainer.mjs",
         "import": "./dist/esm/lists/CellContainer.mjs",
         "require": "./dist/cjs/lists/CellContainer.js",
-        "default": "./dist/cjs/lists/CellContainer.js",
         "types": "./dist/types/lists/CellContainer.d.ts"
       },
       "./lists/FlashList": {
+        "default": "./dist/esm/lists/FlashList.mjs",
         "import": "./dist/esm/lists/FlashList.mjs",
         "require": "./dist/cjs/lists/FlashList.js",
-        "default": "./dist/cjs/lists/FlashList.js",
         "types": "./dist/types/lists/FlashList.d.ts"
       }
     }
   },
   "scripts": {
-    "build": "pnpm run build:types && pnpm run build:bundle",
+    "build": "pnpm run clean && pnpm run build:types && pnpm run build:bundle",
     "build:bundle": "rollup -c --failAfterWarnings",
     "build:types": "tsc --outDir dist/lib --declarationDir dist/types --declaration true --emitDeclarationOnly true",
     "clean": "del ./dist",
