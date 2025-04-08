@@ -30,31 +30,31 @@
         "default": "./dist/esm/index.mjs",
         "import": "./dist/esm/index.mjs",
         "require": "./dist/cjs/index.js",
-        "types": "./dist/types/index.d.ts"
+        "types": "./dist/types/exports/index.d.ts"
       },
       "./layout/Row": {
         "default": "./dist/esm/layout/Row.mjs",
         "import": "./dist/esm/layout/Row.mjs",
         "require": "./dist/cjs/layout/Row.js",
-        "types": "./dist/types/layout/Row.d.ts"
+        "types": "./dist/types/exports/layout/Row.d.ts"
       },
       "./layout/Column": {
         "default": "./dist/esm/layout/Column.mjs",
         "import": "./dist/esm/layout/Column.mjs",
         "require": "./dist/cjs/layout/Column.js",
-        "types": "./dist/types/layout/Column.d.ts"
+        "types": "./dist/types/exports/layout/Column.d.ts"
       },
       "./text/StyledText": {
         "default": "./dist/esm/text/StyledText.mjs",
         "import": "./dist/esm/text/StyledText.mjs",
         "require": "./dist/cjs/text/StyledText.js",
-        "types": "./dist/types/text/StyledText.d.ts"
+        "types": "./dist/types/exports/text/StyledText.d.ts"
       },
       "./util/FPSMonitor": {
         "default": "./dist/esm/util/FPSMonitor.mjs",
         "import": "./dist/esm/util/FPSMonitor.mjs",
         "require": "./dist/cjs/util/FPSMonitor.js",
-        "types": "./dist/types/util/FPSMonitor.d.ts"
+        "types": "./dist/types/exports/util/FPSMonitor.d.ts"
       }
     }
   },

@@ -28,19 +28,19 @@
         "default": "./dist/esm/index.mjs",
         "import": "./dist/esm/index.mjs",
         "require": "./dist/cjs/index.js",
-        "types": "./dist/types/index.d.ts"
+        "types": "./dist/types/exports/index.d.ts"
       },
       "./lists/CellContainer": {
         "default": "./dist/esm/lists/CellContainer.mjs",
         "import": "./dist/esm/lists/CellContainer.mjs",
         "require": "./dist/cjs/lists/CellContainer.js",
-        "types": "./dist/types/lists/CellContainer.d.ts"
+        "types": "./dist/types/exports/lists/CellContainer.d.ts"
       },
       "./lists/FlashList": {
         "default": "./dist/esm/lists/FlashList.mjs",
         "import": "./dist/esm/lists/FlashList.mjs",
         "require": "./dist/cjs/lists/FlashList.js",
-        "types": "./dist/types/lists/FlashList.d.ts"
+        "types": "./dist/types/exports/lists/FlashList.d.ts"
       }
     }
   },
