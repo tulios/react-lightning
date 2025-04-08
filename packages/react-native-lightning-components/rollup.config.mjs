@@ -2,10 +2,10 @@ import { dirname } from 'node:path';
 import createRollupConfig from '@repo/rollup-config';
 import { globSync } from 'glob';
 
-const exportFiles = globSync('./src/exports/*/*.{tsx,ts}');
+const exportFiles = globSync(['src/index.ts', './src/exports/*/*.{tsx,ts}']);
 
 const configs = exportFiles.map((file) => {
-  const outputDir = dirname(file.replace('src/exports', ''));
+  const outputDir = dirname(file.replace(/src(\/exports)?/i, ''));
 
   return createRollupConfig({
     input: file,

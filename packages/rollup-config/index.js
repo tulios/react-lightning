@@ -8,11 +8,11 @@ import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import swc from 'rollup-plugin-swc3';
 
-const cjsEntryCode = `'use strict';
+const createEntryCode = (fileName) => `'use strict';
 if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./index.production.min.js');
+  module.exports = require('./${fileName}.production.min.js');
 } else {
-  module.exports = require('./index.development.js');
+  module.exports = require('./${fileName}.development.js');
 }`;
 
 /**
@@ -22,15 +22,23 @@ if (process.env.NODE_ENV === 'production') {
  */
 const generateEntryFile = {
   name: 'generate-entry-file',
-  async generateBundle(options) {
+  async generateBundle(options, bundle) {
     if (options.format !== 'cjs') {
       return;
     }
 
+    let name = 'index';
+
+    for (const info of Object.values(bundle)) {
+      if (info.isEntry) {
+        name = info.name;
+      }
+    }
+
     this.emitFile({
       type: 'asset',
-      fileName: 'index.js',
-      source: cjsEntryCode,
+      fileName: `${name}.js`,
+      source: createEntryCode(name),
     });
   },
 };
@@ -46,7 +54,7 @@ export default ({
   /**
    *
    * @param {string} format 'esm' | 'cjs'
-   * @param {string} env 'production' | 'development'
+   * @param {string} fileNameSuffix
    * @returns {OutputOptions}
    */
   const createOutput = (format, fileNameSuffix) => ({
@@ -101,7 +109,7 @@ export default ({
 
   const devOptions = {
     ...commonOptions,
-    output: [createOutput('esm', ''), createOutput('cjs', 'development')],
+    output: [createOutput('esm'), createOutput('cjs', 'development')],
   };
 
   return [prodOptions, devOptions];
