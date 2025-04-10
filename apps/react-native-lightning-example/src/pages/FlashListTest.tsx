@@ -31,6 +31,7 @@ export const FlashListTest = () => {
           renderItem={({ index, item }) => (
             <ScrollItem
               color="rgb(79, 175, 175)"
+              altColor="rgb(175, 79, 175)"
               index={index}
               onFocused={handleVerticalFocus}
             >
@@ -57,6 +58,7 @@ export const FlashListTest = () => {
             <ScrollItem
               horizontal
               color="rgb(175, 175, 79)"
+              altColor="rgb(175, 79, 79)"
               index={index}
               onFocused={handleHorizontalFocus}
             >

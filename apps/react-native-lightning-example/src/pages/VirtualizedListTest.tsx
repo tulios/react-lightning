@@ -32,6 +32,7 @@ export const VirtualizedListTest = () => {
       renderItem={({ index, item }) => (
         <ScrollItem
           color="rgb(79, 175, 175)"
+          altColor="rgb(175, 175, 79)"
           index={index}
           onFocused={handleFocus}
         >

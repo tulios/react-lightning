@@ -42,6 +42,7 @@ export const VirtualizedListTest = () => {
         renderItem={({ index, item }) => (
           <ScrollItem
             color="rgb(79, 175, 175)"
+            altColor="rgb(175, 79, 175)"
             index={index}
             width={ITEM_WIDTH}
             height={ITEM_HEIGHT}

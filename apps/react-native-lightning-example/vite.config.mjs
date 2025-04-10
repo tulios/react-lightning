@@ -24,6 +24,7 @@ const config = defineConfig({
     'process.env': JSON.stringify({
       NODE_ENV: process.env.NODE_ENV,
     }),
+    __DEV__: JSON.stringify(process.env.NODE_ENV !== 'production'),
   },
 });
 

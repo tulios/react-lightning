@@ -10,6 +10,7 @@ export type ScrollItemProps = {
   height?: number;
   horizontal?: boolean;
   color: ColorValue;
+  altColor: ColorValue;
   onFocused: (index: number) => void;
 };
 
@@ -17,6 +18,7 @@ const ScrollItem = focusable<ScrollItemProps, View>(
   (
     {
       color,
+      altColor,
       index,
       horizontal,
       width = 200,
@@ -33,17 +35,20 @@ const ScrollItem = focusable<ScrollItemProps, View>(
       }
     }, [index, focused, onFocused]);
 
+    const multiplier = index % 3 === 0 ? 1.25 : 1;
+    const finalColor = index % 3 === 0 ? altColor : color;
+
     return (
       <View
         ref={ref}
         style={{
-          width: horizontal ? height : width,
-          height: horizontal ? width : height,
+          width: horizontal ? height * multiplier : width,
+          height: horizontal ? width : height * multiplier,
           borderWidth: focused ? 0 : 1,
           borderStyle: 'solid',
-          borderColor: color,
+          borderColor: finalColor,
           borderRadius: 4,
-          backgroundColor: focused ? color : 'transparent',
+          backgroundColor: focused ? finalColor : 'transparent',
           display: 'flex' as const,
           justifyContent: 'center' as const,
           alignItems: 'center' as const,
@@ -52,7 +57,7 @@ const ScrollItem = focusable<ScrollItemProps, View>(
         <Text
           style={{
             fontSize: 12,
-            color: focused ? 'black' : color,
+            color: focused ? 'black' : finalColor,
             transform: `rotate(${horizontal ? '-90deg' : '0deg'})`,
           }}
         >

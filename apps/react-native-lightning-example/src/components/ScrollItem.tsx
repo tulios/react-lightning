@@ -1,6 +1,6 @@
 import { focusable } from '@plexinc/react-lightning';
 import { View } from '@plexinc/react-native-lightning';
-import { type ReactNode, useEffect } from 'react';
+import { type ReactNode, useEffect, useMemo } from 'react';
 import { type ColorValue, Text } from 'react-native';
 
 export type ScrollItemProps = {
@@ -8,27 +8,37 @@ export type ScrollItemProps = {
   index: number;
   horizontal?: boolean;
   color: ColorValue;
+  altColor: ColorValue;
   onFocused: (index: number) => void;
 };
 
 const ScrollItem = focusable<ScrollItemProps, View>(
-  ({ color, index, horizontal, focused, children, onFocused }, ref) => {
+  (
+    { color, altColor, index, horizontal, focused, children, onFocused },
+    ref,
+  ) => {
     useEffect(() => {
       if (focused) {
         onFocused(index);
       }
     }, [index, focused, onFocused]);
 
+    const multiplier = useMemo(() => (index % 3 === 0 ? 1.25 : 1), [index]);
+    const finalColor = useMemo(
+      () => (index % 3 === 0 ? altColor : color),
+      [index, color, altColor],
+    );
+
     return (
       <View
         ref={ref}
         style={{
-          width: horizontal ? 75 : 200,
-          height: horizontal ? 200 : 75,
+          width: horizontal ? 75 * multiplier : 200,
+          height: horizontal ? 200 : 75 * multiplier,
           borderWidth: focused ? 0 : 1,
           borderStyle: 'solid',
-          borderColor: color,
-          backgroundColor: focused ? color : 'transparent',
+          borderColor: finalColor,
+          backgroundColor: focused ? finalColor : 'transparent',
           display: 'flex' as const,
           justifyContent: 'center' as const,
           alignItems: 'center' as const,

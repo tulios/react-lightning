@@ -63,6 +63,7 @@
   "peerDependencies": {
     "@plexinc/react-lightning": "workspace:*",
     "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
+    "@plexinc/react-lightning-plugin-css-transform": "workspace:*",
     "@plexinc/react-native-lightning": "workspace:*",
     "@shopify/flash-list": "1.7.3",
     "react": "^18.3.1",

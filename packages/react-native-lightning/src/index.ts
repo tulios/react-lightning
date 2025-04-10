@@ -32,6 +32,7 @@ export {
 export { View, type ViewProps } from './exports/View';
 export { VirtualizedList } from './exports/VirtualizedList';
 export { AppRegistry, getPlugins } from './render/AppRegistry';
+export { createLayoutEvent } from './utils/createLayoutEvent';
 export { createSyntheticEvent } from './utils/createSyntheticEvent';
 export { cssClassNameTransformPlugin } from './plugins/cssClassNameTransformPlugin';
 export { domPolyfillsPlugin } from './plugins/domPolyfillsPlugin';

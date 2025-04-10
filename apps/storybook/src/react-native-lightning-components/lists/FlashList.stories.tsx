@@ -38,6 +38,7 @@ export const FlashListExample = () => {
           renderItem={({ index, item }) => (
             <ScrollItem
               color="rgb(79, 175, 175)"
+              altColor="rgb(175, 175, 79)"
               index={index}
               width={100}
               height={50}
@@ -65,6 +66,7 @@ export const FlashListExample = () => {
             <ScrollItem
               horizontal
               color="rgb(175, 175, 79)"
+              altColor="rgb(175, 79, 175)"
               index={index}
               width={100}
               height={50}

@@ -458,6 +458,9 @@ importers:
 
   packages/react-native-lightning-components:
     dependencies:
+      '@plexinc/react-lightning-plugin-css-transform':
+        specifier: workspace:*
+        version: link:../plugin-css-transform
       '@plexinc/react-native-lightning':
         specifier: workspace:*
         version: link:../react-native-lightning
