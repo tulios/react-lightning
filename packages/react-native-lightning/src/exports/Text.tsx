@@ -71,7 +71,7 @@ export const Text = forwardRef<LightningTextElement, TextProps>(
           style as LightningTextElementStyle,
         ]}
         onLayout={onTextLayout}
-        onTextureLoaded={onTextLoaded}
+        onTextureReady={onTextLoaded}
       >
         {children}
       </lng-text>

@@ -22,8 +22,8 @@ export interface LightningElementEventProps {
   onLayout?: (rect: Rect) => void;
   onRender?: () => void;
   onBeforeRender?: () => void;
-  onTextureLoaded?: (dimensions: Dimensions) => void;
-  onTextureFailed?: (dimensions: Dimensions) => void;
+  onTextureReady?: (dimensions: Dimensions) => void;
+  onTextureError?: (dimensions: Dimensions) => void;
   onKeyDown?: (event: KeyEvent) => boolean | undefined;
   onKeyUp?: (event: KeyEvent) => boolean | undefined;
   onKeyPress?: (event: KeyEvent) => boolean | undefined;

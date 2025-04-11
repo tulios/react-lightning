@@ -59,6 +59,7 @@ export const FlashListTest = () => {
               horizontal
               color="rgb(175, 175, 79)"
               altColor="rgb(175, 79, 79)"
+              image={true}
               index={index}
               onFocused={handleHorizontalFocus}
             >

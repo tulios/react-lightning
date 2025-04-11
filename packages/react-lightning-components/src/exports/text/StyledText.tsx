@@ -64,7 +64,7 @@ const TextSegment: React.FC<TextSegmentProps> = ({
       <lng-text
         key={part.key}
         style={style}
-        onTextureLoaded={handleTextureLoaded}
+        onTextureReady={handleTextureLoaded}
       >
         {`${part.content}${lastCharEmpty ? ' ' : ''}`}
       </lng-text>

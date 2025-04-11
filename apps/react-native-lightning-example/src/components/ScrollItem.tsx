@@ -1,5 +1,5 @@
 import { focusable } from '@plexinc/react-lightning';
-import { View } from '@plexinc/react-native-lightning';
+import { Image, View } from '@plexinc/react-native-lightning';
 import { type ReactNode, useEffect, useMemo } from 'react';
 import { type ColorValue, Text } from 'react-native';
 
@@ -9,12 +9,13 @@ export type ScrollItemProps = {
   horizontal?: boolean;
   color: ColorValue;
   altColor: ColorValue;
+  image?: boolean;
   onFocused: (index: number) => void;
 };
 
 const ScrollItem = focusable<ScrollItemProps, View>(
   (
-    { color, altColor, index, horizontal, focused, children, onFocused },
+    { color, altColor, image, index, horizontal, focused, children, onFocused },
     ref,
   ) => {
     useEffect(() => {
@@ -28,13 +29,19 @@ const ScrollItem = focusable<ScrollItemProps, View>(
       () => (index % 3 === 0 ? altColor : color),
       [index, color, altColor],
     );
+    const width = Math.round(horizontal ? 75 * multiplier : 200);
+    const height = Math.round(horizontal ? 200 : 75 * multiplier);
+    const imageSrc = useMemo(
+      () => `https://picsum.photos/${width}/${height}?seed=${Math.random()}`,
+      [width, height],
+    );
 
     return (
       <View
         ref={ref}
         style={{
-          width: horizontal ? 75 * multiplier : 200,
-          height: horizontal ? 200 : 75 * multiplier,
+          width,
+          height,
           borderWidth: focused ? 0 : 1,
           borderStyle: 'solid',
           borderColor: finalColor,
@@ -45,14 +52,31 @@ const ScrollItem = focusable<ScrollItemProps, View>(
           borderRadius: 4,
         }}
       >
-        <Text
-          style={{
-            color: focused ? 'black' : color,
-            transform: `rotate(${horizontal ? '-90deg' : '0deg'})`,
-          }}
-        >
-          {children}
-        </Text>
+        {image ? (
+          <Image
+            src={imageSrc}
+            style={{
+              opacity: focused ? 1 : 0.25,
+              width: width - 2,
+              height: height - 2,
+            }}
+            transition={{
+              alpha: {
+                duration: 250,
+                easing: 'ease-in-out',
+              },
+            }}
+          />
+        ) : (
+          <Text
+            style={{
+              color: focused ? 'black' : color,
+              transform: `rotate(${horizontal ? '-90deg' : '0deg'})`,
+            }}
+          >
+            {children}
+          </Text>
+        )}
       </View>
     );
   },

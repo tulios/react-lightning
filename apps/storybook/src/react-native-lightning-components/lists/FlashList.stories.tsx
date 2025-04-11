@@ -67,6 +67,7 @@ export const FlashListExample = () => {
               horizontal
               color="rgb(175, 175, 79)"
               altColor="rgb(175, 79, 175)"
+              image={true}
               index={index}
               width={100}
               height={50}

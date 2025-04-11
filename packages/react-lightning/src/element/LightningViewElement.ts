@@ -39,6 +39,34 @@ type LightningElementProp = keyof UnionToIntersection<LightningElement>;
 // corresponding prop is set so that the element can update.
 const ELEMENT_PROPS: LightningElementProp[] = ['text', 'src'];
 
+const __bannedProps: string[] = [];
+const __warnedProps: string[] = [];
+const __bannedPropsInitialized = false;
+
+/**
+ * In dev mode, warn when we override any CoreNode props, since those are set internally by Lightning
+ */
+function __getBannedProps(node: INode) {
+  const descriptor = Object.getOwnPropertyDescriptors(node);
+
+  for (const prop in descriptor) {
+    if (descriptor[prop]?.value) {
+      __bannedProps.push(prop);
+    }
+  }
+}
+
+function __checkProps(props: string[]) {
+  for (const prop of props) {
+    if (__bannedProps.includes(prop) && !__warnedProps.includes(prop)) {
+      console.error(
+        `Warning: ${prop} is a reserved property on Lightning elements. Setting this prop will override the internal value. This may cause unexpected behavior.`,
+      );
+      __warnedProps.push(prop);
+    }
+  }
+}
+
 function getEffectName(type: string | number, id: number) {
   return `${type}_${id}`;
 }
@@ -227,6 +255,10 @@ export class LightningViewElement<
     this._renderer = renderer;
     this._plugins = plugins ?? [];
 
+    if (process.env.NODE_ENV !== 'production' && !__bannedPropsInitialized) {
+      __getBannedProps(renderer.createNode({}));
+    }
+
     this.id = ++idCounter;
 
     if (plugins) {
@@ -244,6 +276,10 @@ export class LightningViewElement<
       this.props.style ?? {},
       this._createStyleProxyHandler(),
     );
+
+    if (process.env.NODE_ENV !== 'production') {
+      __checkProps(Object.keys(lngProps));
+    }
 
     this.node = this._createNode(lngProps);
 
@@ -403,6 +439,10 @@ export class LightningViewElement<
     value: RendererNode<LightningElement>[K],
     animate = true,
   ) {
+    if (process.env.NODE_ENV !== 'production') {
+      __checkProps(key);
+    }
+
     if (this.node[key] === value) {
       return;
     }
@@ -496,6 +536,10 @@ export class LightningViewElement<
     const fullProps = Object.assign({}, this.props, transformedProps);
     const lngProps = this._toLightningNodeProps(fullProps);
 
+    if (process.env.NODE_ENV !== 'production') {
+      __checkProps(Object.keys(lngProps));
+    }
+
     Object.assign(this.rawProps, payload);
     Object.assign(this.props, transformedProps);
     Object.assign(this.node, lngProps);
@@ -537,7 +581,7 @@ export class LightningViewElement<
   private _onTextureLoaded: NodeLoadedEventHandler = (node, event) => {
     this._handleTextureLoaded(event);
     this._emitter.emit('textureLoaded', node, event);
-    this.props.onTextureLoaded?.(event.dimensions);
+    this.props.onTextureReady?.(event.dimensions);
   };
 
   private _onTextureFailed: NodeFailedEventHandler = (...args) => {

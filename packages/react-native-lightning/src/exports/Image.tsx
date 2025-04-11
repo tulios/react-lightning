@@ -99,7 +99,7 @@ export const Image = forwardRef<LightningImageElement, ImageProps>(
               }
             : undefined,
         ]}
-        onTextureLoaded={handleImageLoaded}
+        onTextureReady={handleImageLoaded}
         onLayout={onImageLayout}
       />
     );

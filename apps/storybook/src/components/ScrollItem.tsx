@@ -1,6 +1,6 @@
 import { focusable } from '@plexinc/react-lightning';
-import { View } from '@plexinc/react-native-lightning';
-import { type ReactNode, useEffect } from 'react';
+import { Image, View } from '@plexinc/react-native-lightning';
+import { type ReactNode, useEffect, useMemo } from 'react';
 import { type ColorValue, Text } from 'react-native';
 
 export type ScrollItemProps = {
@@ -11,6 +11,7 @@ export type ScrollItemProps = {
   horizontal?: boolean;
   color: ColorValue;
   altColor: ColorValue;
+  image?: boolean;
   onFocused: (index: number) => void;
 };
 
@@ -19,6 +20,7 @@ const ScrollItem = focusable<ScrollItemProps, View>(
     {
       color,
       altColor,
+      image,
       index,
       horizontal,
       width = 200,
@@ -37,13 +39,20 @@ const ScrollItem = focusable<ScrollItemProps, View>(
 
     const multiplier = index % 3 === 0 ? 1.25 : 1;
     const finalColor = index % 3 === 0 ? altColor : color;
+    const finalWidth = Math.round(horizontal ? height * multiplier : width);
+    const finalHeight = Math.round(horizontal ? width : height * multiplier);
+    const imageSrc = useMemo(
+      () =>
+        `https://picsum.photos/${finalWidth}/${finalHeight}?seed=${Math.random()}`,
+      [finalWidth, finalHeight],
+    );
 
     return (
       <View
         ref={ref}
         style={{
-          width: horizontal ? height * multiplier : width,
-          height: horizontal ? width : height * multiplier,
+          width: finalWidth,
+          height: finalHeight,
           borderWidth: focused ? 0 : 1,
           borderStyle: 'solid',
           borderColor: finalColor,
@@ -54,15 +63,32 @@ const ScrollItem = focusable<ScrollItemProps, View>(
           alignItems: 'center' as const,
         }}
       >
-        <Text
-          style={{
-            fontSize: 12,
-            color: focused ? 'black' : finalColor,
-            transform: `rotate(${horizontal ? '-90deg' : '0deg'})`,
-          }}
-        >
-          {children}
-        </Text>
+        {image ? (
+          <Image
+            src={imageSrc}
+            style={{
+              opacity: focused ? 1 : 0.25,
+              width: finalWidth - 2,
+              height: finalHeight - 2,
+            }}
+            transition={{
+              alpha: {
+                duration: 250,
+                easing: 'ease-in-out',
+              },
+            }}
+          />
+        ) : (
+          <Text
+            style={{
+              fontSize: 12,
+              color: focused ? 'black' : finalColor,
+              transform: `rotate(${horizontal ? '-90deg' : '0deg'})`,
+            }}
+          >
+            {children}
+          </Text>
+        )}
       </View>
     );
   },
