@@ -35,6 +35,7 @@
     "build:types": "tsc --outDir dist/lib --declarationDir dist/types --declaration true --emitDeclarationOnly true",
     "clean": "del ./dist",
     "prepare": "pnpm run build",
+    "check:types": "tsc --noEmit",
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {

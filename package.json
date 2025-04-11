@@ -15,6 +15,7 @@
   "scripts": {
     "build": "turbo build",
     "build:types": "turbo build:types",
+    "check:types": "turbo check:types",
     "clean": "turbo clean",
     "ci:publish": "pnpm run build && pnpm exec changeset publish",
     "ci:version": "pnpm exec changeset version && pnpm install --no-frozen-lockfile",

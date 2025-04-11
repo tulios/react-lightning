@@ -38,6 +38,7 @@
     "build:types": "tsc --outDir dist/lib --declarationDir dist/types --declaration true --emitDeclarationOnly true && pnpm run build:copy-dts",
     "build:copy-dts": "copyfiles -f src/types/jsx.d.ts dist/types/types",
     "clean": "del ./dist",
+    "check:types": "tsc --noEmit",
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {

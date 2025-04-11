@@ -440,7 +440,7 @@ export class LightningViewElement<
     animate = true,
   ) {
     if (process.env.NODE_ENV !== 'production') {
-      __checkProps(key);
+      __checkProps([key]);
     }
 
     if (this.node[key] === value) {

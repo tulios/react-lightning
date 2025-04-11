@@ -16,7 +16,8 @@
     "dev": {
       "cache": false,
       "persistent": true
-    }
+    },
+    "check:types": {}
   },
   "globalEnv": ["BASE_URL", "NODE_ENV"]
 }

@@ -54,6 +54,10 @@ export class MyCustomTexture extends Texture {
     });
   }
 
+  override getTextureSource(): Promise<TextureData> {
+    return this.getTextureData();
+  }
+
   static override makeCacheKey(_props: MyCustomTextureProps): string | false {
     // // Cache by props (only do this if could be helpful, otherwise leave it uncached)
     // const rprops = MyCustomTexture.resolveDefaults(props)

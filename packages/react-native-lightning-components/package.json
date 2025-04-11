@@ -49,6 +49,7 @@
     "build:bundle": "rollup -c --failAfterWarnings",
     "build:types": "tsc --outDir dist/lib --declarationDir dist/types --declaration true --emitDeclarationOnly true",
     "clean": "del ./dist",
+    "check:types": "tsc --noEmit",
     "test:unit": "vitest run --passWithNoTests"
   },
   "devDependencies": {

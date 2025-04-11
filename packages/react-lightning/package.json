@@ -39,6 +39,7 @@
     "build:copy-dts": "copyfiles -f src/types/jsx.d.ts dist/types/types",
     "watch": "pnpm run build:types && rollup -c -w",
     "clean": "del ./dist",
+    "check:types": "tsc --noEmit",
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
