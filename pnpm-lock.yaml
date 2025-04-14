@@ -471,6 +471,9 @@ importers:
       '@plexinc/react-lightning':
         specifier: workspace:*
         version: link:../react-lightning
+      '@plexinc/react-lightning-components':
+        specifier: workspace:^
+        version: link:../react-lightning-components
       '@plexinc/react-lightning-plugin-flexbox':
         specifier: workspace:*
         version: link:../plugin-flexbox

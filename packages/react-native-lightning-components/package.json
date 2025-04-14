@@ -17,6 +17,8 @@
   ],
   "exports": {
     ".": "./src/exports/index.ts",
+    "./layout/Column": "./src/exports/layout/Column.tsx",
+    "./layout/Row": "./src/exports/layout/Row.tsx",
     "./lists/CellContainer": "./src/exports/lists/CellContainer.tsx",
     "./lists/FlashList": "./src/exports/lists/FlashList.tsx"
   },
@@ -29,6 +31,18 @@
         "import": "./dist/esm/index.mjs",
         "require": "./dist/cjs/index.js",
         "types": "./dist/types/exports/index.d.ts"
+      },
+      "./layout/Column": {
+        "default": "./dist/esm/layout/Column.mjs",
+        "import": "./dist/esm/layout/Column.mjs",
+        "require": "./dist/cjs/layout/Column.js",
+        "types": "./dist/types/exports/layout/Column.d.ts"
+      },
+      "./layout/Row": {
+        "default": "./dist/esm/layout/Row.mjs",
+        "import": "./dist/esm/layout/Row.mjs",
+        "require": "./dist/cjs/layout/Row.js",
+        "types": "./dist/types/exports/layout/Row.d.ts"
       },
       "./lists/CellContainer": {
         "default": "./dist/esm/lists/CellContainer.mjs",
@@ -54,6 +68,7 @@
   },
   "devDependencies": {
     "@plexinc/react-lightning": "workspace:*",
+    "@plexinc/react-lightning-components": "workspace:^",
     "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
     "@repo/rollup-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
@@ -63,8 +78,9 @@
   },
   "peerDependencies": {
     "@plexinc/react-lightning": "workspace:*",
-    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
+    "@plexinc/react-lightning-components": "workspace:^",
     "@plexinc/react-lightning-plugin-css-transform": "workspace:*",
+    "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
     "@plexinc/react-native-lightning": "workspace:*",
     "@shopify/flash-list": "1.7.3",
     "react": "^18.3.1",
