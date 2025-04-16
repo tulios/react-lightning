@@ -20,7 +20,7 @@
     "dev": "storybook dev -p 6006 --no-open"
   },
   "dependencies": {
-    "@lightningjs/renderer": "2.12.1",
+    "@lightningjs/renderer": "2.13.2",
     "@plexinc/react-lightning": "workspace:*",
     "@plexinc/react-lightning-components": "workspace:*",
     "@plexinc/react-lightning-plugin-flexbox": "workspace:*",

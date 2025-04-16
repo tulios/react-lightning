@@ -45,7 +45,7 @@
     "@plexinc/react-lightning-plugin-flexbox": "workspace:*"
   },
   "devDependencies": {
-    "@lightningjs/renderer": "2.12.1",
+    "@lightningjs/renderer": "2.13.2",
     "@plexinc/react-lightning": "workspace:*",
     "@repo/rollup-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",

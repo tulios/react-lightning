@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.26.9",
-    "@lightningjs/renderer": "2.12.1",
+    "@lightningjs/renderer": "2.13.2",
     "@plexinc/react-lightning": "workspace:*",
     "@plexinc/react-lightning-plugin-css-transform": "workspace:*",
     "@plexinc/react-lightning-plugin-flexbox": "workspace:*",
