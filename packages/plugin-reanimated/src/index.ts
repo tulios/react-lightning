@@ -13,6 +13,7 @@ export * from 'react-native-reanimated-original';
 export default {
   createAnimatedComponent,
   addWhitelistedUIProps: Noop,
+  addWhitelistedNativeProps: Noop,
   Image,
   FlatList,
   ScrollView,
