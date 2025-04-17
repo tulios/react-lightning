@@ -3,6 +3,7 @@ import { type Yoga, loadYoga } from 'yoga-layout/load';
 
 export type YogaOptions = {
   useWebDefaults?: boolean;
+  processHiddenNodes?: boolean;
   errata?:
     | 'none'
     | 'all'

@@ -44,7 +44,10 @@ export function plugin(yogaOptions?: YogaOptions): Plugin<LightningElement> {
       return;
     }
 
-    if ((!element || !node.hasNewLayout()) && !force) {
+    const skipHiddenNode =
+      !yogaOptions?.processHiddenNodes && element.node.alpha === 0;
+
+    if (!force && (skipHiddenNode || !node.hasNewLayout())) {
       return;
     }
 
