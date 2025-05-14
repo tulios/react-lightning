@@ -91,6 +91,82 @@ function getDistance(
   return x * x + y * y;
 }
 
+/**
+ * Calculate the shortest distance between two elements based on the W3C CSS
+ * Spatial Navigation spec: https://drafts.csswg.org/css-nav-1/#heuristics
+ */
+function calculateShortestDistance(
+  direction: Direction,
+  source: Dimensions,
+  target: Dimensions,
+): number | null {
+  const euclidean = getDistance(direction, source, target);
+  const displacement = getDisplacement(direction, source, target);
+  const alignment = getAlignment(direction, source, target);
+
+  if (euclidean === null) {
+    return null;
+  }
+
+  return (
+    euclidean +
+    displacement -
+    alignment -
+    Math.sqrt(getOverlap(direction, source, target))
+  );
+}
+
+function getAlignment(
+  direction: Direction,
+  source: Dimensions,
+  target: Dimensions,
+): number {
+  const isHorizontal = direction & Direction.Horizontal;
+  const bias =
+    getOverlap(direction, source, target) /
+    (isHorizontal ? source.width : source.height);
+
+  return bias * 5;
+}
+
+function getDisplacement(
+  direction: Direction,
+  { width: w1, height: h1, centerX: cx1, centerY: cy1 }: Dimensions,
+  { centerX: cx2, centerY: cy2 }: Dimensions,
+) {
+  const isHorizontal = direction & Direction.Horizontal;
+  const distance = isHorizontal ? cy2 - cy1 : cx2 - cx1;
+  const bias = isHorizontal ? h1 / 2 : w1 / 2;
+  const weight = isHorizontal ? 30 : 2;
+
+  return (distance + bias) * weight;
+}
+
+export function getOverlap(
+  direction: Direction,
+  { x: x1, y: y1, width: w1, height: h1 }: Dimensions,
+  { x: x2, y: y2, width: w2, height: h2 }: Dimensions,
+): number {
+  let length = 0;
+
+  switch (direction) {
+    case Direction.Up:
+      length = y1 > y2 && y1 < y2 + h2 ? y2 + h2 - y1 : 0;
+      break;
+    case Direction.Right:
+      length = x1 + w1 > x2 && x1 + w1 < x2 + w2 ? x1 + w1 - x2 : 0;
+      break;
+    case Direction.Down:
+      length = y1 + w1 > y2 && y1 + w1 < y2 + h2 ? y1 + h1 - y2 : 0;
+      break;
+    case Direction.Left:
+      length = x1 > x2 && x1 < x2 + w2 ? x2 + w2 - x1 : 0;
+      break;
+  }
+
+  return length;
+}
+
 function isOverlap(
   { x: x1, y: y1, width: w1, height: h1 }: Dimensions,
   { x: x2, y: y2, width: w2, height: h2 }: Dimensions,
@@ -132,7 +208,7 @@ export function findClosestElement(
         otherDimensions,
       );
 
-      const distance = getDistance(
+      const distance = calculateShortestDistance(
         direction,
         sourceDimensions,
         otherDimensions,
@@ -152,14 +228,6 @@ export function findClosestElement(
         closest?.push(otherElement);
       }
     }
-  }
-
-  if (closest.length === 0) {
-    return null;
-  }
-
-  if (closest.length === 1) {
-    return closest[0] as LightningElement;
   }
 
   // If we have multiple elements with the same closeness, then try to pick the

@@ -1,7 +1,7 @@
 import { describe, expect, it, suite } from 'vitest';
 import { Direction } from '../focus/Direction';
 import type { LightningElement, Rect } from '../types';
-import { findClosestElement } from './findClosestElement';
+import { findClosestElement, getOverlap } from './findClosestElement';
 
 // First element is the source, second is the direction, third is the
 // expected closest element or null if there is no closest element.
@@ -278,5 +278,61 @@ suite('findClosestElement', () => {
     ];
 
     runTestsOnElements(elements, tests);
+  });
+
+  describe('should return the correct element for a wide element in the middle', () => {
+    /**
+     * ┌─────────────────┐
+     * │ ╔══════╗        │
+     * │ ║   1  ║        │
+     * │ ╚══════╝        │
+     * │ ╔═══════════╗   │
+     * │ ║     2     ║   │
+     * │ ╚═══════════╝   │
+     * │ ╔═══╗           │
+     * │ ║ 3 ║           │
+     * │ ╚═══╝           │
+     * └─────────────────┘
+     */
+    const elements = createLayout(500, 500, [
+      { height: 48, width: 243, x: 160, y: 24 },
+      { height: 96, width: 820, x: 160, y: 88 },
+      { height: 64, width: 544, x: 160, y: 264 },
+    ]);
+    const tests: TestCases = [
+      [1, Direction.Up, null],
+      [1, Direction.Right, null],
+      [1, Direction.Down, 2],
+      [1, Direction.Left, null],
+      [2, Direction.Up, 1],
+      [2, Direction.Right, null],
+      [2, Direction.Down, 3],
+      [2, Direction.Left, null],
+      [3, Direction.Up, 2],
+      [3, Direction.Right, null],
+      [3, Direction.Down, null],
+      [3, Direction.Left, null],
+    ];
+
+    runTestsOnElements(elements, tests);
+  });
+});
+
+suite('getOverlap', () => {
+  it('should return the correct overlap for two elements', () => {
+    const a = { x: 0, y: 0, width: 100, height: 100, centerX: 50, centerY: 50 };
+    const b = {
+      x: 75,
+      y: 75,
+      width: 100,
+      height: 100,
+      centerX: 50,
+      centerY: 50,
+    };
+
+    expect(getOverlap(Direction.Up, a, b)).toEqual(0);
+    expect(getOverlap(Direction.Right, a, b)).toEqual(25);
+    expect(getOverlap(Direction.Down, a, b)).toEqual(25);
+    expect(getOverlap(Direction.Left, a, b)).toEqual(0);
   });
 });

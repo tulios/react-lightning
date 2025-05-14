@@ -52,4 +52,23 @@ describe('simpleDiff', () => {
     const result = simpleDiff(obj1, obj2);
     expect(result).toEqual({ children: [obj2] });
   });
+
+  it('should handle null and undefined values', () => {
+    type User = {
+      name: string;
+      dob?: { year: number; month: number; day: number } | null;
+    };
+    const obj1: User = { name: 'John', dob: null };
+    const obj2: User = { name: 'John', dob: { year: 1920, month: 2, day: 2 } };
+
+    const result = simpleDiff(obj1, obj2);
+
+    expect(result).toEqual({
+      dob: {
+        day: 2,
+        month: 2,
+        year: 1920,
+      },
+    });
+  });
 });

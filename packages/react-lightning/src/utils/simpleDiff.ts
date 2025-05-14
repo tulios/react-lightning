@@ -41,7 +41,7 @@ function areEqualObjects<T extends object>(
   second: T,
   visited: Set<unknown>,
 ): boolean {
-  if ((first == null && second == null) || typeof first !== 'object') {
+  if (first == null || second == null || typeof first !== 'object') {
     return first === second;
   }
 
