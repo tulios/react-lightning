@@ -209,7 +209,7 @@ export class FocusManager<T extends Focusable> extends EventEmitter<
         this._recalculateFocusPath();
       }),
       element.on('focusChanged', (_, isFocused) => {
-        if (isFocused) {
+        if (isFocused && !element.focused) {
           this.focus(element);
         }
       }),
