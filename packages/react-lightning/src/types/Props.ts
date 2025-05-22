@@ -68,6 +68,7 @@ export type LightningImageElementProps<
   TStyleProps extends LightningImageElementStyle = LightningImageElementStyle,
 > = LightningViewElementProps<TStyleProps> & {
   src?: INodeProps['src'];
+  imageType?: INodeProps['imageType'];
 };
 
 export type LightningTextElementProps<

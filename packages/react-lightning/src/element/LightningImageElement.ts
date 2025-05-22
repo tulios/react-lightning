@@ -1,18 +1,37 @@
-import type { INodeProps, NodeLoadedPayload } from '@lightningjs/renderer';
+import type {
+  INode,
+  INodeProps,
+  NodeLoadedPayload,
+  RendererMain,
+} from '@lightningjs/renderer';
+import type { Fiber } from 'react-reconciler';
+import type { Plugin } from '../render/Plugin';
 import {
+  type LightningElement,
   LightningElementType,
   type LightningImageElementProps,
   type LightningImageElementStyle,
-  type LightningTextElementStyle,
-  type LightningViewElementProps,
   type RendererNode,
 } from '../types';
 import { LightningViewElement } from './LightningViewElement';
 
-export class LightningImageElement extends LightningViewElement<
-  LightningImageElementStyle,
-  LightningImageElementProps<LightningImageElementStyle>
-> {
+function getImageType(src?: string | null): INode['imageType'] {
+  if (!src) {
+    return null;
+  }
+
+  const srcLower = src.toLowerCase();
+  const isSvg =
+    srcLower.endsWith('.svg') || srcLower.startsWith('data:image/svg+xml,');
+
+  return isSvg ? 'svg' : null;
+}
+
+export class LightningImageElement<
+  TStyleProps extends LightningImageElementStyle = LightningImageElementStyle,
+  TProps extends
+    LightningImageElementProps<TStyleProps> = LightningImageElementProps<TStyleProps>,
+> extends LightningViewElement<TStyleProps, TProps> {
   public override get type() {
     return LightningElementType.Image;
   }
@@ -30,16 +49,22 @@ export class LightningImageElement extends LightningViewElement<
   public set src(v) {
     this.node.src = v;
 
-    // Attempt to set the svg imageType for data urls if not already set.
-    // Lightning doesn't handle svgs that are data urls, so this adds support
-    // for that.
-    if (this.node.imageType == null && v) {
-      const src = v.toLowerCase();
-      const isSvg =
-        src.endsWith('.svg') || src.startsWith('data:image/svg+xml,');
-
-      this.setNodeProp('imageType', isSvg ? 'svg' : null);
+    if (!this.node.imageType) {
+      this.node.imageType = getImageType(v);
     }
+  }
+
+  public constructor(
+    initialProps: TProps,
+    renderer: RendererMain,
+    plugins: Plugin<LightningElement>[],
+    fiber: Fiber,
+  ) {
+    if (!initialProps.imageType) {
+      initialProps.imageType = getImageType(initialProps.src);
+    }
+
+    super(initialProps, renderer, plugins, fiber);
   }
 
   protected override _handleTextureLoaded(event: NodeLoadedPayload): void {
@@ -58,7 +83,7 @@ export class LightningImageElement extends LightningViewElement<
   }
 
   public override _toLightningNodeProps(
-    props: LightningViewElementProps<LightningTextElementStyle> & {
+    props: TProps & {
       text?: string;
     } & Record<string, unknown>,
     initial?: boolean,
