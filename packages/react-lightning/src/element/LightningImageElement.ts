@@ -29,6 +29,17 @@ export class LightningImageElement extends LightningViewElement<
 
   public set src(v) {
     this.node.src = v;
+
+    // Attempt to set the svg imageType for data urls if not already set.
+    // Lightning doesn't handle svgs that are data urls, so this adds support
+    // for that.
+    if (this.node.imageType == null && v) {
+      const src = v.toLowerCase();
+      const isSvg =
+        src.endsWith('.svg') || src.startsWith('data:image/svg+xml,');
+
+      this.setNodeProp('imageType', isSvg ? 'svg' : null);
+    }
   }
 
   protected override _handleTextureLoaded(event: NodeLoadedPayload): void {
