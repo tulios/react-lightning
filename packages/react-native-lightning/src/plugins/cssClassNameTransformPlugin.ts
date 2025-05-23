@@ -1,5 +1,4 @@
 import type { Plugin } from '@plexinc/react-lightning';
-import { StyleSheet } from 'react-native-web';
 // Necessary for the declaration merging to work below, since we don't import
 // the `react-native-web` typings.
 import '../types/react-native-web.d.ts';
@@ -15,9 +14,13 @@ function camelize(text: string) {
 }
 
 export const cssClassNameTransformPlugin = (): Plugin => {
-  const sheet = new CSSStyleSheet();
+  const sheet = Array.from(document.styleSheets).find((s) => {
+    const node = s.ownerNode;
+
+    return node && 'id' in node ? node.id === 'react-native-stylesheet' : null;
+  }) ?? { cssRules: [] };
+
   const cache: Record<string, Record<string, string>> = {};
-  let currentCssText = '';
 
   function parseStyle(cssText: string) {
     if (!cache[cssText]) {
@@ -41,13 +44,6 @@ export const cssClassNameTransformPlugin = (): Plugin => {
     transformProps(_instance, props) {
       if (!('className' in props)) {
         return props;
-      }
-
-      const newCssText = StyleSheet.getSheet().textContent;
-
-      if (newCssText !== currentCssText) {
-        sheet.replaceSync(newCssText);
-        currentCssText = newCssText;
       }
 
       const { className, style, ...otherProps } = props;
