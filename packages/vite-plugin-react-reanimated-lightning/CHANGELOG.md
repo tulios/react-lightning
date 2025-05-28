@@ -1,5 +1,16 @@
 # @plextv/vite-plugin-react-reanimated-lightning
 
+## 0.3.0
+
+### Minor Changes
+
+- 3c22b29: Change package scope from plexinc to plextv
+
+### Patch Changes
+
+- Updated dependencies [3c22b29]
+  - @plextv/react-lightning-plugin-reanimated@0.3.0
+
 ## 0.2.9
 
 ### Patch Changes

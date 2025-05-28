@@ -1,5 +1,18 @@
 # @plextv/react-lightning-example
 
+## 0.3.0
+
+### Minor Changes
+
+- 3c22b29: Change package scope from plexinc to plextv
+
+### Patch Changes
+
+- Updated dependencies [3c22b29]
+  - @plextv/react-lightning-components@0.3.0
+  - @plextv/react-lightning@0.3.0
+  - @plextv/react-lightning-plugin-flexbox@0.3.0
+
 ## 0.2.9
 
 ### Patch Changes
