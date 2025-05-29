@@ -3,13 +3,42 @@ import { convertCSSTransformToLightning } from './convertCSSTransformToLightning
 
 const transformPartRegex = /(\w+)\(([^)]+)\)/g;
 
-export function parseTransform(transform?: string): Transform {
+export function parseTransform(
+  transform?: string | object | Array<object | string>,
+): Transform {
   if (!transform) {
     return {};
   }
 
+  if (Array.isArray(transform)) {
+    const transforms = {};
+
+    for (const t of transform) {
+      Object.assign(transforms, parseTransform(t));
+    }
+
+    return transforms;
+  }
+
   if (typeof transform === 'object') {
-    return transform;
+    const safeTransform: Transform = {};
+    const originalTranform = transform as Record<
+      string,
+      string | number | number[]
+    >;
+
+    for (const t of Object.keys(originalTranform)) {
+      if (!originalTranform[t]) {
+        continue;
+      }
+
+      Object.assign(
+        safeTransform,
+        convertCSSTransformToLightning(t, originalTranform[t]),
+      );
+    }
+
+    return safeTransform;
   }
 
   const transformParts = transform.match(transformPartRegex);

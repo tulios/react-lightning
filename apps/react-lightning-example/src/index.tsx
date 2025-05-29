@@ -4,6 +4,7 @@ import {
   type RenderOptions,
   createRoot as createRootLng,
 } from '@plextv/react-lightning';
+import { plugin as cssTransformPlugin } from '@plextv/react-lightning-plugin-css-transform';
 import { plugin as flexPlugin } from '@plextv/react-lightning-plugin-flexbox';
 import { createRoot as createRootDom } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
@@ -16,6 +17,7 @@ import { Page60 } from './pages/Page60';
 import { PosterPage } from './pages/PosterPage';
 import { ShaderPage } from './pages/ShaderPage';
 import { TexturePage } from './pages/TexturePage';
+import { TransformsPage } from './pages/TransformsPage';
 import { MyCustomShader } from './shaders/MyCustomShader';
 import { MyCustomTexture } from './shaders/MyCustomTexture';
 import { NoiseEffect } from './shaders/NoiseEffect';
@@ -52,6 +54,10 @@ const router = createBrowserRouter([
     element: <TexturePage />,
   },
   {
+    path: '/transforms',
+    element: <TransformsPage />,
+  },
+  {
     path: '/page60',
     element: <Page60 />,
   },
@@ -77,7 +83,7 @@ const options: RenderOptions = {
     }),
   ],
   enableContextSpy: true,
-  plugins: [flexPlugin()],
+  plugins: [cssTransformPlugin(), flexPlugin()],
   effects: {
     Noise: NoiseEffect,
     StaticAlpha: StaticAlphaEffect,
