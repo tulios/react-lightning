@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 const ComponentTest = () => {
-  const ref = useRef<ScrollView>();
+  const ref = useRef<ScrollView>(null);
 
   const handleChildFocused = useCallback((child: LightningElement) => {
     ref.current?.scrollToElement(child);

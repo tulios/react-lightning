@@ -10,8 +10,8 @@ export const constants = {
   isTesting,
   reactNativeVersion: {
     major: 0,
-    minor: 73,
-    patch: 4,
+    minor: 79,
+    patch: 3,
   },
 };
 
