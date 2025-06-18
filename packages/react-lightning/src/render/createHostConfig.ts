@@ -7,29 +7,27 @@ import {
   type LightningElement,
   type LightningElementProps,
   LightningElementType,
-  type LightningTextElementProps,
   type RendererNode,
 } from '../types';
+import { simpleDiff } from '../utils/simpleDiff';
 import type { Plugin } from './Plugin';
 import { mapReactPropsToLightning } from './mapReactPropsToLightning';
-import propsEqual from '../utils/propsEqual';
-import { simpleDiff } from '../utils/simpleDiff';
 
 export type LightningHostConfig = HostConfig<
-  LightningElementType,  // Type
+  LightningElementType, // Type
   LightningElementProps, // Props
-  RendererMain,          // Container
-  LightningElement,      // Instance
-  LightningTextElement,  // TextInstance
-  null,                  // SuspenseInstance
-  null,                  // HydratableInstance
-  LightningElement,      // FormInstance
-  LightningElement,      // PublicInstance
+  RendererMain, // Container
+  LightningElement, // Instance
+  LightningTextElement, // TextInstance
+  null, // SuspenseInstance
+  null, // HydratableInstance
+  LightningElement, // FormInstance
+  LightningElement, // PublicInstance
   LightningElementProps, // HostContext
-  unknown,               // ChildSet
-  number | undefined,    // TimeoutHandle
-  -1,                    // NoTimeout
-  null                   // TransitionStatus
+  unknown, // ChildSet
+  number | undefined, // TimeoutHandle
+  -1, // NoTimeout
+  null // TransitionStatus
 >;
 
 type LightningHostConfigOptions = Pick<
@@ -77,7 +75,7 @@ export function createHostConfig(
     getChildHostContext(
       parentHostContext: LightningElementProps,
       _type: LightningElementType,
-      _rootContainer: RendererMain
+      _rootContainer: RendererMain,
     ) {
       return parentHostContext;
     },
@@ -133,7 +131,12 @@ export function createHostConfig(
       _hostContext: LightningElementProps,
       internalHandle: Fiber,
     ) {
-      return new LightningTextElement({ text }, renderer, plugins, internalHandle);
+      return new LightningTextElement(
+        { text },
+        renderer,
+        plugins,
+        internalHandle,
+      );
     },
 
     finalizeInitialChildren() {
@@ -301,7 +304,7 @@ export function createHostConfig(
     },
 
     resolveEventType() {
-      return null
+      return null;
     },
 
     resolveEventTimeStamp() {
@@ -311,11 +314,13 @@ export function createHostConfig(
     NotPendingTransition: null,
     HostTransitionContext: {
       $$typeof: Symbol.for('react.context'),
+      // biome-ignore lint/suspicious/noExplicitAny: We won't support transitions, so this is the simplest mock object
       Consumer: null as any,
+      // biome-ignore lint/suspicious/noExplicitAny: We won't support transitions, so this is the simplest mock object
       Provider: null as any,
       _currentValue: null,
       _currentValue2: null,
-      _threadCount: 0
+      _threadCount: 0,
     },
   };
 }

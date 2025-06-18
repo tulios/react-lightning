@@ -28,23 +28,30 @@ const CellContainer = forwardRef<LightningElement, CellContainerProps>(
 
     // We need to not set overflow: 'hidden' on the cell view, otherwise the
     // FlashList will not render the items correctly.
+
+    // react-native-lightning/src/plugins/reactNativePolyfillsPlugin.ts is handling the flattening,
+    // check react-native-lightning/src/exports/Image.tsx for more details on the cast to any.
+
+    const finalStyle = [
+      style,
+      {
+        clipping: false,
+        initialDimensions: {
+          x: lngStyle?.x ?? 0,
+          y: lngStyle?.y ?? 0,
+          width: lngStyle?.width ?? estimatedSize ?? 2,
+          height: lngStyle?.height ?? estimatedSize ?? 2,
+        },
+      },
+      // biome-ignore lint/suspicious/noExplicitAny: explanation in the comment above
+    ] as any;
+
     return (
       <lng-view
         {...props}
         onLayout={handleOnLayout}
         ref={forwardedRef}
-        style={[
-          style,
-          {
-            clipping: false,
-            initialDimensions: {
-              x: lngStyle?.x ?? 0,
-              y: lngStyle?.y ?? 0,
-              width: lngStyle?.width ?? estimatedSize ?? 2,
-              height: lngStyle?.height ?? estimatedSize ?? 2,
-            },
-          },
-        ]}
+        style={finalStyle}
       />
     );
   },

@@ -81,24 +81,31 @@ export const Image = forwardRef<LightningImageElement, ImageProps>(
       return null;
     }
 
+    // plugins/reactNativePolyfillsPlugin.ts is handling the style flattening but
+    // the TS definitions are more strict on R19/RN0.79.3 and will fail the type
+    // check. Since the flattening is handled by the plugin, we can safely cast the style.
+
+    const finalStyle = [
+      style,
+      width
+        ? {
+            width,
+          }
+        : undefined,
+      height
+        ? {
+            height,
+          }
+        : undefined,
+      // biome-ignore lint/suspicious/noExplicitAny: explanation in the comment above
+    ] as any;
+
     return (
       <lng-image
         {...otherProps}
         ref={ref}
         src={finalSource}
-        style={[
-          style,
-          width
-            ? {
-                width,
-              }
-            : undefined,
-          height
-            ? {
-                height,
-              }
-            : undefined,
-        ]}
+        style={finalStyle}
         onTextureReady={handleImageLoaded}
         onLayout={onImageLayout}
       />

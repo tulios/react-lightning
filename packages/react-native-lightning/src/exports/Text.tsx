@@ -61,15 +61,21 @@ export const Text = forwardRef<LightningTextElement, TextProps>(
       return overflow;
     }, [ellipsizeMode, numberOfLines]);
 
+    // plugins/reactNativePolyfillsPlugin.ts is handling the flattening, check Image.tsx
+    // for more details on the cast to any.
+
+    const finalStyle = [
+      defaultTextStyle,
+      overflowStyle,
+      style as LightningTextElementStyle,
+      // biome-ignore lint/suspicious/noExplicitAny: explanation in the comment above
+    ] as any;
+
     return (
       <lng-text
         ref={ref}
         {...otherProps}
-        style={[
-          defaultTextStyle,
-          overflowStyle,
-          style as LightningTextElementStyle,
-        ]}
+        style={finalStyle}
         onLayout={onTextLayout}
         onTextureReady={onTextLoaded}
       >

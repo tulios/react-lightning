@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { Fragment, useCallback } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -40,7 +40,7 @@ const AnimationTest = () => {
   );
 
   return (
-    <>
+    <Fragment>
       <Animated.View
         style={[
           styles.box,
@@ -58,7 +58,7 @@ const AnimationTest = () => {
           title="Click me"
         />
       </View>
-    </>
+    </Fragment>
   );
 };
 
