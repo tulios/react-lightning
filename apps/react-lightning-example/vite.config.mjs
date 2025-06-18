@@ -7,7 +7,9 @@ import tsconfigPaths from 'vite-tsconfig-paths';
  */
 const config = {
   plugins: [
-    tsconfigPaths(),
+    tsconfigPaths({
+      skip: (dir) => dir.includes('templates'),
+    }),
     react(),
     fontGen({
       inputs: [
