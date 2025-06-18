@@ -37,6 +37,7 @@ export default {
     (Story) => (
       <StorybookDecorator
         story={Story}
+        tags={['plugin-flexbox-lite']}
         canvasOptions={{ plugins: [flexboxLitePlugin()] }}
       />
     ),
