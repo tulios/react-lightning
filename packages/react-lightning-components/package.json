@@ -71,13 +71,13 @@
     "@plextv/react-lightning-plugin-flexbox": "workspace:*",
     "@repo/rollup-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "18.3.14",
-    "react": "18.3.1"
+    "@types/react": "19.1.0",
+    "react": "19.1.0"
   },
   "peerDependencies": {
     "@plextv/react-lightning": "workspace:^",
     "@plextv/react-lightning-plugin-flexbox": "workspace:^",
-    "react": "^18.3.1"
+    "react": "^19.1.0"
   },
   "volta": {
     "extends": "../../package.json"
