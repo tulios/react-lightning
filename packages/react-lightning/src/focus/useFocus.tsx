@@ -52,7 +52,7 @@ export function useFocus<T extends LightningElement>(
 
   // We need to keep a copy of the ref around for when this hook is unmounted,
   // so we can properly remove the child element.
-  const elementRef = useRef<T>();
+  const elementRef = useRef<T>(null);
   const traps = useMemo(
     () => ({
       up: trapFocusUp ?? false,

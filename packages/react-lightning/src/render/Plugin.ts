@@ -10,7 +10,7 @@ export type Plugin<T extends LightningElement = LightningElement> = {
    */
   init?(
     renderer: RendererMain,
-    reconciler: Reconciler<RendererMain, T, LightningTextElement, null, T>,
+    reconciler: Reconciler<RendererMain, T, LightningTextElement, null, T, T>,
   ): Promise<void>;
 
   /**

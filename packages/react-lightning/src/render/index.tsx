@@ -197,7 +197,7 @@ export async function createRoot(
       if (componentOrElement instanceof Function) {
         reactElement = isReactClassComponent(componentOrElement)
           ? (new componentOrElement({}) as unknown as ReactNode)
-          : componentOrElement({});
+          : componentOrElement({}) as ReactNode;
       } else {
         reactElement = componentOrElement;
       }

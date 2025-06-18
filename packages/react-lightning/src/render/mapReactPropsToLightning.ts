@@ -39,11 +39,11 @@ export function mapReactPropsToLightning(
               '',
             );
           } else if (
-            children &&
+            children && typeof children === 'object' &&
             'props' in children &&
-            children.props?.defaultMessage
+            (children.props as unknown as Record<string, string>)?.defaultMessage
           ) {
-            textProps.text = children.props.defaultMessage;
+            textProps.text = (children.props as unknown as Record<string, string>).defaultMessage;
           } else if (children) {
             console.error('Unsupported child type found for text element');
           }
