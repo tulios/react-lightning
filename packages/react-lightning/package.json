@@ -43,20 +43,20 @@
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "react-reconciler": "0.29.2"
+    "react-reconciler": "0.32.0"
   },
   "devDependencies": {
     "@lightningjs/renderer": "2.13.2",
     "@repo/rollup-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "18.3.14",
-    "@types/react-reconciler": "0.28.8",
+    "@types/react": "19.1.0",
+    "@types/react-reconciler": "0.32.0",
     "copyfiles": "2.4.1",
-    "react": "18.3.1"
+    "react": "19.1.0"
   },
   "peerDependencies": {
     "@lightningjs/renderer": "^2.5.1",
-    "react": "^18.3.1"
+    "react": "^19.1.0"
   },
   "volta": {
     "extends": "../../package.json"
