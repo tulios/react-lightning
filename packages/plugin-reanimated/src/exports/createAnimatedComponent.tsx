@@ -2,6 +2,7 @@ import type {
   LightningElement,
   LightningViewElement,
 } from '@plextv/react-lightning';
+import type React from 'react';
 import { forwardRef, useEffect, useMemo, useRef } from 'react';
 import type {
   Falsy,
@@ -70,7 +71,7 @@ function useNormalizedStyles(
   return [flatStyles, ref];
 }
 
-export function createAnimatedComponent(Component: JSX.ElementType) {
+export function createAnimatedComponent(Component: React.JSX.ElementType) {
   return forwardRef<LightningElement, ViewProps>((props, forwardedRef) => {
     const { style, ...otherProps } = props;
     const styleArray = useMemo(

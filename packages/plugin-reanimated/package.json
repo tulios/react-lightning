@@ -46,9 +46,9 @@
     "@plextv/react-lightning-plugin-flexbox": "workspace:*",
     "@repo/rollup-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "18.3.14",
-    "react": "18.3.1",
-    "react-native": "0.77.1",
+    "@types/react": "19.1.0",
+    "react": "19.1.0",
+    "react-native": "0.79.3",
     "react-native-reanimated": "3.16.7"
   },
   "peerDependencies": {
@@ -56,8 +56,8 @@
     "@plextv/react-lightning": "workspace:^",
     "@plextv/react-lightning-plugin-css-transform": "workspace:^",
     "@plextv/react-lightning-plugin-flexbox": "workspace:^",
-    "react": "^18.3.1",
-    "react-native": "^0.76.1",
+    "react": "^19.1.0",
+    "react-native": "^0.79.3",
     "react-native-reanimated": "^3.16.1"
   },
   "volta": {
